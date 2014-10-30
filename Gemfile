@@ -34,11 +34,17 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
+gem 'devise', '~> 3.2.4'
+gem 'simple_form', '~> 3.0.2'
+# gem 'country_select', '~> 2.0.0.beta2', github: 'stefanpenner/country_select'
+# gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master' # For 4.x
+
+
 group :development, :test do |group|
   gem 'hirb', '~> 0.7.2'
   gem 'spring', '~> 1.1.3'
   gem 'minitest', '~> 5.4.0'
   gem 'rspec-rails', '~> 3.0.0'
   gem 'rspec-expectations', '~> 3.0.0'
-  gem 'byebug', '~> 3.2.0'
+  gem 'debugger-pry', '~> 0.1.1'
 end
