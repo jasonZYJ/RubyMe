@@ -8,6 +8,14 @@ gem 'pg'
 
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails', '~> 2.2.0'
+
+gem 'capistrano', '~> 3.1.0'
+gem 'capistrano-rails', '~> 1.1.0'
+gem 'capistrano-bundler', '~> 1.1.3'
+gem 'unicorn', '~> 4.8.3'
+
+gem 'highline', '~> 1.6.21'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -26,11 +34,11 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
-group :development do |group|
+group :development, :test do |group|
   gem 'hirb', '~> 0.7.2'
   gem 'spring', '~> 1.1.3'
   gem 'minitest', '~> 5.4.0'
   gem 'rspec-rails', '~> 3.0.0'
   gem 'rspec-expectations', '~> 3.0.0'
-  gem 'debugger-pry', '~> 0.1.1', :require => 'debugger/pry'
+  gem 'byebug', '~> 3.2.0'
 end
