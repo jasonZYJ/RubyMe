@@ -1,5 +1,3 @@
 
-#= require common/underscore
-#= require common/backbone
-#= require jquery
+#= require shared/utils
 #= require bootstrap

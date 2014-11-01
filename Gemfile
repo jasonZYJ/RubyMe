@@ -24,7 +24,7 @@ gem 'uglifier', '~> 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
-
+gem 'rails_config', '~> 0.4.2'
 # Use jquery as the JavaScript library
 gem 'jquery-rails', '~> 3.1.1'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -35,9 +35,10 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem 'devise', '~> 3.2.4'
+gem 'devise-i18n', '~> 0.10.4'
 gem 'simple_form', '~> 3.0.2'
 # gem 'country_select', '~> 2.0.0.beta2', github: 'stefanpenner/country_select'
-# gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master' # For 4.x
+gem 'rails-i18n', '>= 4.0.2', github: 'svenfuchs/rails-i18n', branch: 'master' # For 4.x
 
 
 group :development, :test do |group|

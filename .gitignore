@@ -15,3 +15,6 @@
 secrets.yml
 database.yml
 config/deploy/production.rb
+config/settings.local.yml
+config/settings/*.local.yml
+config/environments/*.local.yml
