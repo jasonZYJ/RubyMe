@@ -55,13 +55,13 @@ h6, .h6 {
     color: #fff;
     text-decoration: none;
   }
-
 }
 
 /* Active state gets a caret at the bottom */
 .blog-nav .active {
   color: #fff;
- &:after {
+
+  &:after {
     position: absolute;
     bottom: 0;
     left: 50%;
@@ -75,8 +75,6 @@ h6, .h6 {
     border-left: 5px solid transparent;
   }
 }
-
-
 
 /*
  * Blog name and description
