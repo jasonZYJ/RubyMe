@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  
+
   devise_for :users, path: 'admin'
 
   namespace :frontend, path: '/' do
@@ -13,6 +13,10 @@ Rails.application.routes.draw do
 
   namespace :admin, path: '/admin' do
     root 'home#index'
+
+    resources :posts
+
+    resources :categories
   end
 
 end
