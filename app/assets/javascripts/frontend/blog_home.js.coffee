@@ -1,2 +1,1 @@
-#= require shared/utils
-#= require bootstrap
+#= require shared/utils 
