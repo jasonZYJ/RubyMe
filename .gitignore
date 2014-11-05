@@ -15,3 +15,5 @@
 config/deploy/production.rb
 config/database.yml
 config/settings.yml
+public/assets/
+public/uploads/

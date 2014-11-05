@@ -40,10 +40,14 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'devise', '~> 3.2.4'
 gem 'devise-i18n', '~> 0.10.4'
 gem 'simple_form', '~> 3.1.0.rc2'#, github: 'plataformatec/simple_form'
-gem 'ckeditor', '~> 4.1.0'
+
 # gem 'country_select', '~> 2.0.0.beta2', github: 'stefanpenner/country_select'
 gem 'rails-i18n', '>= 4.0.2', github: 'svenfuchs/rails-i18n', branch: 'master' # For 4.x
 
+gem 'ckeditor', '~> 4.0.11'
+gem 'non-stupid-digest-assets', '~> 1.0.4'
+gem 'carrierwave', '~> 0.10.0'
+gem 'mini_magick', '~> 3.8.0'
 
 group :development, :test do |group|
   gem 'hirb', '~> 0.7.2'
@@ -51,4 +55,8 @@ group :development, :test do |group|
   gem 'rspec-rails', '~> 3.0.0'
   gem 'rspec-expectations', '~> 3.0.0'
   gem 'debugger-pry', '~> 0.1.1'
+
+  gem 'better_errors', '~> 1.1.0'
+  gem 'binding_of_caller', '~> 0.7.2'
+  gem 'rails_best_practices', '~> 1.15.4'
 end

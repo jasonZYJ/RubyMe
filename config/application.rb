@@ -20,7 +20,7 @@ module BlogMe
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :'zh-CN'
     config.i18n.available_locales = [:'zh-CN', :en]
-
+    config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
 
     config.to_prepare do
       devise_layout = 'admin/session'
