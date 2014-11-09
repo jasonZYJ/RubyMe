@@ -4,19 +4,22 @@
 
       <a class="<%= 'active' if params[:controller] == 'frontend/home' %>" href="<%= frontend_root_path %>"><%= Settings.site_name %></a>
 
-      <% if current_user %>
+
+      <% if @blogger && @blogger != current_user %>
+        <a class="<%= 'active' if params[:controller] == 'frontend/users' %>" href="<%= frontend_user_path(@blogger) %>"><%= @blogger.human_name %></a>
+      <% elsif current_user %>
         <a class="<%= 'active' if params[:controller] == 'frontend/users' %>" href="<%= frontend_user_path(current_user) %>">我的主页</a>
       <% end %>
 
-      <a class="" href="#">New features</a>
-      <a class="" href="#">New hires</a>
-      <a class="" href="#">About</a>
+      <a class="" href="/bloggers">博 客</a>
+      <a class="" href="/features">新功能</a>
+      <a class="" href="/about_us">关 于</a>
 
       <span class="pull-right">
         <% if current_user %>
-          <a class="<%= 'active' if params[:controller].include?('admin/') %>" href="<%= admin_root_path %>">Admin</a>
+          <a class="<%= 'active' if params[:controller].include?('admin/') %>" href="<%= admin_root_path %>"><%= current_user.human_name %></a>
 
-          <a class="" href="<%= destroy_user_session_path %>">注销</a>
+          <a class="" href="<%= destroy_user_session_path %>">退出</a>
         <% else %>
           <a class="<%= 'active' if params[:controller] == 'devise/registrations' %>" href="<%= new_user_registration_path %>">注册</a>
 

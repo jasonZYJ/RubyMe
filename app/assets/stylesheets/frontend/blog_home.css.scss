@@ -1,1 +1,38 @@
 @import "shared/utils";
+
+body {
+  >.container {
+    padding: 0px 15px;
+
+    .blog-sidebar {
+      .bloger_name {
+        font-size: larger;
+      }
+
+      .blogger_info {
+        margin-left: 10px;
+
+        .ranking_number {
+          font-size: larger;
+          color: yellowgreen;
+        }
+
+        .visits_number {
+          font-size: larger;
+        }
+      }
+    }
+
+    .blog-post {
+      margin: auto;
+      border-bottom: 1px dotted;
+      padding: 10px 11px 15px;
+      margin-bottom: 10px;
+    }
+
+    img {
+      max-width: 500px!important;
+      max-height: 500px!important;
+    }
+  }
+}

@@ -2,3 +2,20 @@
 @import "shared/blog";
 @import "shared/sticky-footer-navbar";
 @import "shared/bootstrap";
+
+.text_middle {
+  vertical-align: middle!important;
+}
+
+.bloger_photo {
+  width: 160px;
+  height: 160px;
+}
+
+.pagination {
+  margin: 10px 0px;
+
+  span {
+    margin-right: 8px;
+  }
+}

@@ -64,6 +64,9 @@ puts_line "Create databases...\n" do
 
   `RAILS_ENV=#{rails_env} bundle exec rake db:create`
   `RAILS_ENV=#{rails_env} bundle exec rake db:migrate`
+  unless rails_env == "test"
+    `RAILS_ENV=#{rails_env} bundle exec rake db:seed`
+  end
 
   if rails_env == "production"
     puts "Now running RAILS_ENV=#{rails_env} rake assets:precompile..."

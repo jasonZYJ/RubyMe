@@ -9,14 +9,20 @@ Rails.application.routes.draw do
 
   namespace :frontend, path: '/' do
     root 'home#index'
-    resources :users
+    resources :users#, param: :uid
     resources :posts
+    resources :categories
   end
 
   namespace :admin, path: '/admin' do
     root 'home#index'
 
+    get '/profile', to: 'home#profile'
+    post '/update_profile', to: 'home#update_profile'
+
     resources :posts
+
+    resources :replies
 
     resources :categories
   end

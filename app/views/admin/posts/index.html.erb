@@ -1,0 +1,14 @@
+
+<div class="row">
+  <div class="col-xs-9">
+    <label>全部文章列表: </label>
+  </div>
+
+  <div class="col-xs-3 text-right">
+    <%= link_to '发布新文章', new_admin_post_path %>
+  </div>
+</div>
+
+<div class="row-fluid">
+  <%= render 'admin/shared/posts', posts: @posts %>
+</div>

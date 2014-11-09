@@ -1,0 +1,24 @@
+
+<div class="blog-posts">
+  <% if @posts.size > 0 %>
+    <% posts.each do |post| %>
+      <div class="blog-post">
+        <h3 class="blog-post-title"><%= omited_str(post.title) %></h3>
+        <p class="blog-post-meta">
+          <%= post.published_time %>
+          <a href="#"><%= post.tags %></a>
+        </p>
+
+      <div class="blog-post-content">
+          <%= omited_str(post.content, 150) %>
+        </div>
+      </div>
+      <% end %>
+
+    <div class="pager">
+      <%= paginate posts %>
+    </div>
+     <% else %>
+    暂时没有任何文章。
+  <% end %>
+</div>

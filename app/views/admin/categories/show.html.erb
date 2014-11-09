@@ -1,11 +1,16 @@
 
-<label>
-  分类 <%= @category.name %> 下的文章列表:
-</label>
+<div class="row">
+  <div class="col-xs-9">
+    <label>
+      分类 <%= @category.name %> 下的文章列表:
+    </label>
+  </div>
 
-<ul>
-  <% @posts.each do |post| %>
-    <li>
-      <%= link_to post.title, admin_post_path(post) %>
-  <% end %>
-</ul>
+  <div class="col-xs-3 text-right">
+    <%= link_to '发布新文章', new_admin_post_path %>
+  </div>
+</div>
+
+<div class="row-fluid">
+  <%= render 'admin/shared/posts', posts: @posts %>
+</div>

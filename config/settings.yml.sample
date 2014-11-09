@@ -8,4 +8,12 @@ site_mailer:
   user_name: 'zyj163loveher@163.com'
   password: 'xxx'
 
+cdn:
+  storage: 'qiniu'
+  access_key: 'ceWhcPCdPLerb13I_cFdVlVDJB7wq3GqnIBO-UiE'
+  secret_key: 'gRQbgK_oX_ZWGrXH_VBX6OIxCfxhUfNtYa98_oTY'
+  bucket: 'jasonblog'
+  bucket_domain: 'jasonblog.qiniudn.com'
+
+
 SECRET_KEY_BASE: 'a2a3871d452f6429eda890c4353683137bbd5e03758b79948e0903d1edab7451aae28a48444fcd76ca1ef445f7c21b2f4994a764d7f454ee0024c86b162c4052'
