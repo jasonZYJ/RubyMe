@@ -1,6 +1,7 @@
 class AdminController < ApplicationController
-  include AdminHelper
 
+  include ApplicationHelper
+  include AdminHelper
   layout 'admin/home'
 
    before_filter :authenticate_user!, :load_categories

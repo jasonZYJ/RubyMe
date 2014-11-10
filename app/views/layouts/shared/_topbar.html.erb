@@ -1,8 +1,8 @@
 <div class="blog-masthead">
   <div class="container">
-    <nav class="blog-nav">
+    <nav class="blog-nav text_bold">
 
-      <a class="<%= 'active' if params[:controller] == 'frontend/home' %>" href="<%= frontend_root_path %>"><%= Settings.site_name %></a>
+      <a class="<%= 'active' if action_name == 'index' && params[:controller] == 'frontend/home' %>" href="<%= frontend_root_path %>"><%= Settings.site_name %></a>
 
 
       <% if @blogger && @blogger != current_user %>
@@ -11,9 +11,9 @@
         <a class="<%= 'active' if params[:controller] == 'frontend/users' %>" href="<%= frontend_user_path(current_user) %>">我的主页</a>
       <% end %>
 
-      <a class="" href="/bloggers">博 客</a>
+      <a class="" href="/bloggers">博客</a>
       <a class="" href="/features">新功能</a>
-      <a class="" href="/about_us">关 于</a>
+      <a class="<%= 'active' if action_name == 'about' && params[:controller] == 'frontend/home' %>" href="<%= frontend_site_about_path %>">关于</a>
 
       <span class="pull-right">
         <% if current_user %>

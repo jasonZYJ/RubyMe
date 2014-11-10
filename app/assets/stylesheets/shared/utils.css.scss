@@ -2,14 +2,40 @@
 @import "shared/blog";
 @import "shared/sticky-footer-navbar";
 @import "shared/bootstrap";
+@import "shared/pnotify.all.min";
+
+.display_none {
+  display: none;
+}
 
 .text_middle {
   vertical-align: middle!important;
 }
 
+.text_bold {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+a {
+  font-size: 1.1em;
+  color: #4183c4;
+  text-decoration: none;
+}
+
+ul, ol {
+  li {
+    a {
+      margin-top: 5px;
+      margin-bottom: 5px;
+      font-size: larger;
+    }
+  }
+}
+
 .bloger_photo {
-  width: 160px;
-  height: 160px;
+  width: 130px;
+  height: 130px;
 }
 
 .pagination {

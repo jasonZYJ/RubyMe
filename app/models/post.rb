@@ -12,6 +12,9 @@ class Post < ActiveRecord::Base
 
   SOURCES = ['原创或翻译', '转载或分享']
 
+  #scope
+  default_scope ->{order('created_at desc')}
+
   def published_time
     self.created_at.strftime('%Y-%m-%d %H:%M')
   end
