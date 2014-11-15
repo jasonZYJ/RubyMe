@@ -53,3 +53,11 @@
     category:
         name: 分类名
         description: 分类描述
+
+    reply:
+        content: '@blogger 不错的分享，赞一个！'
+
+    post:
+        title: 文章标题
+        content: 文章内容...
+        tags: 最多5个标签，用于文章搜索

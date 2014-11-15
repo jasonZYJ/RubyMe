@@ -38,6 +38,9 @@ exclusions:
   - service
   - noreply
 
+test:
+  site_url: http://localhost:3000
+
 user:
   skip_captcha: true
 

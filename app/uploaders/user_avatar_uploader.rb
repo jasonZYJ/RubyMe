@@ -54,7 +54,7 @@ class UserAvatarUploader < CarrierWave::Uploader::Base
   version :thumb do
     # Process files as they are uploaded:
     # process :quality => 80
-    process :resize_to_fit => [40, 40]
+    process :resize_to_fit => [96, 96]
   end
 
   version :content do

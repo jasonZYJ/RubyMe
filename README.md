@@ -21,5 +21,5 @@ We use rspec & capybarato test.
 ```bash
 RAILS_ENV=test rails s
 # Make sure already installed firefox
-bundle exec rake rspec
+bundle exec rspec -fd
 ```

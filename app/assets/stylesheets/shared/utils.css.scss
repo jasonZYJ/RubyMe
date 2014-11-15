@@ -1,3 +1,4 @@
+@import "font-awesome";
 @import "shared/_variables";
 @import "shared/blog";
 @import "shared/sticky-footer-navbar";
@@ -43,6 +44,11 @@ ul, ol {
   }
 }
 
+.jumbotron {
+  padding: 30px;
+  margin-bottom: 0px;
+}
+
 .bloger_photo {
   width: 130px;
   height: 130px;
@@ -56,6 +62,17 @@ ul, ol {
   }
 }
 
+.box {
+  padding: 10px;
+  margin: 0 0 20px 0;
+  border-radius: 3px;
+  // background-color: #fff;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  box-shadow: 0 0px 2px rgba(0,0,0,0.07);
+  -moz-box-shadow: 0 0px 2px rgba(0,0,0,0.07);
+  -webkit-box-shadow: 0 0px 2px rgba(0,0,0,0.07);
+}
 
 .simple_captcha {
   padding: 5px;

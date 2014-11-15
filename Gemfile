@@ -9,6 +9,7 @@ gem 'pg'
 gem 'bootstrap-sass', '~> 3.2.0.1'
 gem 'bootstrap-wysihtml5-rails', '~> 0.3.2.100'
 gem 'autoprefixer-rails', '~> 2.2.0'
+gem 'font-awesome-sass-rails', '~> 3.0.2.2'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
