@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'open-uri'
 require 'file_size_validator'
 class User < ActiveRecord::Base
@@ -36,6 +37,10 @@ class User < ActiveRecord::Base
 
   def human_name
     self.uid
+  end
+
+  def city
+    self.city_name.blank? ? '未知' : self.city_name
   end
 
   def avatar_url
