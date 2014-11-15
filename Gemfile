@@ -23,6 +23,7 @@ gem 'kaminari', '~> 0.16.1'
 gem 'activeadmin', '~> 1.0.0.pre', github: 'gregbell/active_admin'
 # Use jquery as the JavaScript library
 gem 'jquery-rails', '~> 3.1.1'
+gem 'yui-compressor', '~> 0.12.0', require: false
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks', '~>2.3.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -40,7 +41,8 @@ gem 'rails-i18n', '>= 4.0.2', github: 'svenfuchs/rails-i18n', branch: 'master' #
 
 gem 'simple_captcha', '~> 0.1.6', github: 'galetahub/simple-captcha'
 
-gem 'ckeditor', '~> 4.1.0'
+gem 'ckeditor', '~> 4.0.11'
+gem 'non-stupid-digest-assets', '~> 1.0.4'
 gem 'carrierwave', '~> 0.10.0'
 gem 'mini_magick', '~> 3.8.0'
 gem 'qiniu-rs', '~> 3.4.10'
@@ -49,10 +51,15 @@ gem 'carrierwave-qiniu', '~> 0.1.3'
 gem 'redis-rails', '~> 4.0.0'
 gem 'redis-namespace', '~> 1.4.1'
 gem 'redis-semaphore', '~> 0.2.2'
-gem 'rack-cache', '~> 1.2'
-gem 'redis-rack-cache', '~> 1.2.2'
+# gem 'rack-cache', '~> 1.2'
+# gem 'redis-rack-cache', '~> 1.2.2'
 
-group :development, :test do |group|
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0.0'
+  gem 'factory_girl_rails', '~> 4.4.1'
+end
+
+group :development do |group|
   gem 'hirb', '~> 0.7.2'
   gem 'debugger-pry', '~> 0.1.1'
   gem 'better_errors', '~> 1.1.0'
@@ -67,9 +74,11 @@ group :development, :test do |group|
 end
 
 group :test do
-  gem 'minitest', '~> 5.4.0'
-  gem 'rspec-rails', '~> 3.0.0'
+  gem 'capybara', '~> 2.4.1'
+  gem 'database_cleaner', '~> 1.3.0'
+  gem 'watir-webdriver', '~> 0.6.10'
+  gem 'rspec-example_steps', '~> 3.0.2'
   gem 'rspec-expectations', '~> 3.0.0'
+  gem 'coveralls', '~> 0.7.1'
   gem 'rails_best_practices', '~> 1.15.4'
-  gem 'coveralls', '~> 0.7.1', require: false
 end

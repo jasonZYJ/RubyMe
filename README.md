@@ -17,7 +17,9 @@ rails s
 
 ## How to Test
 
-We use rspec to test.
+We use rspec & capybarato test.
 ```bash
+RAILS_ENV=test rails s
+# Make sure already installed firefox
 bundle exec rake rspec
 ```

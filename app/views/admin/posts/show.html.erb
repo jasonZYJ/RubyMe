@@ -1,6 +1,6 @@
 <div class="panel-heading">
   <div class="heading">
-    <h4>文章链接: <%= link_to frontend_user_post_url(current_user, @post), frontend_user_post_path(current_user, @post) %></h4>
+    <h4>永久链接: <%= link_to frontend_post_url(@post), frontend_post_path(@post) %></h4>
     <h4><%= @post.title %></h4>
 
   发布时间: <%= @post.published_time %>
@@ -15,7 +15,7 @@
 </div>
 
 <div class="panel-footer">
-  <div class="row-fluid pull-right">
+  <div class="row pull-right">
     <a href="<%= edit_admin_post_path(@post) %>" class="btn btn-sm btn-default">
       <span class="glyphicon glyphicon-edit"></span>编辑
     </a>
