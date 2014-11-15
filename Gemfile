@@ -37,13 +37,16 @@ gem 'simple_form', '~> 3.1.0.rc2'#, github: 'plataformatec/simple_form'
 
 # gem 'country_select', '~> 2.0.0.beta2', github: 'stefanpenner/country_select'
 gem 'rails-i18n', '>= 4.0.2', github: 'svenfuchs/rails-i18n', branch: 'master' # For 4.x
-gem 'simple_captcha', '~> 0.1.6', github: 'galetahub/simple-captcha' # www.google.com/recaptcha/api
+
+gem 'simple_captcha', '~> 0.1.6', github: 'galetahub/simple-captcha'
+
 gem 'ckeditor', '~> 4.1.0'
 gem 'carrierwave', '~> 0.10.0'
 gem 'mini_magick', '~> 3.8.0'
 gem 'qiniu-rs', '~> 3.4.10'
 gem 'carrierwave-qiniu', '~> 0.1.3'
 
+gem 'rack-cache', '~> 1.2'
 gem 'redis-rails', '~> 4.0.0'
 gem 'redis-namespace', '~> 1.4.1'
 gem 'redis-semaphore', '~> 0.2.2'

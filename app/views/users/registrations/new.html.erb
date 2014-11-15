@@ -10,12 +10,21 @@
     <%= f.input :password, required: true %>
     <%= f.input :password_confirmation, required: true %>
 
-  <div class="form-actions">
-      <%= f.button :submit, "注 册" %>
+    <% unless Settings.user.skip_captcha %>
+      <div class="captcha_content">
+        <%= show_simple_captcha %>
+      </div>
+    <% end %>
+
+     <div class="form-group form-actions">
+      <label class="col-sm-3"> </label>
+      <div class="col-sm-9">
+        <%= f.button :submit, "注 册" %>
+      </div>
     </div>
   </div>
 
-      <div class="panel-footer">
+  <div class="panel-footer">
     <%= render "users/shared/links" %>
   </div>
 <% end %>
