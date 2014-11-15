@@ -12,6 +12,7 @@
 /tmp
 .DS_Store
 .keep
+*.tgz
 .coveralls.yml
 config/deploy/production.rb
 database.yml

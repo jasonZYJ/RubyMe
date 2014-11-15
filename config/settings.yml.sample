@@ -4,6 +4,9 @@ site_name_zh: BlogMe
 site_ip: XXXXXXXXX
 site_domain: XXXXXXXXXX
 
+baidu:
+  tongji_ua: xxx
+
 site_mailer:
   address: smtp.163.com
   user_name: zyj163loveher@163.com

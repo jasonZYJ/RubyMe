@@ -46,17 +46,6 @@ set :keep_releases, 5
 
 namespace :deploy do
 
-  desc 'Rake assets:precompile'
-  task :compile_assets do
-    on roles(:db), in: :groups, wait: 5 do
-      within release_path do
-        execute :rake, 'assets:clean'
-        execute :rake, 'tmp:clear'
-        execute :rake, 'assets:precompile RAILS_ENV=production'
-      end
-    end
-  end
-
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
@@ -64,8 +53,6 @@ namespace :deploy do
       # execute :touch, release_path.join('tmp/restart.txt')
     end
   end
-
-  # before :publishing, :compile_assets
 
   after :publishing, :restart
 
