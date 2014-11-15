@@ -5,26 +5,19 @@
       <driver-ref>postgresql</driver-ref>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://127.0.0.1/blog_me_dev</jdbc-url>
-      <user-name>postgres</user-name>
-      <user-password>dfdddfc2dfc3dfdedfcfdfcedfc5dfdcdfcf</user-password>
       <libraries />
     </data-source>
     <data-source source="LOCAL" name="Rails blog_me: test" uuid="3769a3d1-c1b4-450c-984b-fa67f40300e8">
       <driver-ref>postgresql</driver-ref>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://127.0.0.1/blog_me_test</jdbc-url>
-      <user-name>postgres</user-name>
-      <user-password>dfdddfc2dfc3dfdedfcfdfcedfc5dfdcdfcf</user-password>
       <libraries />
     </data-source>
     <data-source source="LOCAL" name="Rails blog_me: production" uuid="a7bf9c45-abff-4edc-b9e8-cb35d17561ac">
       <driver-ref>postgresql</driver-ref>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://127.0.0.1/blog_me_pro</jdbc-url>
-      <user-name>postgres</user-name>
-      <user-password>dfdddfc2dfc3dfdedfcfdfcedfc5dfdcdfcf</user-password>
       <libraries />
     </data-source>
   </component>
 </project>
-

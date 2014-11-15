@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   namespace :frontend, path: '/' do
     root 'home#index'
-    resources :users#, param: :uid
+    resources :users, path: 'u'#, param: :uid
     resources :posts
     resources :categories
     get 'site/about', to: 'home#about'
