@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141109150233) do
+ActiveRecord::Schema.define(version: 20141115442343) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,10 +44,14 @@ ActiveRecord::Schema.define(version: 20141109150233) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "failed_attempts",        default: 0
+    t.string   "unlock_token"
+    t.datetime "locked_at"
   end
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
+  add_index "admin_users", ["unlock_token"], name: "index_admin_users_on_unlock_token", unique: true, using: :btree
 
   create_table "categories", force: true do |t|
     t.integer  "user_id"
@@ -73,11 +77,32 @@ ActiveRecord::Schema.define(version: 20141109150233) do
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
 
+  create_table "codes", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "category_id"
+    t.integer  "language_id"
+    t.string   "title"
+    t.string   "source"
+    t.string   "tags"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "languages", force: true do |t|
+    t.string   "name"
+    t.string   "code"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "points", force: true do |t|
     t.string   "name"
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "code"
   end
 
   create_table "posts", force: true do |t|
@@ -92,6 +117,7 @@ ActiveRecord::Schema.define(version: 20141109150233) do
     t.string   "tags"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "status"
   end
 
   create_table "replies", force: true do |t|
@@ -99,7 +125,7 @@ ActiveRecord::Schema.define(version: 20141109150233) do
     t.integer  "post_id"
     t.integer  "last_reply_id"
     t.text     "content"
-    t.boolean  "is_public"
+    t.boolean  "is_public",     default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -129,9 +155,13 @@ ActiveRecord::Schema.define(version: 20141109150233) do
     t.integer  "ranking"
     t.integer  "visits",                 default: 0
     t.string   "avatar"
+    t.integer  "failed_attempts",        default: 0
+    t.string   "unlock_token"
+    t.datetime "locked_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
 end

@@ -23,6 +23,8 @@ Rails.application.routes.draw do
 
     resources :replies
 
+    resources :codes
+
     resources :categories
   end
 
