@@ -7,19 +7,35 @@ module ApplicationHelper
     # "http://jasonblog.qiniudn.com/avatar/#{email_md5}.jpg"
   end
 
+  def site_intro
+    "技术分享平台"
+  end
+
+  def site_fullname
+    "#{Settings.site_name}(#{Settings.site_name_zh})"
+  end
+
   def default_title
     "#{controller_name}/#{action_name}"
   end
 
-  def page_title_tag(action_title=nil)
-    "<title>#{Settings.site_name}(#{Settings.site_name_zh}) - #{action_title || default_title}</title>".html_safe
+   def controller_title
+    controller.try(:title) || default_title
+  end
+
+  def page_title
+    "#{controller_title} - #{site_fullname}"
+  end
+
+   def meat_keywords
+    "#{Settings.site_name_zh}, #{Settings.site_name}, 博客平台, 个人博客, 技术博客, 信息技术分享"
   end
 
   def omited_str(str, length=60)
-    str.truncate(length, separator: ' ', omission: '...')
+    str.truncate(length, separator: " ", omission: "...")
   end
 
-  def js_alert(message='非常遗憾，操作失败.')
+  def js_alert(message="非常遗憾，操作失败.")
     render js: "alert('#{message}')"
   end
 
@@ -41,6 +57,10 @@ module ApplicationHelper
         "#{path} #{m}"
       end
     end.flatten
+  end
+
+  def post_tags_from_str(str)
+    str.split(',').map{|tag| "&nbsp;<a href='#'><span class='badge'>#{tag}</span></a>"}.join.html_safe
   end
 
 end

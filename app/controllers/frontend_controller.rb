@@ -5,4 +5,8 @@ class FrontendController < ApplicationController
 
   layout 'frontend/home'
 
+  def title
+     "#{site_intro}首页"
+  end
+
 end

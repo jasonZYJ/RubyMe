@@ -39,16 +39,24 @@ class User < ActiveRecord::Base
     self.uid
   end
 
-   def created_time
+  def whose_blogger
+    "#{self.uid}的博客"
+  end
+
+  def created_time
     self.created_at.strftime('%Y-%m-%d %H:%M')
+  end
+
+  def github_page
+    "https://github.com/#{self.github}"
   end
 
   def city
     self.city_name.blank? ? '未知' : self.city_name
   end
-  
+
   def blogger_title
-    self.signature.blank? ? "#{self.human_name}的博客" : self.signature
+    self.signature.blank? ? "#{self.whose_blogger}" : self.signature
   end
 
   def avatar_url

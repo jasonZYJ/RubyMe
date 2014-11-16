@@ -8,6 +8,10 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
+  def title
+    site_intro
+  end
+
   protected
   # configure devise permitted parameters
   def configure_permitted_parameters
@@ -27,10 +31,18 @@ class ApplicationController < ActionController::Base
   #  def after_sign_in_path_for(resource_or_scope)
   #   admin_root_path
   # end
+
+  def after_sign_in_path_for(resource_or_scope)
+    if resource.class.to_s == "User"
+      admin_root_path
+    else
+      super
+    end
+  end
   #
   #  # for user devise session
   # def after_sign_out_path_for(resource_or_scope)
-  #   frontend_user_path(current_user)
+  #   frontend_path(current_user)
   # end
 
 end
