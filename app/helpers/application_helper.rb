@@ -18,13 +18,17 @@ module ApplicationHelper
   def omited_str(str, length=60)
     str.truncate(length, separator: ' ', omission: '...')
   end
-  
+
   def js_alert(message='非常遗憾，操作失败.')
     render js: "alert('#{message}')"
   end
 
   def js_reload
     render js: "document.location.reload()"
+  end
+
+  def js_reload_without_params
+    render js: "window.location.href = location.href.split('?')[0]"
   end
 
   def draw_errors_message(ist_model)

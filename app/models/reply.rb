@@ -9,8 +9,18 @@ class Reply < ActiveRecord::Base
   #scope
   default_scope ->{order('created_at desc')}
 
+  before_save :validate_sensitive
+
   def published_time
     self.created_at.strftime('%Y-%m-%d %H:%M')
   end
 
+  def validate_sensitive
+    Settings.sensitive_words.each do |word|
+      if self.inspect.include?(word)
+        errors.add(:base, "回复内容包含敏感词汇: #{word}")
+        return false
+      end
+    end
+  end
 end
