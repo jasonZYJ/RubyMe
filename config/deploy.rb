@@ -8,8 +8,8 @@ def ask_secretly(key, default=nil)
   }
 end
 
-set :application, 'blog_me'
-set :repo_url, "git@github.com:jasonZYJ/blog_me.git"
+set :application, 'RubyMe'
+set :repo_url, "git@github.com:jasonZYJ/RubyMe.git"
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }

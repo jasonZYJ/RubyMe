@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 ROW_SIZE = 80
-APP_NAME = "blog_me"
+APP_NAME = "RubyMe"
 RAILS_ENVS = %w(development test production)
 
 class String

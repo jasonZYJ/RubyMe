@@ -10,12 +10,12 @@ default: &default
 
 development:
   <<: *default
-  database: blog_me_dev
+  database: ruby_me_dev
 
 test:
   <<: *default
-  database: blog_me_test
+  database: ruby_me_test
 
 production:
   <<: *default
-  database: blog_me_pro
+  database: ruby_me_pro
