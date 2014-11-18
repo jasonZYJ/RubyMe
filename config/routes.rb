@@ -23,7 +23,9 @@ Rails.application.routes.draw do
 
     resources :replies
 
-    resources :messages
+    resources :messages do
+      post 'mark_as_read', to: 'messages#mark_as_read'
+    end
 
     resources :codes
 

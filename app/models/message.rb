@@ -7,4 +7,10 @@ class Message < ActiveRecord::Base
   validates :from_user_id, presence: true
   # validates :target, presence: true
 
+  #scope
+  scope :reads, -> { where(is_read: true) }
+  scope :unreads, -> { where(is_read: false) }
+
+
+
 end
