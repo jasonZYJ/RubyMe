@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar, UserAvatarUploader
 
+  has_many :messages, dependent: :destroy, foreign_key: :user_id
   has_many :posts, dependent: :destroy
   has_many :codes, dependent: :destroy
   has_many :replies, dependent: :destroy
@@ -60,8 +61,12 @@ class User < ActiveRecord::Base
     self.signature.blank? ? "#{self.whose_blogger}" : self.signature
   end
 
-  def avatar_url
-    self.avatar.url || self.avatar.default_url
+  def avatar_url(version=nil)
+    if version.present? && self.avatar.versions.keys.include?(version.to_sym)
+      self.avatar.send(version).url || self.avatar.default_url
+    else
+      self.avatar.url || self.avatar.default_url
+    end
   end
 
   def email_md5

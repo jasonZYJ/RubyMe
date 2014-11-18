@@ -23,6 +23,8 @@ Rails.application.routes.draw do
 
     resources :replies
 
+    resources :messages
+
     resources :codes
 
     resources :categories

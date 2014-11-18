@@ -4447,7 +4447,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   font-size: 75%;
   font-weight: bold;
   line-height: 1;
-  color: #fff;
+  color: grey;
   text-align: center;
   white-space: nowrap;
   vertical-align: baseline;
@@ -4481,7 +4481,8 @@ a.label:focus {
   background-color: #3071a9;
 }
 .label-success {
-  background-color: #5cb85c;
+  background-color: #f0f0f0;
+  border: 1px solid #cccccc;
 }
 .label-success[href]:hover,
 .label-success[href]:focus {

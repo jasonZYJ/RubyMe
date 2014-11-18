@@ -3,15 +3,25 @@
   <% if posts.size > 0 %>
     <% posts.each do |post| %>
       <div class="newer_row blog-post">
-        <h4 class="blog-post-title">
-          <%= link_to omited_str(post.title), frontend_post_path(post) %>
+      <div class="pull-left">
+          <a target="_blank" href="<%= frontend_path(post.user) %>">
+            <!-- <#%= image_tag(post.user.avatar_url(:thumb), class: 'user_face') %> -->
+            <%= image_tag('shared/ruby_icon.png', class: 'user_face') %>
+          </a>
+        </div>
+
+        <h4 class="post-title">
+          <%= link_to post.title, frontend_post_path(post), title: post.title, class: "href_name" %>
         </h4>
-        <p class="blog-post-meta">
-          <%= post.published_time %>
-          <%= post_tags_from_str(post.tags) %>
+        <p class="post-meta">
+           <%= link_to post.user.human_name, frontend_path(post.user), target: "_blank" %>
+           ·
+          <abbr class="timeago" title="<%= post.published_time %>">
+            <%= time_ago_in_words(post.created_at) %>前
+          </abbr> 发布
         </p>
 
-        <div class="blog-post-content">
+        <div class="post-content display_none">
           <%= omited_str(strip_tags(post.content), 150) %>
         </div>
       </div>
