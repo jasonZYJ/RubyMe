@@ -1,4 +1,7 @@
 class Reply < ActiveRecord::Base
+
+  acts_as_paranoid
+
   belongs_to :user
   belongs_to :post
 
@@ -13,7 +16,7 @@ class Reply < ActiveRecord::Base
   default_scope ->{order('created_at desc')}
 
   before_save :validate_sensitive
-  after_create :message_to_blogger
+  after_create :message_to_blogger, if: Proc.new { |r| r.blogger.id != self.user.id }
 
   def published_time
     self.created_at.strftime('%Y-%m-%d %H:%M')
@@ -22,7 +25,7 @@ class Reply < ActiveRecord::Base
   private
 
   def message_to_blogger
-    Message.create(
+    message = self.messages.build(
       is_read: false,
       target_id: self.id,
       target_type: self.class.to_s,
@@ -31,6 +34,7 @@ class Reply < ActiveRecord::Base
       body: self.content
       # body: "#{self.user.human_name} 评论了你的文章 #{self.post.title}"
     )
+    message.save
   end
 
   def validate_sensitive

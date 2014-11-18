@@ -21,10 +21,17 @@ Rails.application.routes.draw do
 
     resources :posts
 
-    resources :replies
+    resources :replies do
+      member do
+        post 'hide', to: 'replies#hide'
+        post 'restore', to: 'replies#restore'
+      end
+    end
 
     resources :messages do
-      post 'mark_as_read', to: 'messages#mark_as_read'
+       member do
+        post 'mark_as_read', to: 'messages#mark_as_read'
+      end
     end
 
     resources :codes

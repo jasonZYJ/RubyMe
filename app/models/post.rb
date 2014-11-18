@@ -1,4 +1,5 @@
 class Post < ActiveRecord::Base
+
   belongs_to :user
   belongs_to :point
   belongs_to :category

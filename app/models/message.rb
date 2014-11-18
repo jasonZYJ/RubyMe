@@ -8,9 +8,13 @@ class Message < ActiveRecord::Base
   # validates :target, presence: true
 
   #scope
+  default_scope ->{order('created_at desc')}
   scope :reads, -> { where(is_read: true) }
   scope :unreads, -> { where(is_read: false) }
 
+  def created_time
+    self.created_at.strftime('%Y-%m-%d %H:%M')
+  end
 
 
 end

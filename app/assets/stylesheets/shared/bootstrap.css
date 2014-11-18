@@ -2355,7 +2355,7 @@ output {
 }
 .form-control {
   display: block;
-  width: 100%;
+  width: 85%;
   height: 34px;
   padding: 6px 12px;
   font-size: 14px;
@@ -5005,7 +5005,7 @@ a.list-group-item-danger.active:focus {
           box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 }
 .panel-body {
-  padding: 40px 55px 0 0;
+  padding: 40px 0 0 0;
 }
 .panel-heading {
   padding: 10px 15px;
