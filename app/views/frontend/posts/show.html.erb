@@ -4,7 +4,8 @@
       <div class="pull-right avatar-large">
         <a target="_blank" href="<%= frontend_path(@blogger) %>">
           <!-- <#%= image_tag(@blogger.avatar_url, class: 'user_face') %> -->
-          <%= image_tag(gravatar_url(@blogger.email), class: 'user_face') %>
+          <%= image_tag('shared/ruby_icon.png', class: 'user_face') %>
+          <!-- <#%= image_tag(gravatar_url(@blogger.email), class: 'user_face') %> -->
         </a>
       </div>
 
@@ -35,7 +36,8 @@
         <div class="pull-left">
           <a target="_blank" href="<%= frontend_path(replier) %>">
             <!-- <#%= image_tag(replier.avatar_url, class: 'user_face') %> -->
-            <%= image_tag(gravatar_url(replier.email), class: 'user_face') %>
+            <%= image_tag('shared/ruby_icon.png', class: 'user_face') %>
+            <!-- <#%= image_tag(gravatar_url(replier.email), class: 'user_face') %> -->
           </a>
         </div>
 

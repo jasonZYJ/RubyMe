@@ -12,7 +12,7 @@
         </p>
 
         <div class="blog-post-content">
-          <%= omited_str(post.content, 150) %>
+          <%= omited_str(strip_tags(post.content), 150) %>
         </div>
       </div>
     <% end %>

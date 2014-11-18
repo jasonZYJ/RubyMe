@@ -3,7 +3,7 @@
     <div class="panel-body text-center">
       <a href="<%= frontend_path(@blogger) %>">
         <!-- <#%= image_tag(@blogger.avatar_url, class: 'bloger_photo') %> -->
-        <%= image_tag(gravatar_url(@blogger.email), class: 'bloger_photo') %>
+        <%= image_tag('shared/ruby_icon.png' || gravatar_url(@blogger.email), class: 'bloger_photo') %>
       </a>
 
   <div class="blogger_info">
