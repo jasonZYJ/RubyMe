@@ -12,7 +12,11 @@ git clone git@github.com:jasonZYJ/RubyMe.git
 cd RubyMe
 # A ruby script to RTF
 ruby setup.rb
-rails s
+# Then change config at database.yml and settings.yml
+
+RAILS_ENV=development rails s
+# start delayed_job for async sending email and uploading photo
+RAILS_ENV=development bin/delayed_job start
 ```
 
 ## How to Test

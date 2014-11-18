@@ -1,6 +1,13 @@
 
 @import "shared/utils";
 
+.container {
+  >.alert-info, >.alert-danger {
+    margin-top: 30px;
+    margin-bottom: 0px;
+  }
+}
+
 .session-form {
   margin: 0 auto;
   max-width: 550px;

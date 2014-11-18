@@ -34,6 +34,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem 'devise', '~> 3.3.0'
 gem 'devise-i18n', '~> 0.11.0'
+gem 'devise-async', '~> 0.9.0'
 gem 'friendly_id', '~> 5.0.4'
 gem 'simple_form', '~> 3.1.0.rc2'#, github: 'plataformatec/simple_form'
 gem 'paranoia', '~> 2.0.2'
@@ -57,6 +58,9 @@ gem 'redis-namespace', '~> 1.4.1'
 gem 'redis-semaphore', '~> 0.2.2'
 # gem 'rack-cache', '~> 1.2'
 # gem 'redis-rack-cache', '~> 1.2.2'
+
+gem 'daemons', '~> 1.1.9'
+gem 'delayed_job_active_record', '~> 4.0.2'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
