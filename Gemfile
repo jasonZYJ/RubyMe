@@ -43,6 +43,7 @@ gem 'browser', '~> 0.6.0'
 gem 'bugsnag', '~> 2.4.1'
 gem 'whenever', '~> 0.9.2', require: false
 gem 'nokogiri', '~> 1.6.3.1', require: false
+gem 'actionpack-action_caching', '~> 1.1.1'
 
 # gem 'country_select', '~> 2.0.0.beta2', github: 'stefanpenner/country_select'
 gem 'rails-i18n', '>= 4.0.2', github: 'svenfuchs/rails-i18n', branch: 'master' # For 4.x

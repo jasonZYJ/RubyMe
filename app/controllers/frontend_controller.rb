@@ -5,7 +5,6 @@ class FrontendController < ApplicationController
 
   layout 'frontend/home'
 
-  before_action :load_messages, if: Proc.new { current_user.present? }
   before_action :keep_redirect_url
 
   def title
@@ -13,10 +12,6 @@ class FrontendController < ApplicationController
   end
 
   protected
-
-  def load_messages
-    @messages = current_user.messages
-  end
 
   def keep_redirect_url
     session[:redirect_url] = url_for

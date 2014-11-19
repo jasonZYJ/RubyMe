@@ -20,10 +20,12 @@ module RubyMe
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :'zh-CN'
     config.i18n.available_locales = [:'zh-CN', :en]
+    # config.autoload_paths += %W(#{config.root}/lib)
     config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
 
     SimpleCaptcha.store = Settings.cache_store.name
-    config.cache_store = Settings.cache_store.store, Settings.cache_store.store_dir, { expires_in: Settings.cache_store.expires_in.to_f.minutes }
+     # config.cache_store = :redis_store, 'redis://localhost:6379/0/cache', { expires_in: 4.hours }
+    config.cache_store = Settings.cache_store.store.to_sym, Settings.cache_store.store_dir, { expires_in: Settings.cache_store.expires_in.to_f.minutes }
 
     Settings.add_source!("#{Rails.root}/config/sensitive.yml")
     Settings.reload!
