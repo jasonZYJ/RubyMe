@@ -40,6 +40,10 @@ gem 'simple_form', '~> 3.1.0.rc2'#, github: 'plataformatec/simple_form'
 gem 'paranoia', '~> 2.0.2'
 gem 'browser', '~> 0.6.0'
 
+gem 'bugsnag', '~> 2.4.1'
+gem 'whenever', '~> 0.9.2', require: false
+gem 'nokogiri', '~> 1.6.3.1', require: false
+
 # gem 'country_select', '~> 2.0.0.beta2', github: 'stefanpenner/country_select'
 gem 'rails-i18n', '>= 4.0.2', github: 'svenfuchs/rails-i18n', branch: 'master' # For 4.x
 

@@ -7,7 +7,13 @@ site_domain: XXXXXXXXXX
 baidu:
   tongji_ua: xxx
 
+bugsnag:
+  api_key: xxx
+
 site_mailer:
+  admin_user: zyj163loveher@163.com
+  from: zyj163loveher@163.com
+  return_path: zyj163loveher@163.com
   address: smtp.163.com
   user_name: zyj163loveher@163.com
   password: xxx
@@ -39,10 +45,13 @@ exclusions:
   - noreply
 
 test:
-  site_url: http://localhost:3000
+  site_url: 'http://localhost:3000'
+
+sensitive_pages:
+  - 'http://localhost:3000/'
 
 user:
-  skip_captcha: true
+  skip_captcha: false
 
 devise:
   secret_key: xxx

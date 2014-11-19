@@ -5,7 +5,7 @@
   <div class="container">
     <nav class="blog-nav">
       <!-- <a class="" > -->
-        <%= image_tag('shared/ruby_icon.png', style: 'width:40px;height:40px') %>
+        <%= image_tag('shared/ruby_icon.png', style: 'width:36px;height:36px') %>
       <!-- </a> -->
       <a class="<%= 'active' if action_name == 'index' && params[:controller] == 'frontend/home' %>" href="<%= frontend_root_path %>"><%= Settings.site_name %></a>
 
@@ -27,11 +27,11 @@
       <span class="pull-right">
         <% if current_user %>
         <!-- <#%= image_tag(gravatar_url(current_user.email), style: 'width:40px;height:40px;padding-bottom:2px')%> -->
-          <%= image_tag('shared/ruby_icon.png', style: 'width:40px;height:40px;padding-bottom:2px')%>
+          <%= image_tag('shared/ruby_icon.png', style: 'width:36px;height:36px;padding-bottom:2px')%>
 
           <a class="link_admin_home <%= 'active' if params[:controller].include?('admin/') && controller.class.to_s != "Admin::MessagesController" %>" href="<%= admin_root_path %>"><%= current_user.human_name %></a>
           <a class="link_admin_messages <%= 'active' if controller.class.to_s == "Admin::MessagesController" %>" href="<%= admin_messages_path %>">
-             <span class="label label-success"><%= @messages.unreads.count %></span>
+             <span class="label label-success"><%= @messages.unreads.count if @messages.present? %></span>
           </a>
 
           <a id="link_sign_out" class="" href="<%= destroy_user_session_path %>">退出</a>
