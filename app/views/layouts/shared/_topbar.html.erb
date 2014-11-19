@@ -3,7 +3,7 @@
 <% end %>
 <div class="blog-masthead">
   <div class="container">
-    <nav class="blog-nav text_bold">
+    <nav class="blog-nav">
       <!-- <a class="" > -->
         <%= image_tag('shared/ruby_icon.png', style: 'width:40px;height:40px') %>
       <!-- </a> -->
@@ -11,6 +11,11 @@
 
 
       <% if @blogger && @blogger != current_user %>
+        <% if current_user %>
+          <a href="<%= frontend_path(current_user) %>">我的主页</a>
+        <% end %>
+
+        <!-- visit other's blogger -->
          <a class="<%= 'active' if controller.class.superclass.to_s == 'BloggerController' %>" href="<%= frontend_path(@blogger) %>"><%= @blogger.human_name %></a>
       <% elsif current_user %>
       <a class="<%= 'active' if controller.class.superclass.to_s == 'BloggerController' %>" href="<%= frontend_path(current_user) %>">我的主页</a>
@@ -18,7 +23,7 @@
 
       <a class="" href="/bloggers">博客</a>
       <a class="" href="/features">新功能</a>
-      <a class="<%= 'active' if action_name == 'about' && params[:controller] == 'frontend/home' %>" href="<%= frontend_site_about_path %>">关于</a>
+      <a class="<%= 'active' if action_name == 'about_us' && params[:controller] == 'frontend/home' %>" href="<%= frontend_about_us_path %>">关于我们</a>
 
       <span class="pull-right">
         <% if current_user %>

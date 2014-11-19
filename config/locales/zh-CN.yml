@@ -217,7 +217,7 @@ zh-CN:
     am: 上午
     formats:
       default: ! '%Y年%b%d日 %A %H:%M:%S %Z'
-      long: ! '%Y年%b%d日 %H:%M'
+      long: ! '%b%d日 %H:%M'
       short: ! '%b%d日 %H:%M'
     pm: 下午
 
@@ -237,15 +237,15 @@ zh-CN:
     errors:
       <<: *errors
     models:
-      message: 消息通知
-      user: 博客用户
+      message: 通知
+      user: 用户
       admin_user: 管理员
-      category: 文章分类
-      code: 收藏代码
-      language: 编程语言
-      point: 全站分类
-      post: 用户文章
-      reply: 文章评论
+      category: 分类
+      code: 代码
+      language: 语言
+      point: 节点
+      post: 文章
+      reply: 评论
     attributes:
       user:
         id: 编号
@@ -270,6 +270,7 @@ zh-CN:
       next: "下一页 &rsaquo;"
       truncate: "&hellip;"
   active_admin:
+    dashboard: 控制台
     devise:
       password_confirmation:
         title: 确认密码
