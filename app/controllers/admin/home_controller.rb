@@ -27,7 +27,7 @@ class Admin::HomeController < AdminController
 
   private
   def user_params
-    params.require(:user).permit(:name, :is_email_public, :signature, :city_name,
+    params.require(:user).permit(:avatar, :name, :is_email_public, :signature, :city_name,
       :company, :github, :homepage, :description)
   end
 

@@ -5,8 +5,7 @@
       <div class="newer_row code-post">
         <div class="post-user pull-left">
           <a target="_blank" href="<%= frontend_path(code.user) %>">
-            <!-- <#%= image_tag(code.user.avatar_url(:thumb), class: 'user_face') %> -->
-            <%= image_tag('shared/ruby_icon.png', class: 'user_face') %>
+            <%= image_tag(code.user.avatar_url(:thumb), class: 'user_face') %>
           </a>
         </div>
 
