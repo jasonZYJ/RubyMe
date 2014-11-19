@@ -1,3 +1,7 @@
+
+require 'word_check'
+include WordCheck
+
 class Post < ActiveRecord::Base
 
   belongs_to :user
@@ -37,11 +41,10 @@ class Post < ActiveRecord::Base
   end
 
   def validate_sensitive?
-    Settings.sensitive_words.each do |word|
-      if self.inspect.include?(word)
-        errors.add(:base, "文章内容包含敏感词汇: #{word}")
-        return false
-      end
+     word = WordCheck.first_sensitive(self.inspect)
+    if word.present?
+      errors.add(:base, "文章内容包含敏感词汇: #{word}")
+      return false
     end
   end
 

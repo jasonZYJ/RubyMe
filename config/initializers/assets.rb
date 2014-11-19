@@ -6,7 +6,7 @@ Rails.application.config.assets.precompile += %w(
 )
 
 Rails.application.config.assets.precompile += %w(
-  shared/html5.js
+  shared/ie_support.js
   frontend/home.js frontend/blogger.js
   admin/sessions.js admin/home.js
 )
