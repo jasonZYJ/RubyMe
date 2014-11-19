@@ -1,8 +1,11 @@
 
-site_name: RubyMe
-site_name_zh: RubyMe
-site_ip: XXXXXXXXX
-site_domain: XXXXXXXXXX
+site:
+  name: RubyMe
+  name_zh: RubyMe
+  ip: *********
+  domain: jasonblog.com
+  owner_en: Jason Zhang
+  owner_email: zyj163loveher@163.com
 
 baidu:
   tongji_ua: xxx

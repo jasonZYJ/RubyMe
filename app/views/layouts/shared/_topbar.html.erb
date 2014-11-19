@@ -7,7 +7,7 @@
       <!-- <a class="" > -->
         <%= image_tag('shared/ruby_icon.png', style: 'width:36px;height:36px') %>
       <!-- </a> -->
-      <a class="<%= 'active' if action_name == 'index' && params[:controller] == 'frontend/home' %>" href="<%= frontend_root_path %>"><%= Settings.site_name %></a>
+      <a class="<%= 'active' if action_name == 'index' && params[:controller] == 'frontend/home' %>" href="<%= frontend_root_path %>"><%= Settings.site.name %></a>
 
       <% if current_user %>
         <a class="<%= 'active' if @blogger == current_user && controller.class.superclass.to_s == 'BloggerController' %>" href="<%= frontend_path(current_user) %>">我的主页</a>
@@ -20,7 +20,7 @@
          <a class="<%= 'active' if controller.class.superclass.to_s == 'BloggerController' %>" href="<%= frontend_path(@blogger) %>"><%= @blogger.human_name %></a>
       <% end %>
 
-      <a class="" href="/bloggers">博客</a>
+      <a class="" href="/bloggers">收藏</a>
       <a class="" href="/features">新功能</a>
       <a class="<%= 'active' if action_name == 'about_us' && params[:controller] == 'frontend/home' %>" href="<%= frontend_about_us_path %>">关于我们</a>
 

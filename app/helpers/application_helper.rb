@@ -12,14 +12,14 @@ module ApplicationHelper
   end
 
   def site_fullname
-    "#{Settings.site_name}(#{Settings.site_name_zh})"
+    "#{Settings.site.name}(#{Settings.site.name_zh})"
   end
 
   def default_title
     "#{controller_name}/#{action_name}"
   end
 
-   def controller_title
+  def controller_title
     controller.try(:title) || default_title
   end
 
@@ -28,7 +28,7 @@ module ApplicationHelper
   end
 
    def meat_keywords
-    "#{Settings.site_name_zh}, #{Settings.site_name}, 博客平台, 个人博客, 技术博客, 信息技术分享"
+    "#{Settings.site.name_zh}, #{Settings.site.name}, 博客平台, 个人博客, 技术博客, 信息技术分享"
   end
 
   def omited_str(str, length=60)
