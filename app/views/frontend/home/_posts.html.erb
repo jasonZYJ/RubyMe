@@ -3,6 +3,9 @@
   <% if posts.size > 0 %>
     <% posts.each do |post| %>
       <div class="newer_row blog-post">
+        <div class="pull-right replies">
+            <%= link_to(post.replies.count,"#{frontend_post_path(post)}", class: "count state-false") %>
+        </div>
       <div class="post-user pull-left">
           <a target="_blank" href="<%= frontend_path(post.user) %>">
             <%= image_tag(post.user.avatar_url(:thumb), class: 'user_face') %>

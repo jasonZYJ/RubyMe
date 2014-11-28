@@ -26,37 +26,41 @@ class Reply < ActiveRecord::Base
     self.created_at.strftime('%Y-%m-%d %H:%M')
   end
 
-  def message_to_at_user(at_user)
+   def message_to_at_user(at_user)
+    # return if self.user.id == at_user.id
     message = self.messages.build(
       is_read: false,
       user_id: at_user.id,
       from_user_id: self.user.id,
-      body: "#{self.user.uid} 在评论中提到了你，快去查看吧！"
+      body: "#{self.user.uid} @了你: #{self.content}"
     )
     message.save
   end
-
-  def message_to_blogger
-    return if self.blogger.id != self.user.id
+ def message_to_blogger
+    return if self.user.id == self.blogger.id
     message = self.messages.build(
       is_read: false,
-      target_id: self.id,
-      target_type: self.class.to_s,
       user_id: self.blogger.id,
       from_user_id: self.user.id,
-      body: self.content
-      # body: "#{self.user.human_name} 评论了你的文章 #{self.post.title}"
+      body: "#{self.user.uid} 回复了你: #{self.content}"
     )
     message.save
   end
 
    private
-  def message_to_at_users
+   def message_to_at_users
+     p self.content
+     p self.content.gsub(/@(\w{3,20})/)
     at_users = []
-    self.content.gsub(/(@\w+ )/){
+    self.content.gsub(/@(\w{3,20})/){
+      p "come inininin"
       uid = "#{$1.strip.sub('@', '')}"
+      p "0111111111111111111111#{uid}"
       user = User.find_by(uid: uid)
-      at_users << user if user.present?
+
+      if user.present? && !at_users.include?(user)
+        at_users << user
+      end
     }
 
     at_users.each { |at_user| self.message_to_at_user(at_user) }

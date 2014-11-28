@@ -2727,6 +2727,7 @@ select[multiple].input-lg {
 }
 .btn {
   display: inline-block;
+  border: none;
   padding: 6px 12px;
   margin-bottom: 0;
   font-size: 14px;
@@ -2742,7 +2743,7 @@ select[multiple].input-lg {
           user-select: none;
   background-image: none;
   border: 1px solid transparent;
-  border-radius: 4px;
+  border-radius: 5px;
 }
 .btn:focus,
 .btn:active:focus,
@@ -2775,8 +2776,8 @@ fieldset[disabled] .btn {
 }
 .btn-default {
   color: white;
-  background-color: #4d90fe;
-  border-color: #3079ed;
+  background-color: #428bca;
+  border-color: #428bca;
 }
 .btn-default:hover,
 .btn-default:focus,
@@ -4522,9 +4523,19 @@ a.label:focus {
   text-align: center;
   white-space: nowrap;
   vertical-align: baseline;
-  background-color: #777;
+  background-color: lightgrey;
   border-radius: 10px;
 }
+
+.badge-error {
+  background:#C43C35;
+  color:white
+}
+
+body {
+  font-weight: 300;
+}btn
+
 .badge:empty {
   display: none;
 }
@@ -4722,6 +4733,7 @@ a.thumbnail.active {
   -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
           box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
 }
+
 .progress-bar {
   float: left;
   width: 0;
@@ -5180,7 +5192,7 @@ a.list-group-item-danger.active:focus {
   margin-bottom: 20px;
 }
 .panel-group .panel {
-  margin-bottom: 0;
+  margin-bottom: 20px;
   border-radius: 4px;
 }
 .panel-group .panel + .panel {
@@ -6206,4 +6218,32 @@ button.close {
     display: none !important;
   }
 }
+
+.well, .navbar-inner, .popover, .btn, .tooltip,
+ select, pre, .progress, .modal,
+.add-on, .alert, .table-bordered, .nav>li>a,
+.dropdown-menu, .tooltip-inner, .badge, .label,
+.img-polaroid, .thumbnail, .dropdown-toggle {
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  -webkit-border-radius: 0px !important;
+  -moz-border-radius: 0px !important;
+  border-radius: 0px !important;
+  border-collapse: collapse !important;
+  background-image: none !important;
+}
+
+input:focus,
+textarea:focus {
+  border-color: rgba(82, 168, 236, 0.8);
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+  outline: 0;
+  outline: thin dotted \9;
+  /* IE6-9 */
+}
+
+
 /* sourceMappingURL=bootstrap.css.map */

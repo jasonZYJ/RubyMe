@@ -61,7 +61,7 @@
         description: 分类描述
 
       reply:
-        content: '@blogger 不错的分享，赞一个！'
+        content: '@发帖者 更好的互动、更好的分享！'
 
       post:
         title: 文章标题

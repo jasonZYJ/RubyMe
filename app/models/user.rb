@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
 
   validates :uid, presence: true, allow_blank: false, uniqueness: { case_sensitive: true },
             length: { minimum: 3, maximum: 24 }, exclusion: { in: Settings.exclusions },
-            format: { with: /\A([a-zA-Z0-9])([\w|-]+)([a-zA-Z0-9])\z/, message: '是无效的，必须以字母或数字开头和结尾，可包含 "-" 或 "_"' }
+            :format => {:with => /\A\w+\z/, :message => '只允许数字、大小写字母和下划线'}
   # validates :avatar, presence: true, file_size: {
   #   minimum: 3.kilobytes.to_i, maximum: 1.megabytes.to_i }
   validates :email, presence: true, allow_blank: false, uniqueness: { case_sensitive: false },
@@ -64,6 +64,9 @@ class User < ActiveRecord::Base
 
   def avatar_url(version=nil)
     if version.present? && self.avatar.versions.keys.include?(version.to_sym)
+      p "000000000000"
+      p self.avatar.send(version).url
+      p self.avatar.default_url
       self.avatar.send(version).url || self.avatar.default_url
     else
       self.avatar.url || self.avatar.default_url

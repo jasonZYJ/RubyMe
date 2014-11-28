@@ -6,7 +6,7 @@
     margin-bottom: 0px;
     padding-bottom: 8px;
     border-bottom: 1px solid #ddd;
-    
+
     .post-user {
       padding-top: 6px;
     }
@@ -18,3 +18,26 @@
 
   }
 }
+
+
+a.count, a.count:visited {
+line-height: 12px;
+font-weight: bold;
+color: white;
+background-color: #98acdf;
+display: inline-block;
+padding: 2px 10px 2px 10px;
+-moz-border-radius: 80px;
+-webkit-border-radius: 80px;
+border-radius: 80px;
+margin: 18px 12px 0px 0px;
+text-decoration: none;
+}
+
+ // .badge {
+ //    -webkit-border-radius: 2px;
+ //    -moz-border-radius: 2px;
+ //    border-radius: 2px;
+ //    padding: 2px 6px;
+ //  }
+ //  .badge-error { background:#C43C35; }
