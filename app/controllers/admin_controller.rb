@@ -8,7 +8,7 @@ class AdminController < FrontendController
 
 
   def title
-    "个人博客管理 - #{current_user.whose_blogger}"
+    "#{current_user.whose_blogger} | 个人博客管理页面"
   end
 
   protected

@@ -23,7 +23,7 @@ site_mailer:
 
 cache_store:
   name: redis
-  expires_in: 90
+  expires_in: 120
   store: redis_store
   store_dir: redis://localhost:6379/0/cache
 
@@ -59,7 +59,7 @@ test:
   site_url: 'http://localhost:3000'
 
 sensitive_pages:
-  - 'http://localhost:3000/'
+  - 'http://www.jasonblog.com/'
 
 user:
   skip_captcha: false

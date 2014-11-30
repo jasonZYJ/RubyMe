@@ -1,7 +1,7 @@
+@import "shared/bootstrap";
 @import "font-awesome";
 @import "shared/_variables";
 @import "shared/blog";
-@import "shared/bootstrap";
 @import "shared/pnotify.all.min";
 
 body {
@@ -113,8 +113,10 @@ ul, ol {
 }
 
 .bloger_photo {
-  width: 130px;
-  height: 130px;
+  width: 100%;
+  // height: 100%;
+  max-width: 190px;
+  max-height: 190px;
 }
 
 .pagination {

@@ -8,7 +8,7 @@ class FrontendController < ApplicationController
   before_action :keep_redirect_url
 
   def title
-     "#{site_intro}首页"
+     site_intro
   end
 
   protected

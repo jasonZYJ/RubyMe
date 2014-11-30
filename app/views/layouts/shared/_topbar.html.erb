@@ -26,7 +26,7 @@
       <a href="/" class="site-logo"><%= image_tag('shared/ruby_me.png', style: 'width:146px;height:36px;padding-bottom:2px')%></a>
       <span class="pull-right">
         <% if current_user %>
-        <%= image_tag(current_user.avatar_url(:thumb), style: 'width:36px;height:36px;padding-bottom:2px')%>
+        <%= image_tag(current_user.avatar_url(:thumb), style: 'width:33px;height:39px;padding-bottom:5px')%>
 
           <a class="link_admin_home <%= 'active' if params[:controller].include?('admin/') && controller.class.to_s != "Admin::MessagesController" %>" href="<%= admin_root_path %>"><%= current_user.human_name %></a>
           <a class="link_admin_messages <%= 'active' if controller.class.to_s == "Admin::MessagesController" %>" href="<%= admin_messages_path %>">
