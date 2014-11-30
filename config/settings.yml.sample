@@ -3,7 +3,7 @@ site:
   name: RubyMe
   name_zh: RubyMe
   ip: *********
-  domain: jasonblog.com
+  domain: www.jasonblog.com
   owner_en: Jason Zhang
   owner_email: zyj163loveher@163.com
 
@@ -34,6 +34,14 @@ cdn:
   secret_key: gRQbgK_oX_ZWGrXH_VBX6OIxCfxhUfNtYa98_oTY
   bucket: jasonblog
   bucket_domain: jasonblog.qiniudn.com
+
+recomended_website:
+  Ruby China : "http://ruby-china.org"
+  Ruby Weekly : "http://rubyweekly.com"
+  Rails 视频教程 : "http://railscasts-china.com/"
+  RubyGems 淘宝镜像 : "https://ruby.taobao.org"
+  Rails Guides 中文版 : "http://guides.ruby-china.org"
+  Ruby on Rails 實戰聖經: "http://ihower.tw/rails4/"
 
 exclusions:
   - www

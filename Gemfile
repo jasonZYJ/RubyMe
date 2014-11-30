@@ -63,6 +63,8 @@ gem 'redis-semaphore', '~> 0.2.2'
 # gem 'rack-cache', '~> 1.2'
 # gem 'redis-rack-cache', '~> 1.2.2'
 
+gem 'puma', '~> 2.9.0'
+gem 'unicorn', '~> 4.8.3'
 gem 'daemons', '~> 1.1.9'
 gem 'delayed_job_active_record', '~> 4.0.2'
 
@@ -73,15 +75,16 @@ end
 
 group :development do |group|
   gem 'hirb', '~> 0.7.2'
-  gem 'debugger-pry', '~> 0.1.1'
+  # gem 'debugger-pry', '~> 0.1.1'
+  gem 'byebug', '~> 3.2.0'
   gem 'better_errors', '~> 1.1.0'
   gem 'binding_of_caller', '~> 0.7.2'
 
   # for deploy by capistrano
   gem 'capistrano', '~> 3.1.0'
+  gem 'capistrano-rvm', '~> 0.1.1'
   gem 'capistrano-rails', '~> 1.1.0'
   gem 'capistrano-bundler', '~> 1.1.3'
-  gem 'unicorn', '~> 4.8.3'
   gem 'highline', '~> 1.6.21'
 end
 
