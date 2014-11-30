@@ -64,9 +64,6 @@ class User < ActiveRecord::Base
 
   def avatar_url(version=nil)
     if version.present? && self.avatar.versions.keys.include?(version.to_sym)
-      p "000000000000"
-      p self.avatar.send(version).url
-      p self.avatar.default_url
       self.avatar.send(version).url || self.avatar.default_url
     else
       self.avatar.url || self.avatar.default_url

@@ -21,7 +21,8 @@
            第<span class="ranking_number">
             <%= " #{@blogger.ranking} " %>
           </span>位
-          <%= image_tag('shared/ruby_icon.png', style: 'height:22px;width:20px;padding-bottom:2px') %>会员
+          <a class="<%= 'active' if action_name == 'about_us' && params[:controller] == 'frontend/home' %>" href="<%= frontend_about_us_path %>"><%=Settings.site.name%></a>
+          会员
         </div>
 
       </div>
@@ -64,6 +65,25 @@
             <li>
               <%= link_to "#{category.name} (#{Post.where(category: category).count})", frontend_category_path(@blogger, category), title: "分类 #{category.name}" %>
             </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+          推荐资源
+        </a>
+      </h4>
+    </div>
+
+    <div id="collapse2" class="panel-collapse collapse in">
+      <div class="panel-body">
+        <ul>
+          <% Settings.recomended_website.each do |key, value| %>
+            <li><%= link_to key, value %></li>
           <% end %>
         </ul>
       </div>
