@@ -20,13 +20,13 @@
 # Learn more: http://github.com/javan/whenever
 
 env :PATH, ENV['PATH']
-set :environment, "production"
-# set :environment, "development"
 
 if ENV['_system_type'] = 'Darwin'
-  set :job_template, "/bin/bash -l -c ':job'" # for mac os
+  set :environment, "development"
+  set :job_template, "/bin/bash -l -c ':job'" # for development mode on mac os
 else
-  set :job_template, "/usr/local/bin/bash -l -c ':job'" # for linux
+  set :environment, "production"
+  set :job_template, "/usr/local/bin/bash -l -c ':job'" # for production mode on linux
 end
 
 every 12.hours do

@@ -21,14 +21,14 @@ Rails.application.routes.draw do
 
     resources :posts
 
-    resources :replies do
+    resources :replies, only: [:destroy, :index] do
       member do
         post 'hide', to: 'replies#hide'
         post 'restore', to: 'replies#restore'
       end
     end
 
-    resources :messages do
+    resources :messages, only: [:show, :destroy, :index] do
        member do
         post 'mark_as_read', to: 'messages#mark_as_read'
       end
@@ -36,7 +36,7 @@ Rails.application.routes.draw do
 
     resources :codes
 
-    resources :categories
+    resources :categories, except: [:new]
   end
 
   namespace :frontend, path: '/' do
@@ -44,16 +44,17 @@ Rails.application.routes.draw do
 
     get '/about_us', to: 'home#about_us'
 
-    resources :posts do
-      resources :replies
+    resources :posts, only: [:show] do
+      resources :replies, only: [:create]
     end
 
     scope ':uid' do
       get '/', to: 'users#show'
       get '/profile', to: 'users#profile'
 
-      resources :categories
-      resources :codes
+      resources :categories, only: [:show]
+
+      resources :codes, only: [:show, :index]
     end
 
   end

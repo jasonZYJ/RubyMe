@@ -9,7 +9,7 @@ class Message < ActiveRecord::Base
 
   #scope
   default_scope ->{order('created_at desc')}
-  scope :reads, -> { where(is_read: true) }
+  # scope :reads, -> { where(is_read: true) }
   scope :unreads, -> { where(is_read: false) }
 
   def created_time

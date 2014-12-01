@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141119382112) do
+ActiveRecord::Schema.define(version: 20141201135202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,8 @@ ActiveRecord::Schema.define(version: 20141119382112) do
     t.datetime "updated_at"
   end
 
+  add_index "categories", ["user_id"], name: "index_categories_on_user_id", using: :btree
+
   create_table "ckeditor_assets", force: true do |t|
     t.string   "data_file_name",               null: false
     t.string   "data_content_type"
@@ -88,6 +90,10 @@ ActiveRecord::Schema.define(version: 20141119382112) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "codes", ["category_id"], name: "index_codes_on_category_id", using: :btree
+  add_index "codes", ["language_id"], name: "index_codes_on_language_id", using: :btree
+  add_index "codes", ["user_id"], name: "index_codes_on_user_id", using: :btree
 
   create_table "delayed_jobs", force: true do |t|
     t.integer  "priority",   default: 0
@@ -125,6 +131,9 @@ ActiveRecord::Schema.define(version: 20141119382112) do
     t.datetime "updated_at"
   end
 
+  add_index "messages", ["target_id", "target_type"], name: "index_messages_on_target_id_and_target_type", using: :btree
+  add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
+
   create_table "points", force: true do |t|
     t.string   "name"
     t.string   "description"
@@ -148,6 +157,10 @@ ActiveRecord::Schema.define(version: 20141119382112) do
     t.integer  "status"
   end
 
+  add_index "posts", ["category_id"], name: "index_posts_on_category_id", using: :btree
+  add_index "posts", ["point_id"], name: "index_posts_on_point_id", using: :btree
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
+
   create_table "replies", force: true do |t|
     t.integer  "user_id"
     t.integer  "post_id"
@@ -160,6 +173,8 @@ ActiveRecord::Schema.define(version: 20141119382112) do
   end
 
   add_index "replies", ["deleted_at"], name: "index_replies_on_deleted_at", using: :btree
+  add_index "replies", ["post_id"], name: "index_replies_on_post_id", using: :btree
+  add_index "replies", ["user_id"], name: "index_replies_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",   null: false

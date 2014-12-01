@@ -1,5 +1,9 @@
-source 'http://ruby.taobao.org'
-
+# coding: utf-8
+if ENV['USE_OFFICIAL_GEM_SOURCE']
+  source 'https://rubygems.org'
+else
+  source 'https://ruby.taobao.org'
+end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.5'
@@ -68,19 +72,14 @@ gem 'delayed_job_active_record', '~> 4.0.2'
 
 group :production do
   gem 'puma', '~> 2.9.1'
-  gem 'unicorn', '~> 4.8.3'
+  # gem 'unicorn', '~> 4.8.3'
 end
 
 group :development, :test do
-  gem 'rspec-rails', '~> 3.0.0'
-  gem 'factory_girl_rails', '~> 4.4.1'
-end
-
-group :development do |group|
   gem 'hirb', '~> 0.7.2'
   gem 'byebug', '~> 3.2.0'
-  gem 'better_errors', '~> 1.1.0'
-  gem 'binding_of_caller', '~> 0.7.2'
+  # gem 'better_errors', '~> 1.1.0'
+  # gem 'binding_of_caller', '~> 0.7.2'
 
   # for deploy by capistrano
   gem 'capistrano', '~> 3.1.0'
@@ -88,14 +87,18 @@ group :development do |group|
   gem 'capistrano-rails', '~> 1.1.0'
   gem 'capistrano-bundler', '~> 1.1.3'
   gem 'highline', '~> 1.6.21'
-end
-
-group :test do
   gem 'capybara', '~> 2.4.3'
+  gem 'rspec-rails', '~> 3.0.0'
   gem 'database_cleaner', '~> 1.3.0'
+  gem 'factory_girl_rails', '~> 4.4.1'
+  gem 'jasmine-rails', '~> 0.10.2'
   gem 'watir-webdriver', '~> 0.6.11'
   gem 'rspec-example_steps', '~> 3.0.2'
-  gem 'coveralls', '~> 0.7.1'
+# gem 'coco', '~> 0.12.0'
+  gem 'coveralls', '~> 0.7.1', require: false
+  gem 'simplecov', '~> 0.9.0', require: false
+
+  gem 'shoulda-matchers', '~> 2.6.2'
   gem 'rspec-expectations', '~> 3.0.0'
   gem 'rails_best_practices', '~> 1.15.4'
 end
