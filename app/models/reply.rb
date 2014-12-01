@@ -49,13 +49,9 @@ class Reply < ActiveRecord::Base
 
    private
    def message_to_at_users
-     p self.content
-     p self.content.gsub(/@(\w{3,20})/)
     at_users = []
     self.content.gsub(/@(\w{3,20})/){
-      p "come inininin"
       uid = "#{$1.strip.sub('@', '')}"
-      p "0111111111111111111111#{uid}"
       user = User.find_by(uid: uid)
 
       if user.present? && !at_users.include?(user)
