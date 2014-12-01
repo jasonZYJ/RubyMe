@@ -13,6 +13,7 @@ ActiveAdmin.register Post do
     column :user_id
     column :point_id
     column :category_id
+    cplumn :last_reply_user_id
     column :title
     column :tags
     column :created_at

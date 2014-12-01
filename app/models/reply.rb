@@ -20,7 +20,12 @@ class Reply < ActiveRecord::Base
   default_scope ->{order('created_at desc')}
 
   before_save :validate_sensitive
-  after_create :message_to_at_users
+  after_create :message_to_at_users, :update_last_reply_user
+
+  def update_last_reply_user
+     post.last_reply_user_id = user_id
+     post.save
+  end
 
   def published_time
     self.created_at.strftime('%Y-%m-%d %H:%M')

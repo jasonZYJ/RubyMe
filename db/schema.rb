@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141201135202) do
+ActiveRecord::Schema.define(version: 20141201335352) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,15 @@ ActiveRecord::Schema.define(version: 20141201135202) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
   add_index "admin_users", ["unlock_token"], name: "index_admin_users_on_unlock_token", unique: true, using: :btree
+
+  create_table "blogs", force: true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "category"
+    t.integer  "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "categories", force: true do |t|
     t.integer  "user_id"
@@ -146,6 +155,7 @@ ActiveRecord::Schema.define(version: 20141201135202) do
     t.integer  "user_id"
     t.integer  "point_id"
     t.integer  "category_id"
+    t.integer  "last_reply_user_id"
     t.integer  "source"
     t.integer  "visits",      default: 0
     t.integer  "likes",       default: 0
@@ -164,7 +174,6 @@ ActiveRecord::Schema.define(version: 20141201135202) do
   create_table "replies", force: true do |t|
     t.integer  "user_id"
     t.integer  "post_id"
-    t.integer  "last_reply_id"
     t.text     "content"
     t.boolean  "is_public",     default: true
     t.datetime "created_at"

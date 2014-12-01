@@ -5,6 +5,7 @@ include WordCheck
 class Post < ActiveRecord::Base
 
   belongs_to :user
+  belongs_to :last_reply_user, :class_name => "User", :foreign_key => 'last_reply_user_id'
   belongs_to :point
   belongs_to :category
   has_many :replies, dependent: :destroy

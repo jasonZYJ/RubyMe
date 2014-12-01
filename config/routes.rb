@@ -44,6 +44,8 @@ Rails.application.routes.draw do
 
     get '/about_us', to: 'home#about_us'
 
+    resources :blogs, only: [:show, :index]
+
     resources :posts, only: [:show] do
       resources :replies, only: [:create]
     end

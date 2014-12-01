@@ -4,6 +4,7 @@ class CreatePosts < ActiveRecord::Migration
       t.integer :user_id
       t.integer :point_id
       t.integer :category_id
+      t.integer :last_reply_user_id
 
       t.integer :source
       t.integer :visits, default: 0
