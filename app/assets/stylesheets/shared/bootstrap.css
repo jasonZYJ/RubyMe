@@ -1413,7 +1413,7 @@ pre code {
 }
 @media (min-width: 1200px) {
   .container {
-    width: 1170px;
+    width: 1200px;
   }
 }
 .container-fluid {
@@ -6250,7 +6250,7 @@ textarea:focus {
 
 a.site-logo {
 padding: 0;
-margin-left: 135px;
+margin-left: 145px;
 }
 
 /* sourceMappingURL=bootstrap.css.map */
