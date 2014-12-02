@@ -101,17 +101,14 @@ class User < ActiveRecord::Base
      self.name = self.uid
   end
 
-  def send_welcome_mail
-    SystemMailer.delay.send_welcome_mail(self.email)
-  end
-
-
   def init_avatar
-    return if self.avatar.present?
-    temp_url = "#{self.gravatar_url}?s=512"
-    self.update_attributes(remote_avatar_url: temp_url)
+    QiniuWorker.perform_async('init_user_avatar', user_id: self.id)
   end
-  handle_asynchronously :init_avatar, queue: 'init_avatar', priority: 20, run_at: Proc.new { 0.1.seconds.from_now }
+
+
+  def send_welcome_mail
+    SystemMailWorker.perform_async('welcome_mail', send_to: self.email)
+  end
 
   def create_default_category
     category = self.categories.build(name: '我的文章', description: '默认文章分类')

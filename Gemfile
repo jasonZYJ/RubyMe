@@ -61,6 +61,9 @@ gem 'mini_magick', '~> 3.8.0'
 gem 'qiniu-rs', '~> 3.4.10'
 gem 'carrierwave-qiniu', '~> 0.1.3'
 
+gem 'daemons', '1.1.9'
+gem 'sidekiq', '3.2.5'
+gem 'sinatra', '1.4.5', require: false # 使用自带的监控页面
 gem 'redis-rails', '~> 4.0.0'
 gem 'redis-namespace', '~> 1.4.1'
 gem 'redis-semaphore', '~> 0.2.2'
@@ -68,16 +71,17 @@ gem 'redis-semaphore', '~> 0.2.2'
 # gem 'redis-rack-cache', '~> 1.2.2'
 
 gem 'puma', '~> 2.9.1'
-gem 'daemons', '~> 1.1.9'
-gem 'delayed_job_active_record', '~> 4.0.2'
 
 group :production do
   gem 'unicorn', '~> 4.8.3'
 end
 
 group :development, :test do
-  gem 'hirb', '~> 0.7.2'
   gem 'byebug', '~> 3.2.0'
+  gem 'better_errors', '1.1.0'
+  gem 'binding_of_caller', '0.7.2'
+
+  gem 'hirb', '0.7.2'
   # gem 'better_errors', '~> 1.1.0'
   # gem 'binding_of_caller', '~> 0.7.2'
 

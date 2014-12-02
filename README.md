@@ -15,8 +15,8 @@ ruby setup.rb
 # Then change config at database.yml and settings.yml
 
 RAILS_ENV=development rails s
-# start delayed_job for async sending email and uploading photo
-RAILS_ENV=development bin/delayed_job start
+# start sidekiq for async sending email and uploading photo
+bundle exec sidekiq -e development
 ## Gemfile Source
 
 By default bundler installs gems using the ruby.taobao.org source, if you'd rather use the official one, set environment variable `USE_OFFICIAL_GEM_SOURCE`:
