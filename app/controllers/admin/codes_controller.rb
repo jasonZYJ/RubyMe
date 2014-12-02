@@ -1,12 +1,13 @@
 class Admin::CodesController < AdminController
 
+  before_action :load_codes, only: [:index, :show, :edit, :update, :destroy]
+
   def index
-    @codes = current_user.codes
     @codes = @codes.page(params[:page]).per(15)
   end
 
   def show
-    @code = Code.find(params[:id])
+    @code = @codes.find(params[:id])
   end
 
   def new
@@ -27,11 +28,11 @@ class Admin::CodesController < AdminController
   end
 
   def edit
-    @code = Code.find(params[:id])
+    @code = @codes.find(params[:id])
   end
 
   def update
-    @code = Code.find(params[:id])
+    @code = @codes.find(params[:id])
 
     if @code.update_attributes(code_params)
       flash[:notice] = '你已经成功更新了收藏的代码。'
@@ -43,19 +44,18 @@ class Admin::CodesController < AdminController
   end
 
   def destroy
-    @code = Code.find(params[:id])
+    @code = @codes.find(params[:id])
     @code.destroy
 
-    if @code.persisted?
-      flash[:error] = '因为以下原因，删除代码失败。'
-      render :show
-    else
-      flash[:notice] = '你已经成功删除了该代码。'
-      redirect_to admin_codes_path
-    end
+    flash[:notice] = '你已经成功删除了该代码。'
+    redirect_to admin_codes_path
   end
 
   private
+  def load_codes
+    @codes = current_user.codes
+  end
+
   def code_params
     params.require(:code).permit(:user_id, :language_id, :category_id, :source, :title, :content, :tags)
   end

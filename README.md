@@ -32,6 +32,9 @@ USE_OFFICIAL_GEM_SOURCE=1
 
 We use rspec & capybarato test.
 ```bash
+# create db, load schema, and initialize with seed
+RAILS_ENV=test rake db:setup
+
 RAILS_ENV=test rails s
 # Make sure already installed firefox
 bundle exec rspec -fd

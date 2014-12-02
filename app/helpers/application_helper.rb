@@ -35,16 +35,12 @@ module ApplicationHelper
     "关注最近的独家博文、代码分享, 在这里搭建博客、分享博文, 收藏并分享代码, 结识兴趣相投的博主, 相互分享IT信息和技术..."
   end
 
-   def base_search_url
+  def base_search_url
     "https://wen.lu/?gws_rd=cr,ssl#q=site:#{Settings.site.domain}+"
   end
 
-    def current_user?
+  def current_user?
     current_user.present?
-  end
-
-  def current_admin?
-    current_admin_user.present?
   end
 
   def omited_str(str, length=60)

@@ -1,13 +1,14 @@
 # encoding: utf-8
 class Admin::PostsController < AdminController
 
+ before_action :load_posts, only: [:index, :show, :edit, :update, :destroy]
+
   def index
-    @posts = current_user.posts
     @posts = @posts.page(params[:page])
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = @posts.find(params[:id])
   end
 
 
@@ -30,11 +31,11 @@ class Admin::PostsController < AdminController
   end
 
   def edit
-    @post = Post.find(params[:id])
+    @post = @posts.find(params[:id])
   end
 
   def update
-    @post = Post.find(params[:id])
+    @post = @posts.find(params[:id])
 
     if @post.update_attributes(post_params)
       flash[:notice] = '你已经成功修改了文章。'
@@ -46,19 +47,18 @@ class Admin::PostsController < AdminController
   end
 
   def destroy
-    @post = Post.find(params[:id])
+    @post = @posts.find(params[:id])
     @post.destroy
 
-    if @post.persisted?
-      flash[:error] = '因为以下原因，删除文章失败。'
-      render :show
-    else
-      flash[:notice] = '你已经成功删除了该文章。'
-      redirect_to admin_root_path
-    end
+    flash[:notice] = '你已经成功删除了该文章。'
+    redirect_to admin_root_path
   end
 
   private
+  def load_posts
+    @posts = current_user.posts
+  end
+
   def post_params
     params.require(:post).permit(:user_id, :point_id, :category_id, :source, :title, :content, :tags)
   end

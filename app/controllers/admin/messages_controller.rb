@@ -1,15 +1,17 @@
 class Admin::MessagesController < AdminController
+  before_action :load_messages
 
   def index
     @messages = @messages.page(params[:page]).per(15)
   end
 
   def show
-    @message = Message.find(params[:id])
+    @message = @messages.find(params[:id])
     @message.update_attributes(is_read: true)
     case @message.target_type
     when 'Reply'
-      @reply = Reply.find(@message.target_id)
+      @replies = Reply.with_deleted
+      @reply = @replies.find(@message.target_id)
       @post = @reply.post
       redirect_to "#{frontend_post_path(@post)}#reply#{@reply.id}"
     else
@@ -30,16 +32,17 @@ class Admin::MessagesController < AdminController
   end
 
   def destroy
-    @message = Message.find(params[:id])
+    @message = @messages.find(params[:id])
     @message.destroy
 
-    if @message.persisted?
-      flash[:error] = '因为以下原因，删除消息失败。'
-      render :back
-    else
-      flash[:notice] = '你已经成功删除了该消息。'
-      redirect_to admin_messages_path
-    end
+    flash[:notice] = '你已经成功删除了该消息。'
+    redirect_to admin_messages_path
+  end
+
+
+  protected
+  def load_messages
+    @messages = current_user.messages
   end
 
 end

@@ -23,7 +23,7 @@ gem 'uglifier', '~> 2.5.3'
 gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
-gem 'rails_config', '~> 0.4.2'
+gem 'rails_config', '~> 0.4.2'  # 从yml文件加载配置
 gem 'kaminari', '~> 0.16.1'
 gem 'activeadmin', '~> 1.0.0.pre', github: 'gregbell/active_admin'
 # Use jquery as the JavaScript library
@@ -36,13 +36,14 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
-gem 'devise', '~> 3.3.0'
-gem 'devise-i18n', '~> 0.11.0'
-gem 'devise-async', '~> 0.9.0'
-gem 'friendly_id', '~> 5.0.4'
-gem 'simple_form', '~> 3.1.0.rc2'#, github: 'plataformatec/simple_form'
-gem 'paranoia', '~> 2.0.2'
-gem 'browser', '~> 0.6.0'
+gem 'devise', '3.3.0' # 用户session管理
+gem 'devise-i18n', '0.11.0' # devise国际化支持
+gem 'devise-async', '0.9.0' # 异步处理devise邮件
+
+gem 'friendly_id', '5.0.4' # 更友好的id
+gem 'simple_form', '3.1.0.rc2' # 页面表单
+gem 'paranoia', '2.0.2' # 软删除
+gem 'browser', '0.6.0' # 浏览器版本检测
 
 gem 'bugsnag', '~> 2.4.1'
 gem 'whenever', '~> 0.9.2', require: false
@@ -99,8 +100,8 @@ group :development, :test do
   gem 'watir-webdriver', '~> 0.6.11'
   gem 'rspec-example_steps', '~> 3.0.2'
 # gem 'coco', '~> 0.12.0'
-  gem 'coveralls', '~> 0.7.1', require: false
-  gem 'simplecov', '~> 0.9.0', require: false
+  gem 'simplecov', '0.9.0', require: false # 测试覆盖率并生成html报告
+  # gem 'coveralls', '0.7.1', require: false # 测试覆盖率并上传到coveralls.io
 
   gem 'shoulda-matchers', '~> 2.6.2'
   gem 'rspec-expectations', '~> 3.0.0'
