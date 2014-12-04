@@ -1,10 +1,8 @@
 module ApplicationHelper
 
-
   def gravatar_url(email)
     email_md5 = Digest::MD5.hexdigest(email.downcase)
-    "http://www.gravatar.com/avatar/#{email_md5}?s=120"
-    # "http://jasonblog.qiniudn.com/avatar/#{email_md5}.jpg"
+    "http://www.gravatar.com/avatar/#{email_md5}?s=120"  #blocked already
   end
 
   def site_intro
@@ -16,7 +14,7 @@ module ApplicationHelper
   end
 
   def seo_intro
-    "#{Settings.site.name_zh}, #{Settings.site.name}, #{controller_title}, #{meat_keywords}".gsub(' | ', ', ')
+    "#{Settings.site.name_zh}, #{Settings.site.name}, #{controller_title}, #{meta_keywords}".gsub(' | ', ', ')
   end
 
   def default_title
@@ -31,7 +29,7 @@ module ApplicationHelper
     "#{Settings.site.name_zh} | #{controller_title}"
   end
 
-  def meat_keywords
+  def meta_keywords
     "关注最近的独家博文、代码分享, 在这里搭建博客、分享博文, 收藏并分享代码, 结识兴趣相投的博主, 相互分享IT信息和技术..."
   end
 
@@ -47,7 +45,7 @@ module ApplicationHelper
     str.truncate(length, separator: " ", omission: "...")
   end
 
-  def js_alert(message="非常遗憾，操作失败.")
+  def js_alert(message="非常遗憾，操作失败。")
     render js: "alert('#{message}')"
   end
 
@@ -74,7 +72,6 @@ module ApplicationHelper
   def post_tags_from_str(str)
     str.split(',').map { |tag| "&nbsp;<a target='_blank' href='#{base_search_url}#{tag}'><span class='badge'>#{tag}</span></a>" }.join.html_safe
   end
-
 
   def code_tags_from_str(str)
     self.post_tags_from_str(str)

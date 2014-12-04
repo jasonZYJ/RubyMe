@@ -8,12 +8,14 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar, UserAvatarUploader
 
+  #Association
   has_many :messages, dependent: :destroy, foreign_key: :user_id
   has_many :posts, dependent: :destroy
   has_many :codes, dependent: :destroy
   has_many :replies, dependent: :destroy
   has_many :categories, dependent: :destroy
 
+  #Callback
   before_create :update_ranking
   before_create :init_name, if: Proc.new { |u| u.name.blank? }
   after_create :init_avatar
@@ -28,6 +30,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :async,
          authentication_keys: [:login]
 
+  #Validate
   validates :ranking, uniqueness: true
   validates :city_name, allow_blank: true, length: {minimum: 2}
   validates :avatar, file_size: {maximum: 1.megabytes.to_i}, on: [:update] #, if: Proc.new { |u| u.avatar_changed? }
@@ -39,6 +42,17 @@ class User < ActiveRecord::Base
   #   minimum: 3.kilobytes.to_i, maximum: 1.megabytes.to_i }
   validates :email, presence: true, allow_blank: false, uniqueness: {case_sensitive: false},
             format: {with: /\A([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})\z/i, message: 'Email格式不正确'}
+
+  class << self
+    def find_for_database_authentication(warden_conditions)
+      conditions = warden_conditions.dup
+      if login = conditions.delete(:login)
+        where(conditions).where(["uid = :value OR email = :value", {value: login}]).first
+      else
+        where(conditions).first
+      end
+    end
+  end
 
   def human_name
     self.uid
@@ -79,16 +93,6 @@ class User < ActiveRecord::Base
   def gravatar_url
     "http://www.gravatar.com/avatar/#{self.email_md5}"
   end
-
-  def self.find_for_database_authentication(warden_conditions)
-    conditions = warden_conditions.dup
-    if login = conditions.delete(:login)
-      where(conditions).where(["uid = :value OR email = :value", {value: login}]).first
-    else
-      where(conditions).first
-    end
-  end
-
 
   private
   def update_ranking

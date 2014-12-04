@@ -3,12 +3,14 @@ include WordCheck
 
 class Post < ActiveRecord::Base
 
+  #Association
   belongs_to :user
   belongs_to :last_reply_user, :class_name => "User", :foreign_key => 'last_reply_user_id'
   belongs_to :point
   belongs_to :category
   has_many :replies, dependent: :destroy
 
+  #Validate
   validates :user_id, presence: true
   validates :point_id, presence: true
   validates :category_id, presence: true
@@ -16,11 +18,13 @@ class Post < ActiveRecord::Base
   validates :title, presence: true, allow_blank: false
   validates :content, presence: true, allow_blank: false
 
-  SOURCES = ['原创或翻译', '转载或分享']
+  #Constants
+  SOURCES = %W(原创或翻译 转载或分享)
 
+  #Callback
   before_save :validate_tags, :validate_sensitive?
 
-  #scope
+  #Scope
   default_scope -> { order('created_at desc') }
 
   def published_time
@@ -44,9 +48,7 @@ class Post < ActiveRecord::Base
     word = WordCheck.first_sensitive(self.inspect)
     if word.present?
       errors.add(:base, "文章内容包含敏感词汇: #{word}")
-      return false
+      false
     end
   end
-
-
 end

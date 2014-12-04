@@ -5,19 +5,21 @@ class Reply < ActiveRecord::Base
 
   acts_as_paranoid
 
+  #Association
   belongs_to :user
   belongs_to :post
-
   has_one :blogger, through: :post, source: 'user'
   has_many :messages, as: :target, dependent: :destroy
 
+  #Validate
   validates :user_id, presence: true
   validates :post_id, presence: true
   validates :content, presence: true, allow_blank: false
 
-  #scope
+  #Scope
   default_scope -> { order('created_at desc') }
 
+  #Callback
   before_save :validate_sensitive
   after_create :message_to_at_users, :update_last_reply_user
 
@@ -72,7 +74,7 @@ class Reply < ActiveRecord::Base
     word = WordCheck.first_sensitive(self.inspect)
     if word.present?
       errors.add(:base, "回复内容包含敏感词汇: #{word}")
-      return false
+      false
     end
   end
 end
