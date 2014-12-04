@@ -3,10 +3,10 @@
     <h4>永久链接: <%= link_to frontend_post_url(@post), frontend_post_path(@post) %></h4>
     <h4><%= @post.title %></h4>
 
-  发布时间: <%= @post.published_time %>
+    发布时间: <%= @post.published_time %>
     <br/>文章分类: <%= @post.category.try(:name) %>
 
-   <br/>文章标签: <%= post_tags_from_str(@post.tags) %>
+    <br/>文章标签: <%= post_tags_from_str(@post.tags) %>
   </div>
 </div>
 
@@ -22,6 +22,6 @@
       <span class="glyphicon glyphicon-edit"></span>编辑
     </a>
 
-    <%= link_to '删 除', admin_post_path(@post), data: { confirm: "你确定要删除这篇文章吗？" }, method: :delete, class: "btn btn-sm btn-danger" %>
+    <%= link_to '删 除', admin_post_path(@post), data: {confirm: "你确定要删除这篇文章吗？"}, method: :delete, class: "btn btn-sm btn-danger" %>
   </div>
 </div>

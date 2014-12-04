@@ -1,15 +1,15 @@
 # encoding: utf-8
 class Admin::HomeController < AdminController
-	before_action :load_user
+  before_action :load_user
 
-	def index
+  def index
     @posts = @user.posts
-		@replies = Reply.where(post_id: @posts.pluck(:id))
+    @replies = Reply.where(post_id: @posts.pluck(:id))
 
     @posts = @posts.page(params[:page])
     @replies = @replies.page(params[:page_reply]).includes(:post)
 
-	end
+  end
 
   def profile
   end
@@ -25,13 +25,13 @@ class Admin::HomeController < AdminController
   end
 
   private
-	def load_user
+  def load_user
     @user = current_user
   end
 
   def user_params
     params.require(:user).permit(:avatar, :name, :is_email_public, :signature, :city_name,
-      :company, :github, :homepage, :description)
+                                 :company, :github, :homepage, :description)
   end
 
 end

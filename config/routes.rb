@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-   # require 'sidekiq/web'
+  # require 'sidekiq/web'
   # mount Sidekiq::Web => '/sidekiq'
 
   mount Ckeditor::Engine => '/ckeditor'
@@ -39,7 +39,7 @@ Rails.application.routes.draw do
     end
 
     resources :messages, only: [:show, :destroy, :index] do
-       member do
+      member do
         post 'mark_as_read', to: 'messages#mark_as_read'
       end
     end

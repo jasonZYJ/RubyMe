@@ -7,70 +7,71 @@
         </a>
       </div>
 
-   <h2><%= @post.title %></h2>
+      <h2><%= @post.title %></h2>
+
       <div class="info">
         <%= link_to @blogger.human_name, frontend_path(@blogger), target: "_blank" %>
-         ·
-         <%= link_to @post.category.try(:name), frontend_category_path(@blogger, @post.category) %>
-            ·
+        ·
+        <%= link_to @post.category.try(:name), frontend_category_path(@blogger, @post.category) %>
+        ·
         <abbr class="timeago" title="<%= @post.published_time %>">
           <%= time_ago_in_words(@post.created_at) %>前
         </abbr>发布
-         · <%= "#{@post.visits} 次阅读" %>
-         · <%= post_tags_from_str(@post.tags) %>
+        · <%= "#{@post.visits} 次阅读" %>
+        · <%= post_tags_from_str(@post.tags) %>
       </div>
     </div>
- <div class="body">
+    <div class="body">
       <%= @post.content.html_safe %>
     </div>
   </div>
-<div class="box post-replies">
-  <div class="total">
+  <div class="box post-replies">
+    <div class="total">
       一共 <b><%= @replies.count %></b> 条回复
     </div>
     <% @replies.reverse.each_with_index do |reply, index| %>
-      <% replier = reply.user %>
-      <div class="post_reply" id="reply<%= reply.id %>">
-        <div class="pull-left">
-          <a target="_blank" href="<%= frontend_path(replier) %>">
-            <%= image_tag(replier.avatar_url, class: 'user_face') %>
-          </a>
-        </div>
+        <% replier = reply.user %>
+        <div class="post_reply" id="reply<%= reply.id %>">
+          <div class="pull-left">
+            <a target="_blank" href="<%= frontend_path(replier) %>">
+              <%= image_tag(replier.avatar_url, class: 'user_face') %>
+            </a>
+          </div>
 
-<div class="infos">
-          <div class="info">
+          <div class="infos">
+            <div class="info">
             <span class="name">
               <%= link_to replier.human_name, frontend_path(replier), target: "_blank" %>
             </span>
 
     <span class="time">
               <a class="reply-floor" href="#reply<%= reply.id %>">
-              <%= index+1 %>楼</a> ·
+                <%= index+1 %>楼</a> ·
               <abbr class="timeago" title="<%= reply.published_time %>">
                 <%= time_ago_in_words(reply.created_at) %>前
               </abbr>
             </span>
-          </div>
+            </div>
 
-          <div class="body">
-            <%= reply.content %>
+            <div class="body">
+              <%= reply.content %>
+            </div>
           </div>
         </div>
-      </div>
     <% end %>
   </div>
 
-    <div class="box panel_new_reply">
-     <% if current_user.blank? %>
-      需要登录之后才能评论。
-      <%= link_to "登录", new_user_session_path %> |
-      <%= link_to "注册", new_user_registration_path %>
+  <div class="box panel_new_reply">
+    <% if current_user.blank? %>
+        需要登录之后才能评论。
+        <%= link_to "登录", new_user_session_path %> |
+        <%= link_to "注册", new_user_registration_path %>
     <% else %>
-      <%= simple_form_for [:frontend, @post, @reply], html: { class: "form-inline form_new_reply" } do |f| %>
-        <%= f.input_field :content, as: :text, class: "form-control" %>
+        <%= simple_form_for [:frontend, @post, @reply], html: {class: "form-inline form_new_reply"} do |f| %>
+            <%= f.input_field :content, as: :text, class: "form-control" %>
 
-        <%= f.button :submit, "提交回复", class: "btn btn-primary btn_new_reply" %>
-      <% end %>
+            <%= f.button :submit, "提交回复", class: "btn btn-primary btn_new_reply" %>
+        <% end %>
     <% end %>
   </div>
 </div>

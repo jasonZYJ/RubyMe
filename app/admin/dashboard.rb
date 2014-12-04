@@ -1,8 +1,8 @@
 ActiveAdmin.register_page "Dashboard" do
 
-  menu priority: 1, label: proc{ I18n.t("active_admin.dashboard") }
+  menu priority: 1, label: proc { I18n.t("active_admin.dashboard") }
 
-  content title: proc{ I18n.t("active_admin.dashboard") } do
+  content title: proc { I18n.t("active_admin.dashboard") } do
 
     columns do
       column do
@@ -26,10 +26,10 @@ ActiveAdmin.register_page "Dashboard" do
         end
       end
 
-     column do
+      column do
         panel "最近的代码" do
           ul do
-          Code.limit(15).map do |code|
+            Code.limit(15).map do |code|
               omited_title = code.title.truncate(99, separator: ' ', omission: '...')
               li link_to(omited_title, system_code_path(code))
             end

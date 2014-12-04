@@ -1,4 +1,3 @@
-
 class FrontendController < ApplicationController
   include ApplicationHelper
   include FrontendHelper
@@ -8,7 +7,7 @@ class FrontendController < ApplicationController
   before_action :keep_redirect_url
 
   def title
-     site_intro
+    site_intro
   end
 
   protected

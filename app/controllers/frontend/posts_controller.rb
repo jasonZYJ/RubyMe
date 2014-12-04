@@ -1,4 +1,3 @@
-
 class Frontend::PostsController < BloggerController
 
   def title
@@ -11,7 +10,7 @@ class Frontend::PostsController < BloggerController
     @replies = @post.replies
   end
 
- protected
+  protected
   # override super method
   def load_blogger
     user_id = params[:user_id]

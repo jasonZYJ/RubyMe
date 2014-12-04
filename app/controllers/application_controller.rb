@@ -21,10 +21,10 @@ class ApplicationController < ActionController::Base
   end
 
   def check_browser
-     # notice if browser lt IE9
-   if browser.ie? && browser.version.to_i < 9
+    # notice if browser lt IE9
+    if browser.ie? && browser.version.to_i < 9
       if !cookies[:is_noticed_browser]
-        cookies[:is_noticed_browser] = { value: true, expires: 1.hour.from_now }
+        cookies[:is_noticed_browser] = {value: true, expires: 1.hour.from_now}
         flash[:alert] = "你使用的浏览器太老了，博客眼的很多Html5特性不支持，赶快升级吧！"
       end
     end
@@ -44,7 +44,6 @@ class ApplicationController < ActionController::Base
   end
 
 
-
   #  def after_sign_in_path_for(resource_or_scope)
   #   admin_root_path
   # end
@@ -62,9 +61,10 @@ class ApplicationController < ActionController::Base
       super
     end
   end
+
   #
   #  # for user devise session
-   def after_sign_up_path_for(resource_or_scope)
+  def after_sign_up_path_for(resource_or_scope)
     session[:redirect_url] || super
   end
 

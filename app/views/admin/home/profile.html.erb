@@ -1,6 +1,6 @@
-
 <div class="row">
   <label class="col-md-3"> </label>
+
   <div class="col-md-9">
     <h4>个人资料修改</h4>
     <%= link_to '修改密码', edit_user_registration_path %>
@@ -8,22 +8,22 @@
 </div>
 
 <%= simple_form_for @user, url: admin_update_profile_path, method: :post,
-    html: { class: "form-horizontal", multipart: true} do |f| %>
-  <%= f.input :avatar, as: :file %>
-  <%= f.input :uid, disabled: true, hint: '用户名注册后不能更改' %>
-  <%= f.input :name %>
-  <%= f.input :email, disabled: true %>
-  <%= f.input :is_email_public %>
+                    html: {class: "form-horizontal", multipart: true} do |f| %>
+    <%= f.input :avatar, as: :file %>
+    <%= f.input :uid, disabled: true, hint: '用户名注册后不能更改' %>
+    <%= f.input :name %>
+    <%= f.input :email, disabled: true %>
+    <%= f.input :is_email_public %>
 
-  <%= f.input :signature %>
-  <%= f.input :city_name  %>
-  <%= f.input :company %>
+    <%= f.input :signature %>
+    <%= f.input :city_name %>
+    <%= f.input :company %>
 
-  <%= f.input :github %>
-  <%= f.input :homepage %>
-  <%= f.input :description %>
+    <%= f.input :github %>
+    <%= f.input :homepage %>
+    <%= f.input :description %>
 
-  <div class="form-actions text-center">
-    <%= f.button :submit, "保 存", class: "btn btn-primary" %>
-  </div>
+    <div class="form-actions text-center">
+      <%= f.button :submit, "保 存", class: "btn btn-primary" %>
+    </div>
 <% end %>

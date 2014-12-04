@@ -3,20 +3,21 @@
 </div>
 
 <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: {class: 'form-horizontal'}) do |f| %>
-  <div class="panel-body">
-    <%= f.error_notification %>
-    <%= f.input :email, required: true, autofocus: true %>
+    <div class="panel-body">
+      <%= f.error_notification %>
+      <%= f.input :email, required: true, autofocus: true %>
 
-    <div class="form-group form-actions">
-      <label class="col-md-3"> </label>
-      <div class="col-md-9">
-        <%= f.button :submit, "确 认" %>
+      <div class="form-group form-actions">
+        <label class="col-md-3"> </label>
+
+        <div class="col-md-9">
+          <%= f.button :submit, "确 认" %>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="panel-footer">
-    <%= render "users/shared/links" %>
+    <div class="panel-footer">
+      <%= render "users/shared/links" %>
 
-  </div>
+    </div>
 <% end %>

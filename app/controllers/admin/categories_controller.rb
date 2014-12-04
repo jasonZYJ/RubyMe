@@ -34,9 +34,9 @@ class Admin::CategoriesController < AdminController
 
     respond_to do |format|
       if @category.save
-        format.json{ head :no_content }
+        format.json { head :no_content }
       else
-        format.json { render json: draw_errors_message(@category), status: 403}
+        format.json { render json: draw_errors_message(@category), status: 403 }
       end
     end
   end

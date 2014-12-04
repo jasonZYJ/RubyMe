@@ -1,4 +1,3 @@
-
 require 'word_check'
 include WordCheck
 
@@ -22,7 +21,7 @@ class Post < ActiveRecord::Base
   before_save :validate_tags, :validate_sensitive?
 
   #scope
-  default_scope ->{order('created_at desc')}
+  default_scope -> { order('created_at desc') }
 
   def published_time
     self.created_at.strftime('%Y-%m-%d %H:%M')
@@ -42,7 +41,7 @@ class Post < ActiveRecord::Base
   end
 
   def validate_sensitive?
-     word = WordCheck.first_sensitive(self.inspect)
+    word = WordCheck.first_sensitive(self.inspect)
     if word.present?
       errors.add(:base, "文章内容包含敏感词汇: #{word}")
       return false

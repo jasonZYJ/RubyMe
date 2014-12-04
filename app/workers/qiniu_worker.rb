@@ -1,4 +1,3 @@
-
 class QiniuWorker
   include Sidekiq::Worker
   sidekiq_options retry: 1

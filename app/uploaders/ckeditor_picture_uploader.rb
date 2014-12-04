@@ -8,7 +8,7 @@ class CkeditorPictureUploader < CarrierWave::Uploader::Base
   # include CarrierWave::ImageScience
 
   # Choose what kind of storage to use for this uploader:
-    # storage :file
+  # storage :file
 
   def url(param={})
     "http://#{Settings.cdn.bucket_domain}/#{self.path}" unless self.blank?
@@ -20,7 +20,7 @@ class CkeditorPictureUploader < CarrierWave::Uploader::Base
     "#{Settings.cdn.dir_prefix}/images/#{model.id}"
   end
 
- def filename
+  def filename
     if original_filename.present?
       file_prefix = model.data.file.path.split('.').last.downcase
       "#{secure_token}.#{file_prefix}"
@@ -54,7 +54,7 @@ class CkeditorPictureUploader < CarrierWave::Uploader::Base
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_white_list
-     # %w(jpg jpeg png)
+    # %w(jpg jpeg png)
     Ckeditor.image_file_types
   end
 

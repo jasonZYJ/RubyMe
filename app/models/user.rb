@@ -29,16 +29,16 @@ class User < ActiveRecord::Base
          authentication_keys: [:login]
 
   validates :ranking, uniqueness: true
-  validates :city_name, allow_blank: true, length: { minimum: 2 }
-  validates :avatar, file_size: { maximum: 1.megabytes.to_i }, on: [:update]#, if: Proc.new { |u| u.avatar_changed? }
+  validates :city_name, allow_blank: true, length: {minimum: 2}
+  validates :avatar, file_size: {maximum: 1.megabytes.to_i}, on: [:update] #, if: Proc.new { |u| u.avatar_changed? }
 
-  validates :uid, presence: true, allow_blank: false, uniqueness: { case_sensitive: true },
-            length: { minimum: 3, maximum: 24 }, exclusion: { in: Settings.exclusions },
+  validates :uid, presence: true, allow_blank: false, uniqueness: {case_sensitive: true},
+            length: {minimum: 3, maximum: 24}, exclusion: {in: Settings.exclusions},
             :format => {:with => /\A\w+\z/, :message => '只允许数字、大小写字母和下划线'}
   # validates :avatar, presence: true, file_size: {
   #   minimum: 3.kilobytes.to_i, maximum: 1.megabytes.to_i }
-  validates :email, presence: true, allow_blank: false, uniqueness: { case_sensitive: false },
-            format: { with: /\A([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})\z/i, message: 'Email格式不正确' }
+  validates :email, presence: true, allow_blank: false, uniqueness: {case_sensitive: false},
+            format: {with: /\A([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})\z/i, message: 'Email格式不正确'}
 
   def human_name
     self.uid
@@ -76,14 +76,14 @@ class User < ActiveRecord::Base
     Digest::MD5.hexdigest(self.email.downcase)
   end
 
-   def gravatar_url
+  def gravatar_url
     "http://www.gravatar.com/avatar/#{self.email_md5}"
   end
 
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)
-      where(conditions).where(["uid = :value OR email = :value", { value: login }]).first
+      where(conditions).where(["uid = :value OR email = :value", {value: login}]).first
     else
       where(conditions).first
     end
@@ -99,7 +99,7 @@ class User < ActiveRecord::Base
 
 
   def init_name
-     self.name = self.uid
+    self.name = self.uid
   end
 
   def init_avatar

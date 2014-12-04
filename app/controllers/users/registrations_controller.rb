@@ -1,7 +1,7 @@
 # encoding: utf-8
 class Users::RegistrationsController < Devise::RegistrationsController
 
-def create
+  def create
     if !Settings.user.skip_captcha #|| simple_captcha_valid?
       super
     else
@@ -14,13 +14,13 @@ def create
   end
 
   def is_uid_exist
-     user = User.new(uid: params[:uid])
+    user = User.new(uid: params[:uid])
 
     respond_to do |format|
-    if !user.valid? && user.errors[:uid].present?
-        format.json { render json: { message: "用户名 #{user.uid} #{user.errors[:uid].first}" }, status: 403}
+      if !user.valid? && user.errors[:uid].present?
+        format.json { render json: {message: "用户名 #{user.uid} #{user.errors[:uid].first}"}, status: 403 }
       else
-        format.json{ render json: { message: "用户名 #{user.uid} 可以使用" } }
+        format.json { render json: {message: "用户名 #{user.uid} 可以使用"} }
       end
     end
   end

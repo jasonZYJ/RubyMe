@@ -9,24 +9,24 @@ class Admin::MessagesController < AdminController
     @message = @messages.find(params[:id])
     @message.update_attributes(is_read: true)
     case @message.target_type
-    when 'Reply'
-      @replies = Reply.with_deleted
-      @reply = @replies.find(@message.target_id)
-      @post = @reply.post
-      redirect_to "#{frontend_post_path(@post)}#reply#{@reply.id}"
-    else
+      when 'Reply'
+        @replies = Reply.with_deleted
+        @reply = @replies.find(@message.target_id)
+        @post = @reply.post
+        redirect_to "#{frontend_post_path(@post)}#reply#{@reply.id}"
+      else
 
     end
   end
 
-   def mark_as_read
+  def mark_as_read
     @message = @messages.find(params[:id])
 
     respond_to do |format|
       if @message.update_attributes(is_read: true)
-        format.json { render json: { count: @messages.unreads.count } }
+        format.json { render json: {count: @messages.unreads.count} }
       else
-        format.json { render json: draw_errors_message(@message), status: 403}
+        format.json { render json: draw_errors_message(@message), status: 403 }
       end
     end
   end

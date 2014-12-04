@@ -1,4 +1,3 @@
-
 set :rails_env, :production
 set :enable_ssl, false
 

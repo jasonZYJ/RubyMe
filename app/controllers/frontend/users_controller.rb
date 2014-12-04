@@ -1,7 +1,7 @@
 # encoding: utf-8
 class Frontend::UsersController < BloggerController
 
-   # after_action :update_visits, only: [:show]
+  # after_action :update_visits, only: [:show]
 
   def show
     @posts = @posts.page(params[:page]).per(6)
@@ -11,7 +11,7 @@ class Frontend::UsersController < BloggerController
 
   end
 
- protected
+  protected
   # override super method
   def load_blogger
     @blogger = User.find(params[:uid])

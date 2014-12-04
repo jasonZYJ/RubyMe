@@ -1,7 +1,7 @@
 # encoding: utf-8
 class Admin::PostsController < AdminController
 
- before_action :load_posts, only: [:index, :show, :edit, :update, :destroy]
+  before_action :load_posts, only: [:index, :show, :edit, :update, :destroy]
 
   def index
     @posts = @posts.page(params[:page])

@@ -1,15 +1,15 @@
 <div class="panel-heading">
   <div class="heading">Resend confirmation instructions</div>
 </div>
-<%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class: 'form-horizontal' }) do |f| %>
-  <div class="panel-body">
-    <%= f.error_notification %>
-    <%= f.full_error :confirmation_token %>
+<%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: {method: :post, class: 'form-horizontal'}) do |f| %>
+    <div class="panel-body">
+      <%= f.error_notification %>
+      <%= f.full_error :confirmation_token %>
 
-    <%= devise_error_messages! %>
-    <%= f.input :email, required: true, autofocus: true %>
-    <div class="form-actions">
-      <%= f.button :submit, "Resend confirmation instructions" %>
+      <%= devise_error_messages! %>
+      <%= f.input :email, required: true, autofocus: true %>
+      <div class="form-actions">
+        <%= f.button :submit, "Resend confirmation instructions" %>
+      </div>
     </div>
-  </div>
 <% end %>

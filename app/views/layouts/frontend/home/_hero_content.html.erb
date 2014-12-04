@@ -1,6 +1,6 @@
 <div class="pagehead">
   <div class="container">
-     <div class="col-md-8">
+    <div class="col-md-8">
       <h4><%= "#{Settings.site.name_zh} · #{site_intro}" %></h4>
     </div>
 
@@ -14,11 +14,11 @@
 
 
 <script type="text/javascript">
-  $(function(){
-    $("form.navbar-search").on("submit", function(){
-      var base_url = "<%= base_search_url %>";
-      var keyword = $(this).find("input.search-query").val().trim();
-      $(this).attr('action', base_url + keyword);
+    $(function () {
+        $("form.navbar-search").on("submit", function () {
+            var base_url = "<%= base_search_url %>";
+            var keyword = $(this).find("input.search-query").val().trim();
+            $(this).attr('action', base_url + keyword);
+        });
     });
-  });
 </script>

@@ -1,4 +1,3 @@
-
 require 'word_check'
 include WordCheck
 
@@ -17,45 +16,46 @@ class Reply < ActiveRecord::Base
   validates :content, presence: true, allow_blank: false
 
   #scope
-  default_scope ->{order('created_at desc')}
+  default_scope -> { order('created_at desc') }
 
   before_save :validate_sensitive
   after_create :message_to_at_users, :update_last_reply_user
 
   def update_last_reply_user
-     post.last_reply_user_id = user_id
-     post.save
+    post.last_reply_user_id = user_id
+    post.save
   end
 
   def published_time
     self.created_at.strftime('%Y-%m-%d %H:%M')
   end
 
-   def message_to_at_user(at_user)
+  def message_to_at_user(at_user)
     # return if self.user.id == at_user.id
     message = self.messages.build(
-      is_read: false,
-      user_id: at_user.id,
-      from_user_id: self.user.id,
-      body: "#{self.user.uid} @了你: #{self.content}"
-    )
-    message.save
-  end
- def message_to_blogger
-    return if self.user.id == self.blogger.id
-    message = self.messages.build(
-      is_read: false,
-      user_id: self.blogger.id,
-      from_user_id: self.user.id,
-      body: "#{self.user.uid} 回复了你: #{self.content}"
+        is_read: false,
+        user_id: at_user.id,
+        from_user_id: self.user.id,
+        body: "#{self.user.uid} @了你: #{self.content}"
     )
     message.save
   end
 
-   private
-   def message_to_at_users
+  def message_to_blogger
+    return if self.user.id == self.blogger.id
+    message = self.messages.build(
+        is_read: false,
+        user_id: self.blogger.id,
+        from_user_id: self.user.id,
+        body: "#{self.user.uid} 回复了你: #{self.content}"
+    )
+    message.save
+  end
+
+  private
+  def message_to_at_users
     at_users = []
-    self.content.gsub(/@(\w{3,20})/){
+    self.content.gsub(/@(\w{3,20})/) {
       uid = "#{$1.strip.sub('@', '')}"
       user = User.find_by(uid: uid)
 

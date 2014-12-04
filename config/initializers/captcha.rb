@@ -1,4 +1,3 @@
-
 redis = Redis.new
 redis = Redis::Namespace.new('express:captcha', redis: redis)
 

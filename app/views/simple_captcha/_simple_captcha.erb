@@ -1,4 +1,3 @@
-
 <div class="form-group string user_captcha">
   <label class="string col-md-3 control-label" for="user_captcha">验证码</label>
 
@@ -16,9 +15,9 @@
 </div>
 
 <script type="text/javascript">
-  $(function(){
-    $(".simple_captcha_image img").click(function(e){
-       $('.captcha_content').load("/update_captcha");
+    $(function () {
+        $(".simple_captcha_image img").click(function (e) {
+            $('.captcha_content').load("/update_captcha");
+        });
     });
-  });
 </script>

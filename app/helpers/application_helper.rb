@@ -12,7 +12,7 @@ module ApplicationHelper
   end
 
   def site_fullname
-     "#{Settings.site.name}(#{Settings.site.name_zh})"
+    "#{Settings.site.name}(#{Settings.site.name_zh})"
   end
 
   def seo_intro
@@ -64,15 +64,15 @@ module ApplicationHelper
       ms.map do |m|
         info = t("activerecord.attributes.#{ist_model.class.to_s.underscore}")
         path = if info.is_a?(Hash)
-          "#{info[key.to_sym]}: " if info.key?(key.to_sym)
-        end
+                 "#{info[key.to_sym]}: " if info.key?(key.to_sym)
+               end
         "#{path} #{m}"
       end
     end.flatten
   end
 
   def post_tags_from_str(str)
-    str.split(',').map{|tag| "&nbsp;<a target='_blank' href='#{base_search_url}#{tag}'><span class='badge'>#{tag}</span></a>"}.join.html_safe
+    str.split(',').map { |tag| "&nbsp;<a target='_blank' href='#{base_search_url}#{tag}'><span class='badge'>#{tag}</span></a>" }.join.html_safe
   end
 
 

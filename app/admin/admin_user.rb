@@ -2,7 +2,7 @@ ActiveAdmin.register AdminUser do
   permit_params :email, :password, :password_confirmation
 
   index do
-      # selectable_column
+    # selectable_column
     column :id
     column :email
     column :last_sign_in_at

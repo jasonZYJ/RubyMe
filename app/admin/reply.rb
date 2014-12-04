@@ -1,11 +1,11 @@
 ActiveAdmin.register Reply do
 
   permit_params do
-    permitted = Reply.attribute_names.reject {|field| field == 'id' }
+    permitted = Reply.attribute_names.reject { |field| field == 'id' }
     permitted
   end
 
-    index do
+  index do
     selectable_column
     column :id
     column :user_id

@@ -1,17 +1,16 @@
-
 <div class="table-responsive">
   <table class="table table-striped table-hover">
     <thead>
-      <tr>
-        <th class="col-md-5">内容</th>
-        <th>评论人</th>
-        <th>评论时间</th>
-        <th></th>
-      </tr>
+    <tr>
+      <th class="col-md-5">内容</th>
+      <th>评论人</th>
+      <th>评论时间</th>
+      <th></th>
+    </tr>
     </thead>
 
     <tbody>
-      <% replies.try(:each) do |reply| %>
+    <% replies.try(:each) do |reply| %>
         <tr>
           <td class="href_name">
             <%= link_to reply.content, "#{frontend_post_path(reply.post)}#reply#{reply.id}", title: reply.content %>
@@ -19,20 +18,20 @@
           <td><%= link_to reply.user.human_name, frontend_path(reply.user), target: "_blank" %></td>
           <td><%= reply.published_time %></td>
           <td>
-             <%= link_to '隐 藏', hide_admin_reply_path(reply), data: { confirm: "你确定要隐藏这条评论吗？" }, method: :post, remote: true, class: "btn btn-xs btn-danger" if !reply.destroyed? %>
-            <%= link_to '恢 复', restore_admin_reply_path(reply), data: { confirm: "你确定要恢复这条评论吗？" }, method: :post, remote: true, class: "btn btn-xs btn-default" if reply.destroyed? %>
+            <%= link_to '隐 藏', hide_admin_reply_path(reply), data: {confirm: "你确定要隐藏这条评论吗？"}, method: :post, remote: true, class: "btn btn-xs btn-danger" if !reply.destroyed? %>
+            <%= link_to '恢 复', restore_admin_reply_path(reply), data: {confirm: "你确定要恢复这条评论吗？"}, method: :post, remote: true, class: "btn btn-xs btn-default" if reply.destroyed? %>
           </td>
         </tr>
-      <% end %>
+    <% end %>
 
-      <tr>
-        <td colspan='2'><%= paginate replies, param_name: "page_reply" %></td>
-        <td colspan='2' class="text_middle">
-          <div class="pull-right">
-            <%= link_to('查看所有', admin_replies_path) unless url_for == admin_replies_path %>
-          </div>
-        </td>
-      </tr>
+    <tr>
+      <td colspan='2'><%= paginate replies, param_name: "page_reply" %></td>
+      <td colspan='2' class="text_middle">
+        <div class="pull-right">
+          <%= link_to('查看所有', admin_replies_path) unless url_for == admin_replies_path %>
+        </div>
+      </td>
+    </tr>
     </tbody>
   </table>
 </div>

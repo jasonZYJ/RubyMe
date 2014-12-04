@@ -2,27 +2,28 @@
   <div class="heading">更改你的密码</div>
 </div>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'form-horizontal', method: :put }) do |f| %>
-  <div class="panel-body">
-    <%= f.error_notification %>
-    <%= f.input :email, required: true, disabled: true %>
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put, class: 'form-horizontal', method: :put}) do |f| %>
+    <div class="panel-body">
+      <%= f.error_notification %>
+      <%= f.input :email, required: true, disabled: true %>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-    <% end %>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+      <% end %>
 
-    <%= f.input :password, autocomplete: "off", required: false %>
-    <%= f.input :password_confirmation, required: false %>
-    <%= f.input :current_password, placeholder: "验证当前密码", required: true, label: "当前密码" %>
-    <div class="form-group form-actions">
-      <label class="col-md-3"> </label>
-      <div class="col-md-9">
-        <%= f.button :submit, "确认更改" %>
+      <%= f.input :password, autocomplete: "off", required: false %>
+      <%= f.input :password_confirmation, required: false %>
+      <%= f.input :current_password, placeholder: "验证当前密码", required: true, label: "当前密码" %>
+      <div class="form-group form-actions">
+        <label class="col-md-3"> </label>
+
+        <div class="col-md-9">
+          <%= f.button :submit, "确认更改" %>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="panel-footer">
-    <%= link_to "返 回", :back %>
-  </div>
+    <div class="panel-footer">
+      <%= link_to "返 回", :back %>
+    </div>
 <% end %>

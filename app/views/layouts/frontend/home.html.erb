@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%= render partial: 'layouts/shared/head' %>
+  <%= render partial: 'layouts/shared/head' %>
 
-  <%= stylesheet_link_tag    'frontend/home', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'frontend/home', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'frontend/home', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <%= render partial: 'layouts/shared/topbar', locals: { blogger: @blogger, messages: @messages } %>
+<%= render partial: 'layouts/shared/topbar', locals: {blogger: @blogger, messages: @messages} %>
 
-  <%= render partial: 'layouts/frontend/home/hero_content' %>
+<%= render partial: 'layouts/frontend/home/hero_content' %>
 
-  <div class="container">
-    <%= render partial: 'layouts/shared/flash' %>
- <%= yield %>
-  </div>
+<div class="container">
+  <%= render partial: 'layouts/shared/flash' %>
+  <%= yield %>
+</div>
 
-  <%= render partial: 'layouts/shared/footer' %>
+<%= render partial: 'layouts/shared/footer' %>
 
 </body>
 </html>

@@ -2,24 +2,25 @@
   <div class="heading">更改你的密码</div>
 </div>
 
-  <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { class: 'form-horizontal', method: :put }) do |f| %>
-  <div class="panel-body">
-    <%= devise_error_messages! %>
-    <%= f.input :reset_password_token, as: :hidden %>
-    <%= f.full_error :reset_password_token %>
+<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: {class: 'form-horizontal', method: :put}) do |f| %>
+    <div class="panel-body">
+      <%= devise_error_messages! %>
+      <%= f.input :reset_password_token, as: :hidden %>
+      <%= f.full_error :reset_password_token %>
 
-    <%= f.input :password, label: "新密码", required: true, autofocus: true %>
-    <%= f.input :password_confirmation, label: "重复密码", required: true %>
+      <%= f.input :password, label: "新密码", required: true, autofocus: true %>
+      <%= f.input :password_confirmation, label: "重复密码", required: true %>
 
-    <div class="form-group form-actions">
-      <label class="col-md-3"> </label>
-      <div class="col-md-9">
-        <%= f.button :submit, "确认更改" %>
+      <div class="form-group form-actions">
+        <label class="col-md-3"> </label>
+
+        <div class="col-md-9">
+          <%= f.button :submit, "确认更改" %>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="panel-footer">
-    <%= render "users/shared/links" %>
-  </div>
+    <div class="panel-footer">
+      <%= render "users/shared/links" %>
+    </div>
 <% end %>

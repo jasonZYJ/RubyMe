@@ -8,7 +8,7 @@ class Message < ActiveRecord::Base
   # validates :target, presence: true
 
   #scope
-  default_scope ->{order('created_at desc')}
+  default_scope -> { order('created_at desc') }
   # scope :reads, -> { where(is_read: true) }
   scope :unreads, -> { where(is_read: false) }
 

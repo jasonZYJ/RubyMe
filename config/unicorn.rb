@@ -16,7 +16,7 @@ pid "/tmp/#{app}.pid"
 
 preload_app true
 GC.respond_to?(:copy_on_write_friendly=) and
-  GC.copy_on_write_friendly = true
+    GC.copy_on_write_friendly = true
 
 before_fork do |server, worker|
   # the following is highly recomended for Rails + "preload_app true"

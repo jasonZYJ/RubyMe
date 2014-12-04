@@ -5,11 +5,12 @@ RAILS_ENVS = %w(development test production)
 
 class String
   COLORS = {
-    :red => "\033[31m",
-    :green => "\033[32m",
-    :yellow => "\033[33m",
-    :blue => "\033[34m"
+      :red => "\033[31m",
+      :green => "\033[32m",
+      :yellow => "\033[33m",
+      :blue => "\033[34m"
   }
+
   def colorize(color)
     "#{COLORS[color]}#{self}\033[0m"
   end
@@ -65,7 +66,6 @@ puts_line "Create databases...\n" do
   `RAILS_ENV=#{rails_env} bundle exec rake db:create`
   `RAILS_ENV=#{rails_env} bundle exec rake db:migrate`
   `RAILS_ENV=#{rails_env} bundle exec rake db:seed`
-
 
 
   if rails_env == "production"

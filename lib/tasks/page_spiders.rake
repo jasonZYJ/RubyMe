@@ -13,7 +13,7 @@ namespace :system do
 
   desc 'Check landing page sensitive words'
   task :check_sensitive => :environment do
-   message = ''
+    message = ''
     pages = Settings.sensitive_pages
 
     pages.each do |page|
@@ -31,7 +31,7 @@ namespace :system do
       redis = RedisClient.instance
       count_times = redis.incr('max_notice_times').to_i
 
-        if count_times <= Settings.max_notice_times
+      if count_times <= Settings.max_notice_times
         Rails.logger.info "#{count_times}th send mail to #{send_to} #{message.inspect}"
         SystemMailWorker.perform_async('sensitive_mail', send_to: send_to, content: message)
       else

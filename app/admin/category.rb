@@ -1,11 +1,11 @@
 ActiveAdmin.register Category do
 
   permit_params do
-    permitted = Category.attribute_names.reject {|field| field == 'id' }
+    permitted = Category.attribute_names.reject { |field| field == 'id' }
     permitted
   end
 
-   index do
+  index do
     selectable_column
     column :id
     column :user_id

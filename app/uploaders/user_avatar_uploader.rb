@@ -42,7 +42,7 @@ class UserAvatarUploader < CarrierWave::Uploader::Base
   #   false
   # end
 
- def default_url
+  def default_url
     # For Rails 3.1+ asset pipeline compatibility:
     ActionController::Base.helpers.asset_path("shared/user_avatar/" + [version_name, "default.jpg"].compact.join('_')).sub('/assets/', '')
   end

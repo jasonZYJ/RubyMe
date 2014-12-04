@@ -1,11 +1,11 @@
-<div class="panel-group"  id="blogger_accordion">
+<div class="panel-group" id="blogger_accordion">
   <div class="panel panel-default">
     <div class="panel-body text-center">
       <a href="<%= frontend_path(blogger) %>">
         <%= image_tag(blogger.avatar_url, class: 'bloger_photo') %>
       </a>
 
-  <div class="blogger_info">
+      <div class="blogger_info">
         <label class="bloger_name">
           <%= link_to blogger.human_name, frontend_path(blogger) %>
         </label>
@@ -18,10 +18,10 @@
           <label>城市</label>:<%= " #{blogger.city}" %>
         </div>
         <div class="ranking">
-           第<span class="ranking_number">
+          第<span class="ranking_number">
             <%= " #{blogger.ranking} " %>
           </span>位
-          <a class="<%= 'active' if action_name == 'about_us' && params[:controller] == 'frontend/home' %>" href="<%= frontend_about_us_path %>"><%=Settings.site.name%></a>
+          <a class="<%= 'active' if action_name == 'about_us' && params[:controller] == 'frontend/home' %>" href="<%= frontend_about_us_path %>"><%= Settings.site.name %></a>
           会员
         </div>
 
@@ -29,7 +29,7 @@
     </div>
   </div>
 
-   <div class="panel panel-default">
+  <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
         <a data-toggle="collapse" href="#code_collapse">
@@ -38,10 +38,10 @@
       </h4>
     </div>
 
-   <div id="code_collapse" class="panel-collapse collapse in">
+    <div id="code_collapse" class="panel-collapse collapse in">
       <div class="panel-body">
         <ul>
-        <li><%= link_to "个人资料", frontend_profile_path(blogger) %></li>
+          <li><%= link_to "个人资料", frontend_profile_path(blogger) %></li>
           <li><%= link_to "代码收藏 (#{@blogger.codes.count})", frontend_codes_path(blogger) %></li>
         </ul>
       </div>
@@ -62,9 +62,9 @@
         <ul>
           <li><%= link_to "全部文章 (#{blogger.posts.count})", frontend_path(blogger) %></li>
           <% categories.each do |category| %>
-            <li>
-              <%= link_to "#{category.name} (#{Post.where(category: category).count})", frontend_category_path(blogger, category), title: "分类 #{category.name}" %>
-            </li>
+              <li>
+                <%= link_to "#{category.name} (#{Post.where(category: category).count})", frontend_category_path(blogger, category), title: "分类 #{category.name}" %>
+              </li>
           <% end %>
         </ul>
       </div>
@@ -83,7 +83,7 @@
       <div class="panel-body">
         <ul>
           <% Settings.recomended_website.each do |key, value| %>
-            <li><%= link_to key, value %></li>
+              <li><%= link_to key, value %></li>
           <% end %>
         </ul>
       </div>

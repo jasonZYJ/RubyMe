@@ -3,9 +3,9 @@ lock '3.1.0'
 
 def ask_secretly(key, default=nil)
   set key, proc {
-    hint = default ? " [#{default}]" : ""
-    answer = HighLine.new.ask("Enter server #{key}#{hint}: ") { |q| q.echo = false }.to_s
-  }
+           hint = default ? " [#{default}]" : ""
+           answer = HighLine.new.ask("Enter server #{key}#{hint}: ") { |q| q.echo = false }.to_s
+         }
 end
 
 set :application, 'RubyMe'
@@ -21,7 +21,7 @@ set :deploy_to, "/var/www/#{fetch(:application)}"
 set :scm, :git
 set :use_sudo, false
 # set :run_options, { pty: true }
-set :ssh_options, { forward_agent: true }
+set :ssh_options, {forward_agent: true}
 
 # Default value for :format is :pretty
 # set :format, :pretty
