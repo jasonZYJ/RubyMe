@@ -1,5 +1,5 @@
 # encoding: utf-8
-class CkeditorPictureUploader < CarrierWave::Uploader::Base
+class CkeditorPictureUploader < CommonUploader
   include Ckeditor::Backend::CarrierWave
 
   # Include RMagick or ImageScience support:
@@ -21,10 +21,7 @@ class CkeditorPictureUploader < CarrierWave::Uploader::Base
   end
 
   def filename
-    if original_filename.present?
-      file_prefix = model.data.file.path.split('.').last.downcase
-      "#{secure_token}.#{file_prefix}"
-    end
+    super
   end
 
 
@@ -56,12 +53,6 @@ class CkeditorPictureUploader < CarrierWave::Uploader::Base
   def extension_white_list
     # %w(jpg jpeg png)
     Ckeditor.image_file_types
-  end
-
-  protected
-  def secure_token(length=16)
-    var = :"@#{mounted_as}_secure_token"
-    model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.hex(length/2))
   end
 
 end

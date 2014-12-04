@@ -2,7 +2,7 @@
 # require "digest/md5"
 # require 'carrierwave/processing/mini_magick'
 
-class UserAvatarUploader < CarrierWave::Uploader::Base
+class UserAvatarUploader < CommonUploader
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
@@ -34,14 +34,6 @@ class UserAvatarUploader < CarrierWave::Uploader::Base
     end
   end
 
-  # def move_to_cache
-  #   false
-  # end
-
-  # def move_to_store
-  #   false
-  # end
-
   def default_url
     # For Rails 3.1+ asset pipeline compatibility:
     ActionController::Base.helpers.asset_path("shared/user_avatar/" + [version_name, "default.jpg"].compact.join('_')).sub('/assets/', '')
@@ -67,12 +59,6 @@ class UserAvatarUploader < CarrierWave::Uploader::Base
   # For images you might use something like this:
   def extension_white_list
     %w(jpg jpeg png)
-  end
-
-  protected
-  def secure_token(length=16)
-    var = :"@#{mounted_as}_secure_token"
-    model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.hex(length/2))
   end
 
 end

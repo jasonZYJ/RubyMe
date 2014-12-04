@@ -13,11 +13,9 @@
 .DS_Store
 .keep
 *.tgz
-.coveralls.yml
-config/deploy/production.rb
 database.yml
 settings.yml
 public/assets/
 /public/uploads/
-coverage/
+coverage
 .idea/*

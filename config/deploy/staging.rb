@@ -2,10 +2,10 @@ set :rails_env, :production
 set :enable_ssl, false
 
 set :user, "root"
-set :server_name, "*******"
+set :server, "*******"
 
 ask_secretly(:password)
-server fetch(:server_name), user: fetch(:user), port: 22, password: fetch(:password), roles: %w{web app db}
+server fetch(:server), user: fetch(:user), port: 22, password: fetch(:password), roles: %w{web app db}
 
 # Simple Role Syntax
 # ==================
