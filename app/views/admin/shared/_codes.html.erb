@@ -19,7 +19,7 @@
           <td><%= code.language.try(:code) %></td>
           <td><%= code.published_time %></td>
           <td>
-            <%= link_to '编 辑', edit_admin_code_path(code), class: "btn btn-xs btn-primary" %>
+            <%= link_to '编 辑', edit_admin_code_path(code), class: "btn btn-xs btn-success" %>
             <%= link_to '删 除', admin_code_path(code), data: {confirm: "你确定要删除这篇文章吗？"}, method: :delete, class: "btn btn-xs btn-danger" %>
           </td>
         </tr>

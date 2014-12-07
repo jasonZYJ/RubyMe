@@ -2,7 +2,7 @@ set :rails_env, :production
 set :enable_ssl, false
 
 set :user, "root"
-set :server, "*******"
+set :server, "192.168.5.129"
 
 ask_secretly(:password)
 server fetch(:server), user: fetch(:user), port: 22, password: fetch(:password), roles: %w{web app db}

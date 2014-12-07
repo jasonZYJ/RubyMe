@@ -4,7 +4,7 @@ class Frontend::UsersController < BloggerController
   # after_action :update_visits, only: [:show]
 
   def show
-    @posts = @posts.page(params[:page]).per(6)
+    @posts = @posts.page(params[:page]).per(8)
   end
 
   def profile

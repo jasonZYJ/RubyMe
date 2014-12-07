@@ -3969,8 +3969,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     float: left;
   }
   .navbar-nav > li > a {
-    padding-top: 15px;
-    padding-bottom: 15px;
+    /*padding-top: 15px;*/
+    /*padding-bottom: 15px;*/
   }
   .navbar-nav.navbar-right:last-child {
     margin-right: -15px;
@@ -4021,6 +4021,9 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   .navbar-form .control-label {
     margin-bottom: 0;
     vertical-align: middle;
+  }
+  .navbar-search {
+      margin-top: 5px;
   }
   .navbar-form .radio,
   .navbar-form .checkbox {
@@ -5194,7 +5197,7 @@ a.list-group-item-danger.active:focus {
 }
 .panel-group .panel {
   margin-bottom: 20px;
-  border-radius: 4px;
+  border-radius: 0px;
 }
 .panel-group .panel + .panel {
   margin-top: 5px;
@@ -5979,7 +5982,6 @@ button.close {
 }
 .pull-right {
   float: right !important;
-  margin-top: 6px;
 }
 .pull-left {
   float: left !important;
@@ -6249,8 +6251,12 @@ textarea:focus {
 
 
 a.site-logo {
-padding: 0;
-margin-left: 145px;
+    margin-top: -8px;
+}
+
+.site-logo-info {
+    margin-left: -35px;
+    padding-top: 6px;
 }
 
 /* sourceMappingURL=bootstrap.css.map */
