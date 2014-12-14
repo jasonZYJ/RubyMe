@@ -7,7 +7,7 @@ class Frontend::PostsController < BloggerController
   def show
     @post = @posts.find(params[:id])
     @reply = Reply.new(post_id: @post.id)
-    @replies = @post.replies
+    @replies = Reply.includes(:user).where(:replies => {:post_id => params[:id]})#@post.replies
   end
 
   protected

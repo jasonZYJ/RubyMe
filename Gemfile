@@ -8,7 +8,7 @@ end
 gem 'rails', '4.1.5'
 
 gem 'pg', '0.17.1' # Use postgresql as the database for Active Record
-
+gem 'social-share-button'
 gem 'bootstrap-sass', '~> 3.2.0.1'
 gem 'bootstrap-wysihtml5-rails', '~> 0.3.2.100'
 gem 'autoprefixer-rails', '~> 2.2.0'
