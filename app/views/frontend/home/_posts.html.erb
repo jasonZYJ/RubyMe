@@ -1,10 +1,11 @@
 <div class="blog-posts">
   <h4>最近更新的文章: </h4>
   <% if posts.size > 0 %>
+      <% post_count = post_count_hash posts.map(&:id) %>
       <% posts.each do |post| %>
           <div class="newer_row blog-post">
             <div class="pull-right replies">
-              <%= link_to(post.replies.count, "#{frontend_post_path(post)}", class: "count state-false") %>
+              <%= link_to(post_count[post.id] ? post_count[post.id].count : 0, "#{frontend_post_path(post)}", class: "count state-false") %>
             </div>
             <div class="post-user pull-left">
               <a target="_blank" href="<%= frontend_path(post.user) %>">

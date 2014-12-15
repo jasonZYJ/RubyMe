@@ -48,9 +48,10 @@
       <div class="panel-body">
         <ul>
           <li><%= link_to "全部文章 (#{current_user.posts.count})", admin_posts_path %></li>
+          <% category_hash = category_count_hash categories.map(&:id) %>
           <% categories.each do |category| %>
               <li>
-                <%= link_to "#{category.name} (#{Post.where(category: category).count})", admin_category_path(category) %>
+                <%= link_to "#{category.name} (#{category_hash[category.id] ? category_hash[category.id].count : 0})", admin_category_path(category) %>
               </li>
           <% end %>
           <li><%= link_to "回收站 (0)", admin_posts_path %></li>

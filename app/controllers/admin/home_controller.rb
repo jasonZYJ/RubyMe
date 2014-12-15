@@ -6,8 +6,8 @@ class Admin::HomeController < AdminController
     @posts = @user.posts
     @replies = Reply.where(post_id: @posts.pluck(:id))
 
-    @posts = @posts.page(params[:page])
-    @replies = @replies.page(params[:page_reply]).includes(:post)
+    @posts = @posts.page(params[:page]).includes(:category, :replies)
+    @replies = @replies.page(params[:page_reply]).includes(:post, :user)
 
   end
 

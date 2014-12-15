@@ -3,7 +3,7 @@ class Admin::CodesController < AdminController
   before_action :load_codes, only: [:index, :show, :edit, :update, :destroy]
 
   def index
-    @codes = @codes.page(params[:page]).per(15)
+    @codes = @codes.page(params[:page]).per(15).includes(:user, :category, :language)
   end
 
   def show
