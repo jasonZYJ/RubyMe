@@ -78,6 +78,21 @@ h6, .h6 {
   }
 }
 
+#link_sign_in {
+   padding-right: 2px;
+  //  color: blue;
+}
+
+#link_sign_up {
+  padding-right:0;
+  padding-left: 2px;
+  // color: blue;
+}
+
+.blog-nav .active_only {
+  color: #d71900;
+}
+
 /*
  * Blog name and description
  */

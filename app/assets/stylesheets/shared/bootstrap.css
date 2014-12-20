@@ -4060,7 +4060,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     vertical-align: middle;
   }
   .navbar-search {
-      margin-top: 5px;
+      margin-top: 7px;
   }
   .navbar-form .radio,
   .navbar-form .checkbox {
@@ -4556,7 +4556,7 @@ a.label:focus {
   display: inline-block;
   height: 20px;
   min-width: 10px;
-  padding: 3px 7px;
+  padding: 4px 7px;
   font-size: 12px;
   font-weight: bold;
   line-height: 1;
@@ -6293,6 +6293,29 @@ a.site-logo {
 .site-logo-info {
     margin-left: -35px;
     padding-top: 6px;
+}
+
+.BTN {
+float: right;
+font-size: 9.5pt;
+color: #999;
+background: #40AA53;
+border: 0;
+color: #fff;
+height: 30px;
+padding: 0 10px;
+cursor: pointer;
+}
+
+.TXT {
+float: right;
+font-size: 10.5pt;
+width: 228px;
+height: 30px;
+border: 1px solid #40AA53;
+padding: 0 10px;
+-webkit-appearance: none;
+border-radius: 0;
 }
 
 /* sourceMappingURL=bootstrap.css.map */

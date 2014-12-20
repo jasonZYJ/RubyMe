@@ -11,7 +11,7 @@
 
         <div class="col-md-9">
           <%= f.input_field :remember_me, as: :boolean if devise_mapping.rememberable? %>
-          <%= f.label :remember_me, label: "一周之内免登录" %>
+          <%= f.label :remember_me, label: "一周内免登录" %>
         </div>
       </div>
 
@@ -19,7 +19,7 @@
         <label class="col-md-3"> </label>
 
         <div class="col-md-9">
-          <%= f.button :submit, "登 录", id: "btn_sign_in" %>
+          <%= f.submit "现在登录", :class => "btn btn-primary", 'data-disable-with' => "正在登录" %>
         </div>
       </div>
     </div>

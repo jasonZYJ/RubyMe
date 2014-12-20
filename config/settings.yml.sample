@@ -5,7 +5,7 @@ site:
   ip: *********
   domain: www.jasonblog.com
   owner_en: Jason Zhang
-  owner_email: zyj163loveher@163.com
+  owner_email: rubyfan@163.com
 
 baidu:
   tongji_ua: xxx
@@ -14,11 +14,11 @@ bugsnag:
   api_key: xxx
 
 site_mailer:
-  admin_user: zyj163loveher@163.com
-  from: zyj163loveher@163.com
-  return_path: zyj163loveher@163.com
+  admin_user: rubyfan@163.com
+  from: rubyfan@163.com
+  return_path: rubyfan@163.com
   address: smtp.163.com
-  user_name: zyj163loveher@163.com
+  user_name: rubyfan@163.com
   password: xxx
 
 cache_store:
