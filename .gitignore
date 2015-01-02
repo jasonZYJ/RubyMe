@@ -12,6 +12,8 @@
 /tmp
 .DS_Store
 .keep
+.ruby-gemset
+.ruby-version
 *.tgz
 database.yml
 settings.yml

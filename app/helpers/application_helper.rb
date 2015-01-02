@@ -6,7 +6,7 @@ module ApplicationHelper
   end
 
   def site_intro
-    "博客信息技术分享平台"
+    "信息技术分享平台"
   end
 
   def site_fullname
