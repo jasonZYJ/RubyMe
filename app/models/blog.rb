@@ -8,6 +8,9 @@ class Blog < ActiveRecord::Base
   validates :title, presence: true
   validates :content, presence: true
 
+  belongs_to :category
+  belongs_to :user
+
   #Constants
   STATUSES = %W(隐藏 显示)
   CATEGORIES = %W(通知 功能)

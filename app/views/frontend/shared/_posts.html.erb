@@ -10,7 +10,7 @@
         </p>
 
         <div class="post-content">
-          <%= omited_str(strip_tags(post.content), 200) %>
+          <%= omited_str(strip_tags(post.content), 100) { link_to "浏览全文", frontend_post_path(post) } %>
         </div>
       </div>
   <% end %>

@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :messages, dependent: :destroy, foreign_key: :user_id
   has_many :posts, dependent: :destroy
   has_many :codes, dependent: :destroy
+  has_many :blogs, dependent: :destroy
   has_many :replies, dependent: :destroy
   has_many :categories, dependent: :destroy
 

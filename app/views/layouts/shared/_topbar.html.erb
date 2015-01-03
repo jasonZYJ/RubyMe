@@ -20,7 +20,7 @@
           <% else %>
               <a href="<%= new_user_session_path %>">收藏</a>
           <% end %>
-          <a class="<%= 'active' if params[:controller] == 'frontend/blogs' %>" href="<%= frontend_blogs_path %>">日志</a>
+          <a class="<%= 'active' if params[:controller] == 'admin/blogs' %>" href="<%= admin_blogs_path %>">日志</a>
           <a class="" href="/features">记事本</a>
           <a class="<%= 'active' if action_name == 'about_us' && params[:controller] == 'frontend/home' %>" href="<%= frontend_about_us_path %>">关于</a>
         </div>

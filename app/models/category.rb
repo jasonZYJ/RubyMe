@@ -7,6 +7,7 @@ class Category < ActiveRecord::Base
   belongs_to :user
   has_many :posts, dependent: :destroy
   has_many :codes, dependent: :destroy
+  has_many :blogs, dependent: :destroy
 
   #Validate
   validates :user_id, presence: true

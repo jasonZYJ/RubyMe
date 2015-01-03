@@ -19,9 +19,9 @@
                 <%= time_ago_in_words(code.created_at) %>前
               </abbr> 收藏
             </p>
-
-            <div class="post-content display_none">
-              <%= omited_str(strip_tags(code.content), 150) %>
+            <!--  display_none class yes or no?-->
+            <div class="post-content">
+              <%= omited_str(strip_tags(code.content), 100) { link_to "浏览全文", frontend_code_path(code.user, code) }%>
             </div>
           </div>
       <% end %>

@@ -1,9 +1,8 @@
-<%= simple_form_for [:admin, @code], html: {class: "form-horizontal form_new_code"} do |f| %>
-    <%= f.association :language, collection: Language.all, label_method: :code, value_method: :id %>
-    <%= f.association :category, collection: @categories %>
+<%= simple_form_for [:admin, @blog], html: {class: "form-horizontal form_new_blog"} do |f| %>
+    <%= f.association :category, collection: Category.all %>
 
     <%= f.input :title %>
-    <%= f.input :status %>
+    <%= f.input :status, collection: Blog::STATUSES %>
 
     <div class="form-group">
       <div class="col-md-12">

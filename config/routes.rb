@@ -46,6 +46,8 @@ Rails.application.routes.draw do
 
     resources :codes
 
+    resources :blogs
+
     resources :categories, except: [:new]
   end
 

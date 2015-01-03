@@ -38,7 +38,7 @@ module ApplicationHelper
   end
 
   def omited_str(str, length=60)
-    str.truncate(length, separator: " ", omission: "...")
+    truncate(str, length: length, separator: " ", omission: "...") { yield if block_given?}
   end
 
   def js_alert(message="非常遗憾，操作失败。")

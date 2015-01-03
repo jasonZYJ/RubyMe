@@ -32,9 +32,9 @@
               </em>
 
             </p>
-
-            <div class="post-content display_none">
-              <%= omited_str(strip_tags(post.content), 150) %>
+            <!--  display_none class yes or no?-->
+            <div class="post-content">
+              <%= omited_str(strip_tags(post.content), 100) { link_to "浏览全文", frontend_post_path(post) } %>
             </div>
           </div>
       <% end %>
