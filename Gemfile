@@ -60,6 +60,10 @@ gem 'redis-semaphore', '~> 0.2.2'
 
 gem 'puma', '~> 2.9.1' #多线程支持
 
+# 三方平台 OAuth 验证登陆
+gem "omniauth", "~> 1.0.1"
+gem "omniauth-github", "~> 1.1.0"
+
 group :production do
   gem 'unicorn', '~> 4.8.3'
 end
