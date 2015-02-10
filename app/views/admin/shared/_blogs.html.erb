@@ -17,8 +17,9 @@
           <td><%= blog.category.try(:name) %></td>
           <td><%= blog.published_time %></td>
           <td>
-            <%= link_to '编 辑', edit_admin_blog_path(blog), class: "btn btn-xs btn-success" %>
-            <%= link_to '删 除', admin_blog_path(blog), data: {confirm: "你确定要删除这篇文章吗？"}, method: :delete, class: "btn btn-xs btn-danger" %>
+
+          <%= link_to raw('<span class="glyphicon glyphicon-pencil"></span>'), edit_admin_blog_path(blog) %>
+          <%= link_to raw('<span class="glyphicon glyphicon-trash"></span>'), admin_blog_path(blog), data: {confirm: "你确定要删除这篇文章吗？"}, method: :delete %>
           </td>
         </tr>
     <% end %>
