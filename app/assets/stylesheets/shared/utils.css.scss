@@ -1,3 +1,4 @@
+@import "shared/font-awesome.min";
 @import "social-share-button";
 @import "shared/bootstrap";
 @import "font-awesome";
@@ -65,8 +66,7 @@ td {
 }
 
 .panel-group .panel + .panel {
-  margin-top: 0px;
-  border-top: 0px;
+  margin-top: 0;
 }
 
 .table-striped > tbody > tr:nth-child(odd) > td {

@@ -3,7 +3,7 @@
     <nav class="blog-nav">
       <div class="row">
         <div class="col-md-5">
-          <a class="<%= 'active' if action_name == 'index' && params[:controller] == 'frontend/home' %>" href="<%= frontend_root_path %>">首页</a>
+          <a class="<%= 'active' if action_name == 'index' && params[:controller] == 'frontend/home' %>" href="<%= frontend_root_path %>"><i class="fa fa-diamond"></i>首页</a>
 
           <% if current_user %>
               <a class="<%= 'active' if blogger == current_user && controller.class.superclass.to_s == 'BloggerController' %>" href="<%= frontend_path(current_user) %>">社区</a>
@@ -20,14 +20,19 @@
           <% else %>
               <a href="<%= new_user_session_path %>">收藏</a>
           <% end %>
+          <% if current_user %>
           <a class="<%= 'active' if params[:controller] == 'admin/blogs' %>" href="<%= admin_blogs_path %>">日志</a>
-          <a class="" href="/features">记事本</a>
+              <% else %>
+              <a class="<%= 'active' if params[:controller] == 'frontend/blogs' %>" href="<%= frontend_blogs_path %>">日志</a>
+              <% end %>
+          <!--<a class="" href="/features">记事本</a>-->
           <a class="<%= 'active' if action_name == 'about_us' && params[:controller] == 'frontend/home' %>" href="<%= frontend_about_us_path %>">关于</a>
         </div>
-        <div class="col-md-3">
-          <a href="/" class="site-logo"><%= image_tag('shared/ruby_me.png', style: 'width:146px;height:36px;padding-bottom:2px') %></a>
+        <div class="col-md-2">
+          <a href="/" class="site-logo"><i class="fa fa-diamond fa-3x"></i></a>
+          <!--<a href="/" class="site-logo"><!--%= image_tag('shared/ruby_me.png', style: 'width:146px;height:36px;padding-bottom:2px') %></a>-->
         </div>
-        <div class="col-md-4">
+        <div class="col-md-5">
           <span class="pull-right">
           <% if current_user %>
             <ul class="nav navbar-nav navbar-right">

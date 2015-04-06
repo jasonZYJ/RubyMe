@@ -4576,7 +4576,7 @@ a.label:focus {
 
 body {
   font-weight: 300;
-}btn
+}
 
 .badge:empty {
   display: none;
@@ -6288,7 +6288,8 @@ textarea:focus {
 
 
 a.site-logo {
-    margin-top: -8px;
+    margin-top: -14px;
+    margin-left: 70px;
 }
 
 .site-logo-info {

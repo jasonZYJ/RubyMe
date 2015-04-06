@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => 'system/sidekiq' # only for system user
   end
 
+  # 定义登陆后的访问
   namespace :admin, path: '/admin' do
     root 'home#index'
 
@@ -51,6 +52,8 @@ Rails.application.routes.draw do
     resources :categories, except: [:new]
   end
 
+
+  # 定义未登录时的访问页面
   namespace :frontend, path: '/' do
     root 'home#index'
 
