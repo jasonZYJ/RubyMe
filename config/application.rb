@@ -24,7 +24,7 @@ module RubyMe
     config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
 
     # fix action_mailer.default_url_options not recognized in production.rb
-    config.action_mailer.default_url_options = {host: Settings.site.domain}
+    # config.action_mailer.default_url_options = {host: Settings.site.domain}
 
     SimpleCaptcha.store = Settings.cache_store.name
     # config.cache_store = :redis_store, 'redis://localhost:6379/0/cache', { expires_in: 4.hours }
