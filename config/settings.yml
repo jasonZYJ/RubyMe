@@ -1,0 +1,70 @@
+
+site:
+  name: RubyMe
+  name_zh: RubyMe
+  ip: localhost
+  domain: ''
+  owner_en: Jason Zhang
+  owner_email: rubyfan@163.com
+
+baidu:
+  tongji_ua: 
+
+bugsnag:
+  api_key: 
+
+site_mailer:
+  admin_user: rubyfan@163.com
+  from: rubyfan@163.com
+  return_path: rubyfan@163.com
+  address: smtp.163.com
+  user_name: rubyfan@163.com
+  password: jason522
+
+cache_store:
+  name: redis
+  expires_in: 120
+  store: redis_store
+  store_dir: redis://localhost:6379/0/cache
+
+cdn:
+  storage: qiniu
+  dir_prefix: pro
+  access_key: ceWhcPCdPLerb13I_cFdVlVDJB7wq3GqnIBO-UiE
+  secret_key: gRQbgK_oX_ZWGrXH_VBX6OIxCfxhUfNtYa98_oTY
+  bucket: jasonblog
+  bucket_domain: jasonblog.qiniudn.com
+
+recomended_website:
+  Ruby China : "http://ruby-china.org"
+  Ruby Weekly : "http://rubyweekly.com"
+  Rails 视频教程 : "http://railscasts-china.com/"
+  RubyGems 淘宝镜像 : "https://ruby.taobao.org"
+  Rails Guides 中文版 : "http://guides.ruby-china.org"
+  Ruby on Rails 實戰聖經: "http://ihower.tw/rails4/"
+
+exclusions:
+  - www
+  - admin
+  - system
+  - guest
+  - frontend
+  - backend
+  - status
+  - api
+  - service
+  - noreply
+
+test:
+  site_url: 'http://localhost:3000'
+
+sensitive_pages:
+  - 'http://www.jasonblog.com/'
+
+user:
+  skip_captcha: false
+
+devise:
+  secret_key: 
+
+SECRET_KEY_BASE: 

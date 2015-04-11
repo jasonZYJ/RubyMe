@@ -1,0 +1,27 @@
+
+default: &default
+  adapter: postgresql
+  encoding: utf8
+  timeout: 5000
+  username: postgres
+  password: whitedove
+  host: localhost
+  pool: 15
+
+development:
+  <<: *default
+  database: ruby_me_dev
+
+test:
+  <<: *default
+  database: ruby_me_test
+
+production:
+  dapter: postgresql
+  encoding: utf8
+  timeout: 5000
+  username: postgres
+  password: whitedove
+  host: localhost
+  pool: 15
+  database: ruby_me_pro
