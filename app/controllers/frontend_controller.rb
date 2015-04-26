@@ -3,8 +3,8 @@ class FrontendController < ApplicationController
   include FrontendHelper
 
   layout 'frontend/home'
-
-  before_action :keep_redirect_url
+# 暂时移除稍后加回来
+  # before_action :keep_redirect_url
 
   def title
     site_intro
