@@ -3,7 +3,7 @@ site:
   name: RubyMe
   name_zh: RubyMe
   ip: localhost
-  domain: ''
+  domain: localhost
   owner_en: Jason Zhang
   owner_email: rubyfan@163.com
 
@@ -67,4 +67,4 @@ user:
 devise:
   secret_key: 
 
-SECRET_KEY_BASE: 
+SECRET_KEY_BASE: 3cbe26bc4963e87ef423521c2bfb942b545022a5bf7c142d392feb9fc8f260e61fd22e3f899520b5413b505078bc9701f6aaec9d48c6fa87a4a8e8daa930211d

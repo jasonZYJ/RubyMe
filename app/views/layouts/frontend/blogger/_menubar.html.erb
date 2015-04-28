@@ -9,10 +9,6 @@
         <label class="bloger_name">
           <%= link_to blogger.human_name, frontend_path(blogger) %>
         </label>
-        <!-- <div class="visits">
-          <label>浏览</label>:
-          <span class="visits_number"><%= " #{blogger.visits} " %></span>次
-        </div> -->
 
         <div class="city_name">
           <label>城市</label>:<%= " #{blogger.city}" %>
@@ -47,6 +43,33 @@
       </div>
     </div>
   </div>
+<p><%= params[:controller] %></p>
+  <% if params[:controller] != 'frontend/users' &&  params[:controller] != 'frontend/codes'%>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" href="#category_collapse">
+              节点下其他文章
+            </a>
+          </h4>
+        </div>
+
+        <div id="category_collapse" class="panel-collapse collapse in">
+          <div class="panel-body">
+            <ul>
+              <% posts = Post.where(category_id: post.try(:category_id)).order("updated_at desc").where.not(id: post.try(:id)).limit(5) %>
+              <% if posts.empty? %>
+                  <li>暂无其他文章, <%= link_to "速来补充吧, 亲", new_admin_post_path %></li>
+              <% else %>
+                  <% posts.each do |po| %>
+                      <li><%= link_to(truncate(po.title, length: 30), frontend_post_path(po), title: po.title) %></li>
+                  <% end %>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+  <% end %>
 
   <div class="panel panel-default">
     <div class="panel-heading">
@@ -61,7 +84,7 @@
       <div class="panel-body">
         <ul>
           <li><%= link_to "全部文章 (#{blogger.posts.count})", frontend_path(blogger) %></li>
-          <% category_count_hash = categories_count_hash%>
+          <% category_count_hash = categories_count_hash %>
           <% categories.each do |category| %>
               <li>
                 <%= link_to "#{category.name} (#{category_count_hash[category.name] ? category_count_hash[category.name].count : 0})", frontend_category_path(blogger, category), title: "分类 #{category.name}" %>
@@ -71,6 +94,8 @@
       </div>
     </div>
   </div>
+
+
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">

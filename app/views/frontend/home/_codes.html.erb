@@ -20,7 +20,7 @@
               </abbr> 收藏
             </p>
             <!--  display_none class yes or no?-->
-            <div class="post-content">
+            <div class="post-content display_none">
               <%= omited_str(strip_tags(code.content), 100) { link_to "浏览全文", frontend_code_path(code.user, code) }%>
             </div>
           </div>

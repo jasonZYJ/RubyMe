@@ -20,6 +20,6 @@ class Blog < ActiveRecord::Base
   end
 
   def type
-    Blog::CATEGORIES[self.category]
+    CATEGORIES[self.category]
   end
 end

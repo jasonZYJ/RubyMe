@@ -3,20 +3,21 @@
     <nav class="blog-nav">
       <div class="row">
         <div class="col-md-5">
-          <a class="<%= 'active' if action_name == 'index' && params[:controller] == 'frontend/home' %>" href="<%= frontend_root_path %>"><i class="fa fa-diamond"></i>首页</a>
+          <a class="<%= 'active' if action_name == 'index' && params[:controller] == 'frontend/home' %>" href="<%= frontend_root_path %>"><i class="fa fa-diamond"></i>RubyMe</a>
 
           <% if current_user %>
-              <a class="<%= 'active' if blogger == current_user && controller.class.superclass.to_s == 'BloggerController' %>" href="<%= frontend_path(current_user) %>">社区</a>
+              <a class="<%= 'active' if blogger == current_user && params[:controller] == 'frontend/users' %>" href="<%= frontend_path(current_user) %>">社区</a>
           <% else %>
               <a href="<%= new_user_session_path %>">社区</a>
           <% end %>
 
           <% if blogger && blogger != current_user %>
               <!-- visit other's blogger -->
-              <a class="<%= 'active' if controller.class.superclass.to_s == 'BloggerController' %>" href="<%= frontend_path(blogger) %>"><%= blogger.human_name %></a>
+
+              <a class="<%= 'active' if params[:controller] == 'frontend/' %>" href="<%= frontend_path(blogger) %>"><%= blogger.human_name %></a>
           <% end %>
           <% if current_user %>
-              <a class="<%= 'active' if params[:controller] == 'admin/codes' %>" href="<%= admin_codes_path %>">收藏</a>
+              <a class="<%= 'active' if params[:controller] == 'frontend/codes' %>" href="<%= frontend_codes_path(current_user) %>">收藏</a>
           <% else %>
               <a href="<%= new_user_session_path %>">收藏</a>
           <% end %>
@@ -29,7 +30,7 @@
           <a class="<%= 'active' if action_name == 'about_us' && params[:controller] == 'frontend/home' %>" href="<%= frontend_about_us_path %>">关于</a>
         </div>
         <div class="col-md-2">
-          <a href="/" class="site-logo"><i class="fa fa-diamond fa-3x"></i></a>
+          <!--<a href="/" class="site-logo"><i class="fa fa-diamond fa-3x"></i></a>-->
           <!--<a href="/" class="site-logo"><!--%= image_tag('shared/ruby_me.png', style: 'width:146px;height:36px;padding-bottom:2px') %></a>-->
         </div>
         <div class="col-md-5">
@@ -43,7 +44,7 @@
                   <li><a href="<%= admin_profile_path %>">我的资料</a></li>
                   <li><a href="<%= admin_root_path %>">我的主页</a></li>
                   <li><a href="<%= frontend_path(current_user) %>">我的帖子</a></li>
-                  <li><a href="admin/codes">我的收藏</a></li>
+                  <li><a href="<%= frontend_codes_path(current_user) %>">我的收藏</a></li>
                   <li class="divider"></li>
                   <li><a href="<%= destroy_user_session_path %>">退出</a></li>
                 </ul>
