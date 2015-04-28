@@ -17,7 +17,7 @@ test:
   database: ruby_me_test
 
 production:
-  dapter: postgresql
+  adapter: postgresql
   encoding: utf8
   timeout: 5000
   username: postgres

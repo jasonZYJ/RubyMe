@@ -3,7 +3,6 @@ class FrontendController < ApplicationController
   include FrontendHelper
 
   layout 'frontend/home'
-
   before_action :keep_redirect_url
 
   def title
