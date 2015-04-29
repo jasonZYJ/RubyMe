@@ -1,3 +1,4 @@
+
 #= require shared/utils
 
 root = window || @
@@ -6,7 +7,8 @@ class root.UserRegisterView extends Backbone.View
 
   events:
     'blur input#user_uid'   : 'is_uid_exist'
- initialize: () ->
+
+  initialize: () ->
     @last_uid = null
 
   is_uid_exist: (event) ->
@@ -15,7 +17,6 @@ class root.UserRegisterView extends Backbone.View
     return unless uid.length >= 3 && uid != @last_uid
 
     @last_uid = uid
-
     $.ajax
       url: '/admin/is_uid_exist',
       type: 'POST',
@@ -25,3 +26,4 @@ class root.UserRegisterView extends Backbone.View
         pnotify_xhr('info', xhr)
       error: (xhr, status, error) =>
         pnotify_xhr('error', xhr)
+

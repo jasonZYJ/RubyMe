@@ -20,7 +20,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       if !user.valid? && user.errors[:uid].present?
         format.json { render json: {message: "用户名 #{user.uid} #{user.errors[:uid].first}"}, status: 403 }
       else
-        format.json { render json: {message: "用户名 #{user.uid} 可以使用"} }
+        format.json { render json: {message: "用户名 #{user.uid} 可以使用哦"} }
       end
     end
   end
