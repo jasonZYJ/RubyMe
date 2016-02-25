@@ -1,6 +1,7 @@
 
 en:
   hello: "Hello world"
+  report_issue: "Report An Issue"
   date:
     abbr_day_names:
     - Sun

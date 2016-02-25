@@ -2,10 +2,10 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
-    if !Settings.user.skip_captcha #|| simple_captcha_valid?
+    if verify_rucaptcha?(build_resource(sign_up_params))
       super
     else
-      build_resource(sign_up_params)
+      # build_resource(sign_up_params)
       clean_up_passwords(resource)
       flash.now[:alert] = "验证码不匹配，请重新输入"
       flash.delete :captcha_error

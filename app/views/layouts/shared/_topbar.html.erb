@@ -49,6 +49,7 @@
                   <li><a href="<%= destroy_user_session_path %>">退出</a></li>
                 </ul>
               </li>
+
             </ul>
             <a class="link_admin_messages <%= 'active' if controller.class.to_s == "Admin::MessagesController" %>" href="<%= admin_messages_path %>">
               <% badge_class = messages.unreads.count > 0 ? "badge-error" : '' %>

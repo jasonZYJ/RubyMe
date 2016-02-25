@@ -1,10 +1,4 @@
 GIT
-  remote: git://github.com/galetahub/simple-captcha.git
-  revision: 2602bf19a63df25929960b5a7721a9d265281ec1
-  specs:
-    simple_captcha (0.1.6)
-
-GIT
   remote: git://github.com/gregbell/active_admin.git
   revision: ad4caab46f1813bedf5acdb7739a17da546a5609
   specs:
@@ -254,6 +248,7 @@ GEM
     polyamorous (1.1.0)
       activerecord (>= 3.0)
     polyglot (0.3.5)
+    posix-spawn (0.3.11)
     puma (2.9.2)
       rack (>= 1.1, < 2.0)
     qiniu (6.2.4)
@@ -356,6 +351,8 @@ GEM
     ruby-hmac (0.4.0)
     ruby-progressbar (1.7.0)
     rubyzip (1.1.6)
+    rucaptcha (0.3.2)
+      posix-spawn (>= 0.3.0)
     sass (3.2.19)
     sass-rails (4.0.4)
       railties (>= 4.0.0, < 5.0)
@@ -498,11 +495,11 @@ DEPENDENCIES
   rspec-example_steps (~> 3.0.2)
   rspec-expectations (~> 3.0.0)
   rspec-rails (~> 3.0.0)
+  rucaptcha
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   shoulda-matchers (~> 2.6.2)
   sidekiq (= 3.2.5)
-  simple_captcha (~> 0.1.6)!
   simple_form (= 3.1.0.rc2)
   simplecov (= 0.9.0)
   sinatra (= 1.4.5)

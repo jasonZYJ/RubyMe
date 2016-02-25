@@ -42,7 +42,7 @@ gem 'actionpack-action_caching', '~> 1.1.1'
 
 gem 'rails-i18n', '>= 4.0.2', github: 'svenfuchs/rails-i18n', branch: 'master' # For 4.x 国际化支持
 
-gem 'simple_captcha', '~> 0.1.6', github: 'galetahub/simple-captcha'
+# gem 'simple_captcha', '~> 0.1.6', github: 'galetahub/simple-captcha'
 
 gem 'ckeditor', '~> 4.0.11' #html编辑器
 gem 'non-stupid-digest-assets', '~> 1.0.4'
@@ -57,6 +57,7 @@ gem 'sinatra', '1.4.5', require: false # 使用自带的监控页面
 gem 'redis-rails', '~> 4.0.0'
 gem 'redis-namespace', '~> 1.4.1'
 gem 'redis-semaphore', '~> 0.2.2'
+gem 'rucaptcha'
 
 gem 'puma', '~> 2.9.1' #多线程支持
 

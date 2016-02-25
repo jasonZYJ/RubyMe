@@ -7,6 +7,13 @@
       <%= f.input :login, autofocus: true, input_html: {class: "login"} %>
       <%= f.input :password %>
       <div class="form-group">
+        <label class="col-md-3 control-label">验证码</label>
+        <div class="col-md-9">
+          <%= rucaptcha_input_tag(class: 'form-control', placeholder: '验证码') %>
+          <%= rucaptcha_image_tag(alt: 'Captcha') %>
+        </div>
+      </div>
+      <div class="form-group">
         <label class="col-md-3"> </label>
 
         <div class="col-md-9">

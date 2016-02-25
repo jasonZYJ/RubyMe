@@ -1,4 +1,6 @@
 zh-CN:
+  hello: "欢迎您"
+  report_issue: "报告问题"
   date:
     abbr_day_names:
     - 日

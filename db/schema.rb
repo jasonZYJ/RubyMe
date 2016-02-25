@@ -42,11 +42,11 @@ ActiveRecord::Schema.define(version: 20141201335352) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "failed_attempts",        default: 0
+    t.integer  "failed_attempts",        default: 0,  null: false
     t.string   "unlock_token"
     t.datetime "locked_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
@@ -56,7 +56,8 @@ ActiveRecord::Schema.define(version: 20141201335352) do
   create_table "blogs", force: true do |t|
     t.string   "title"
     t.text     "content"
-    t.integer  "category"
+    t.integer  "category_id"
+    t.integer  "user_id"
     t.integer  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -145,10 +146,10 @@ ActiveRecord::Schema.define(version: 20141201335352) do
 
   create_table "points", force: true do |t|
     t.string   "name"
+    t.string   "code"
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "code"
   end
 
   create_table "posts", force: true do |t|
@@ -157,17 +158,19 @@ ActiveRecord::Schema.define(version: 20141201335352) do
     t.integer  "category_id"
     t.integer  "last_reply_user_id"
     t.integer  "source"
-    t.integer  "visits",      default: 0
-    t.integer  "likes",       default: 0
+    t.integer  "visits",             default: 0
+    t.integer  "likes",              default: 0
     t.string   "title"
     t.text     "content"
     t.string   "tags"
+    t.integer  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "status"
+    t.datetime "deleted_at"
   end
 
   add_index "posts", ["category_id"], name: "index_posts_on_category_id", using: :btree
+  add_index "posts", ["deleted_at"], name: "index_posts_on_deleted_at", using: :btree
   add_index "posts", ["point_id"], name: "index_posts_on_point_id", using: :btree
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
@@ -175,7 +178,7 @@ ActiveRecord::Schema.define(version: 20141201335352) do
     t.integer  "user_id"
     t.integer  "post_id"
     t.text     "content"
-    t.boolean  "is_public",     default: true
+    t.boolean  "is_public",  default: true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "deleted_at"
@@ -196,6 +199,9 @@ ActiveRecord::Schema.define(version: 20141201335352) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.integer  "failed_attempts",        default: 0,    null: false
+    t.string   "unlock_token"
+    t.datetime "locked_at"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "uid"
@@ -210,9 +216,6 @@ ActiveRecord::Schema.define(version: 20141201335352) do
     t.integer  "ranking"
     t.integer  "visits",                 default: 0
     t.string   "avatar"
-    t.integer  "failed_attempts",        default: 0
-    t.string   "unlock_token"
-    t.datetime "locked_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

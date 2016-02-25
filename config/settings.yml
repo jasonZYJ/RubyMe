@@ -61,9 +61,6 @@ test:
 sensitive_pages:
   - 'http://www.jasonblog.com/'
 
-user:
-  skip_captcha: false
-
 devise:
   secret_key: 
 
