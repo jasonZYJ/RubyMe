@@ -74,6 +74,7 @@ group :development, :test do
   gem 'yard', '~> 0.8.7' # 项目文档
   gem 'better_errors', '1.1.0'
   gem 'binding_of_caller', '0.7.2'
+  gem 'quiet_assets'
 
   gem 'hirb', '0.7.2' #rails c表格化显示
 
