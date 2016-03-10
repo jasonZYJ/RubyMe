@@ -6,10 +6,12 @@ class Reply < ActiveRecord::Base
   acts_as_paranoid
 
   #Association
-  belongs_to :user
+  belongs_to :user, :counter_cache => true
   belongs_to :post
   has_one :blogger, through: :post, source: 'user'
   has_many :messages, as: :target, dependent: :destroy
+  has_one :postgresql_search, as: :searchable
+
 
   #Validate
   validates :user_id, presence: true

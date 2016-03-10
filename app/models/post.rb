@@ -4,7 +4,7 @@ include WordCheck::Worker
 class Post < ActiveRecord::Base
 
   #Association
-  belongs_to :user
+  belongs_to :user, :counter_cache => true
   belongs_to :last_reply_user, :class_name => "User", :foreign_key => 'last_reply_user_id'
   belongs_to :point
   belongs_to :category
@@ -23,6 +23,12 @@ class Post < ActiveRecord::Base
 
   #Callback
   before_save :validate_tags, :validate_sensitive?
+
+  after_save do
+    if self.content_changed? || self.title_changed?
+      SearchIndexerWorker.perform_async('post', self.id)
+    end
+  end
 
   #Scope
   default_scope -> { order('created_at desc') }

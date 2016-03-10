@@ -2,7 +2,7 @@
   <div class="container">
     <nav class="blog-nav">
       <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-4">
           <a class="<%= 'active' if action_name == 'index' && params[:controller] == 'frontend/home' %>" href="<%= frontend_root_path %>"><i class="fa fa-diamond"></i>RubyMe</a>
 
           <% if current_user %>
@@ -29,11 +29,15 @@
           <!--<a class="" href="/features">记事本</a>-->
           <a class="<%= 'active' if action_name == 'about_us' && params[:controller] == 'frontend/home' %>" href="<%= frontend_about_us_path %>">关于</a>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-4">
+          <form action="/search" class="navbar-search" method="get">
+            <button type="submit" class="BTN">搜 索</button>
+            <input type="text" name="q" class="TXT" value="" placeholder="搜索本站内容">
+          </form>
           <!--<a href="/" class="site-logo"><i class="fa fa-diamond fa-3x"></i></a>-->
           <!--<a href="/" class="site-logo"><!--%= image_tag('shared/ruby_me.png', style: 'width:146px;height:36px;padding-bottom:2px') %></a>-->
         </div>
-        <div class="col-md-5">
+        <div class="col-md-4">
           <span class="pull-right">
           <% if current_user %>
             <ul class="nav navbar-nav navbar-right">

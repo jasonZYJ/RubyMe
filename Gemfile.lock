@@ -332,6 +332,7 @@ GEM
     rest-client (1.6.8)
       mime-types (~> 1.16)
       rdoc (>= 2.4.2)
+    rmmseg-cpp (0.2.9)
     rspec-core (3.0.4)
       rspec-support (~> 3.0.0)
     rspec-example_steps (3.0.2)
@@ -495,6 +496,7 @@ DEPENDENCIES
   redis-namespace (~> 1.4.1)
   redis-rails (~> 4.0.0)
   redis-semaphore (~> 0.2.2)
+  rmmseg-cpp
   rspec-example_steps (~> 3.0.2)
   rspec-expectations (~> 3.0.0)
   rspec-rails (~> 3.0.0)

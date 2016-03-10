@@ -10,6 +10,8 @@ class Blog < ActiveRecord::Base
 
   belongs_to :category
   belongs_to :user
+  has_one :postgresql_search, as: :searchable
+
 
   #Constants
   STATUSES = %W(隐藏 显示)
@@ -17,6 +19,10 @@ class Blog < ActiveRecord::Base
 
   def published_time
     self.created_at.strftime('%Y-%m-%d %H:%M')
+  end
+
+  def to_search_data
+    "#{self.title} #{PostgresqlSearch.scrub_html_for_search self.full_body}"
   end
 
   def type

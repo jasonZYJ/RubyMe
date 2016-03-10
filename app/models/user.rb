@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
   has_many :blogs, dependent: :destroy
   has_many :replies, dependent: :destroy
   has_many :categories, dependent: :destroy
+  has_one :postgresql_search, as: :searchable
+
 
   #Callback
   before_create :update_ranking
@@ -55,6 +57,17 @@ class User < ActiveRecord::Base
     end
   end
 
+  after_save :update_index
+  def update_index
+    if true
+      SearchIndexerWorker.perform_async('user', self.id)
+    end
+  end
+
+  def to_search_data
+    "#{self.login} #{self.name}"
+  end
+
   def human_name
     self.uid
   end
@@ -91,7 +104,7 @@ class User < ActiveRecord::Base
     Digest::MD5.hexdigest(self.email.downcase)
   end
 
-  def gravatar_url
+  def gravatar_url #blocked in ZH
     "http://www.gravatar.com/avatar/#{self.email_md5}"
   end
 

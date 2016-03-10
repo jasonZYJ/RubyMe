@@ -4,6 +4,7 @@
 #= require shared/underscore
 #= require shared/backbone
 #= require shared/pnotify.all.min
+#= require shared/highlight
 
 # PNotify.prototype.options.styling = "jqueryui"
 

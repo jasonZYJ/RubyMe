@@ -8,5 +8,5 @@ Rails.application.config.assets.precompile += %w(
 Rails.application.config.assets.precompile += %w(
   shared/ie_support.js
   frontend/home.js frontend/blogger.js
-  admin/session.js admin/home.js
+  admin/session.js admin/home.js shared/highlight.js
 )

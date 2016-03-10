@@ -22,6 +22,7 @@ module RubyMe
     config.i18n.available_locales = [:'zh-CN', :en]
     # config.autoload_paths += %W(#{config.root}/lib)
     config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
+    config.autoload_paths.push(*%W(#{config.root}/lib))
 
     # fix action_mailer.default_url_options not recognized in production.rb
     config.action_mailer.default_url_options = {host: Settings.site.domain}

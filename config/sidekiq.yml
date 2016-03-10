@@ -5,3 +5,5 @@
 :pidfile: /tmp/sidekiq.pid
 :queues:
   - [mailer, 1]
+  - [qiniu, 5]
+  - [search, 3]

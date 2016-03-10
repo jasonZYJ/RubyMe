@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141201335352) do
+ActiveRecord::Schema.define(version: 20160226071237) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -152,6 +152,17 @@ ActiveRecord::Schema.define(version: 20141201335352) do
     t.datetime "updated_at"
   end
 
+  create_table "postgresql_searches", force: true do |t|
+    t.integer  "searchable_id"
+    t.string   "searchable_type"
+    t.tsvector "search_data"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "postgresql_searches", ["search_data"], name: "index_postgresql_searches_on_search_data", using: :gin
+  add_index "postgresql_searches", ["searchable_id", "searchable_type"], name: "index_postgresql_searches_on_searchable_id_and_searchable_type", using: :btree
+
   create_table "posts", force: true do |t|
     t.integer  "user_id"
     t.integer  "point_id"
@@ -216,6 +227,8 @@ ActiveRecord::Schema.define(version: 20141201335352) do
     t.integer  "ranking"
     t.integer  "visits",                 default: 0
     t.string   "avatar"
+    t.integer  "posts_count",            default: 0
+    t.integer  "replies_count",          default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

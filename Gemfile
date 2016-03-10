@@ -14,6 +14,8 @@ gem 'bootstrap-wysihtml5-rails', '~> 0.3.2.100'
 gem 'autoprefixer-rails', '~> 2.2.0'
 gem 'font-awesome-rails', '4.1.0'
 
+gem 'rmmseg-cpp', require: false # high performance Chinese word segmentation utility for Ruby
+
 gem 'sass-rails', '~> 4.0.3' # Use SCSS for stylesheets
 gem 'uglifier', '~> 2.5.3' # Use Uglifier as compressor for JavaScript assets
 gem 'coffee-rails', '~> 4.0.0' # Use CoffeeScript for .js.coffee assets and views
