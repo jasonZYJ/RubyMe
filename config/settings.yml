@@ -4,6 +4,7 @@ site:
   name_zh: RubyMe
   ip: localhost
   domain: localhost
+  port: 3002
   owner_en: Jason Zhang
   owner_email: rubyfan@163.com
 

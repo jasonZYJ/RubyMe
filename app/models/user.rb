@@ -2,6 +2,7 @@
 require 'open-uri'
 require 'file_size_validator'
 class User < ActiveRecord::Base
+  include LetterAvatar::AvatarHelper
 
   extend FriendlyId
   friendly_id :uid, use: :finders
@@ -89,14 +90,32 @@ class User < ActiveRecord::Base
   end
 
   def blogger_title
-    self.signature.blank? ? "#{self.whose_blogger}" : self.signature
+    self.signature.blank? ? self.whose_blogger : self.signature
   end
 
-  def avatar_url(version=nil)
+  def avatar_url(size, version=nil)
     if version.present? && self.avatar.versions.keys.include?(version.to_sym)
       self.avatar.send(version).url || self.avatar.default_url
     else
-      self.avatar.url || self.avatar.default_url
+      width = user_avatar_width_for_size(size)
+      self.letter_avatar_url(width * 2)
+    end
+  end
+
+
+  def letter_avatar_url(size)
+    path = LetterAvatar.generate(self.name, size).sub('public/', '/')
+
+    "//#{Settings.site.domain}:#{Settings.site.port}#{path}"
+  end
+
+  def user_avatar_width_for_size(size)
+    case size
+      when :normal then 48
+      when :small then 16
+      when :large then 96
+      when :big then 120
+      else size
     end
   end
 

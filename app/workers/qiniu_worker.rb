@@ -8,7 +8,8 @@ class QiniuWorker
   end
 
   def init_user_avatar(params)
+    #TODO need to refactor here
     user = User.find(params["user_id"])
-    user.update_attributes(remote_avatar_url: "#{user.gravatar_url}?s=512")
+    user.update_attributes(remote_avatar_url: "#{user.gravatar_url}?s=512") #TODO no need to init avatar for new created user?
   end
 end

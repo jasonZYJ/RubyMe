@@ -208,6 +208,8 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     kgio (2.9.2)
+    letter_avatar (0.1.11)
+      posix-spawn (>= 0.3.0)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -479,6 +481,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails (~> 3.1.1)
   kaminari (~> 0.16.1)
+  letter_avatar
   mini_magick (~> 3.8.0)
   nokogiri (~> 1.6.3.1)
   non-stupid-digest-assets (~> 1.0.4)

@@ -12,21 +12,18 @@
           <% end %>
 
           <% if blogger && blogger != current_user %>
-              <!-- visit other's blogger -->
-
               <a class="<%= 'active' if params[:controller] == 'frontend/' %>" href="<%= frontend_path(blogger) %>"><%= blogger.human_name %></a>
           <% end %>
           <% if current_user %>
-              <a class="<%= 'active' if params[:controller] == 'frontend/codes' %>" href="<%= frontend_codes_path(current_user) %>">收藏</a>
+              <a class="<%= 'active' if params[:controller] == 'admin/codes' %>" href="<%= admin_codes_path %>">收藏</a>
           <% else %>
               <a href="<%= new_user_session_path %>">收藏</a>
           <% end %>
           <% if current_user %>
-          <a class="<%= 'active' if params[:controller] == 'admin/blogs' %>" href="<%= admin_blogs_path %>">日志</a>
-              <% else %>
+              <a class="<%= 'active' if params[:controller] == 'admin/blogs' %>" href="<%= admin_blogs_path %>">日志</a>
+          <% else %>
               <a class="<%= 'active' if params[:controller] == 'frontend/blogs' %>" href="<%= frontend_blogs_path %>">日志</a>
-              <% end %>
-          <!--<a class="" href="/features">记事本</a>-->
+          <% end %>
           <a class="<%= 'active' if action_name == 'about_us' && params[:controller] == 'frontend/home' %>" href="<%= frontend_about_us_path %>">关于</a>
         </div>
         <div class="col-md-4">
@@ -34,16 +31,15 @@
             <button type="submit" class="BTN">搜 索</button>
             <input type="text" name="q" class="TXT" value="" placeholder="搜索本站内容">
           </form>
-          <!--<a href="/" class="site-logo"><i class="fa fa-diamond fa-3x"></i></a>-->
-          <!--<a href="/" class="site-logo"><!--%= image_tag('shared/ruby_me.png', style: 'width:146px;height:36px;padding-bottom:2px') %></a>-->
         </div>
         <div class="col-md-4">
           <span class="pull-right">
           <% if current_user %>
             <ul class="nav navbar-nav navbar-right">
-              <li><%= image_tag(current_user.avatar_url(:thumb), style: 'width:33px;height:39px;padding-bottom:6px') %></li>
+              <li><%= image_tag(current_user.avatar_url(:normal, :thumb), style: 'width:33px;height:39px;padding-bottom:6px') %></li>
               <li class="dropdown">
-                <a data-toggle="dropdown" class="dropdown-toggle link_admin_home" href="<%= admin_root_path %>"><%= current_user.human_name %><b class="caret"></b></a>
+                <a data-toggle="dropdown" class="dropdown-toggle link_admin_home" href="<%= admin_root_path %>"><%= current_user.human_name %>
+                  <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li><a href="<%= admin_profile_path %>">我的资料</a></li>
                   <li><a href="<%= admin_root_path %>">我的主页</a></li>
@@ -53,7 +49,6 @@
                   <li><a href="<%= destroy_user_session_path %>">退出</a></li>
                 </ul>
               </li>
-
             </ul>
             <a class="link_admin_messages <%= 'active' if controller.class.to_s == "Admin::MessagesController" %>" href="<%= admin_messages_path %>">
               <% badge_class = messages.unreads.count > 0 ? "badge-error" : '' %>

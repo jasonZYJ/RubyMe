@@ -9,7 +9,7 @@
             </div>
             <div class="post-user pull-left">
               <a target="_blank" href="<%= frontend_path(post.user) %>">
-                <%= image_tag(post.user.avatar_url(:thumb), class: 'user_face') %>
+                <%= image_tag(post.user.avatar_url(:normal, :thumb), class: 'user_face') %>
               </a>
             </div>
 

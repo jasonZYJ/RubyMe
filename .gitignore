@@ -16,6 +16,7 @@
 .ruby-version
 *.tgz
 public/assets/
-/public/uploads/
+public/uploads/**/*
+public/system/**/*
 coverage
 .idea/*
