@@ -1,6 +1,6 @@
 <%= simple_form_for [:admin, @code], html: {class: "form-horizontal form_new_code"} do |f| %>
     <%= f.association :language, collection: Language.all, label_method: :code, value_method: :id %>
-    <%= f.association :category, collection: @categories %>
+    <%= f.association :category, collection: @categories, include_blank: false %>
 
     <%= f.input :source %>
     <%= f.input :title %>

@@ -1,6 +1,6 @@
 <%= simple_form_for [:admin, @post], html: {class: "form-horizontal form_new_post"} do |f| %>
     <%= f.association :point, collection: Point.all %>
-    <%= f.association :category, collection: @categories %>
+    <%= f.association :category, collection: @categories, include_blank: false %>
 
     <%= f.input :source, collection: sources_collection %>
     <%= f.input :title %>
