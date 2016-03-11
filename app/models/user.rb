@@ -94,8 +94,8 @@ class User < ActiveRecord::Base
   end
 
   def avatar_url(size, version=nil)
-    if version.present? && self.avatar.versions.keys.include?(version.to_sym)
-      self.avatar.send(version).url || self.avatar.default_url
+    if self.avatar? && self.avatar.versions.keys.include?(version.try(:to_sym))
+      self.avatar.send(version).url
     else
       width = user_avatar_width_for_size(size)
       self.letter_avatar_url(width * 2)
