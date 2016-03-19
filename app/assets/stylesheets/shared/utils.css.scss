@@ -1,6 +1,7 @@
 @import "shared/font-awesome.min";
 @import "social-share-button";
 @import "shared/bootstrap";
+//@import "shared/bootstrap.min";
 @import "font-awesome";
 @import "shared/_variables";
 @import "shared/blog";
@@ -29,6 +30,22 @@ td {
   padding-top: 15px;
   padding-bottom: 5px;
   border-top: 1px solid #eee;
+}
+
+.media-body, .media-left {
+  display: table-cell;
+  vertical-align: top;
+}
+
+.media-left {
+  padding-right: 10px;
+}
+
+.avatar-16 { width: 16px; height: 16px; border-radius: 1px; }
+.avatar-48 { width: 48px; height: 48px; border-radius: 2px; }
+.avatar-120 { width: 80px; height: 80px; border-radius: 2px; }
+@media (max-width: 480px) {
+  .avatar-48 { width: 32px; height: 32px; }
 }
 
 .href_name {

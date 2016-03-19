@@ -9,6 +9,7 @@ class Post < ActiveRecord::Base
   belongs_to :point
   belongs_to :category
   has_many :replies, dependent: :destroy
+  has_one :postgresql_search, as: :searchable
 
   #Validate
   validates :user_id, presence: true
@@ -28,6 +29,10 @@ class Post < ActiveRecord::Base
     if self.content_changed? || self.title_changed?
       SearchIndexerWorker.perform_async('post', self.id)
     end
+  end
+
+  def to_search_data
+    "#{self.title} #{PostgresqlSearch.scrub_html_for_search self.content}"
   end
 
   #Scope

@@ -11,20 +11,19 @@
               <a href="<%= new_user_session_path %>">我的社区</a>
           <% end %>
 
-          <% if blogger && blogger != current_user %>
-              <a class="<%= 'active' if params[:controller] == 'frontend/' %>" href="<%= frontend_path(blogger) %>"><%= blogger.human_name %></a>
-          <% end %>
+          <!--% if blogger && blogger != current_user %>
+              <!--<a class="<!--%= 'active' if params[:controller] == 'frontend/' %>" href="<!--%= frontend_path(blogger) %>"><!--%= blogger.human_name %></a>-->
+          <!--% end %-->
           <% if current_user %>
               <a class="<%= 'active' if params[:controller] == 'admin/codes' %>" href="<%= admin_codes_path %>">我的收藏</a>
           <% else %>
               <a href="<%= new_user_session_path %>">我的收藏</a>
           <% end %>
           <% if current_user %>
-              <a class="<%= 'active' if params[:controller] == 'admin/blogs' %>" href="<%= admin_blogs_path %>">我的日志</a>
+              <a class="<%= 'active' if params[:controller] == 'admin/blogs' %>" href="<%= admin_blogs_path %>">日志</a>
           <% else %>
-              <a class="<%= 'active' if params[:controller] == 'frontend/blogs' %>" href="<%= frontend_blogs_path %>">我的日志</a>
+              <a class="<%= 'active' if params[:controller] == 'frontend/blogs' %>" href="<%= frontend_blogs_path %>">日志</a>
           <% end %>
-          <a class="<%= 'active' if action_name == 'about_us' && params[:controller] == 'frontend/home' %>" href="<%= frontend_about_us_path %>">关于</a>
         </div>
         <div class="col-md-4">
           <form action="/search" class="navbar-search" method="get">

@@ -7,6 +7,8 @@ class SearchIndexerWorker
     obj = case type
             when 'post'
               Post.find_by_id(id)
+            when 'blog'
+              Blog.find_by_id(id)
             when 'user'
               User.find_by_id(id)
             else

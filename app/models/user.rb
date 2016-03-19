@@ -102,7 +102,6 @@ class User < ActiveRecord::Base
     end
   end
 
-
   def letter_avatar_url(size)
     path = LetterAvatar.generate(self.name, size).sub('public/', '/')
 
@@ -134,7 +133,6 @@ class User < ActiveRecord::Base
     self.ranking = current_ranking + 1
   end
 
-
   def init_name
     self.name = self.uid
   end
@@ -142,7 +140,6 @@ class User < ActiveRecord::Base
   def init_avatar
     QiniuWorker.perform_async('init_user_avatar', user_id: self.id)
   end
-
 
   def send_welcome_mail
     SystemMailWorker.perform_async('welcome_mail', send_to: self.email)
@@ -152,6 +149,4 @@ class User < ActiveRecord::Base
     category = self.categories.build(name: '我的文章', description: '默认文章分类')
     category.save
   end
-
-
 end
