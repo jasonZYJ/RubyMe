@@ -1,4 +1,5 @@
 class PostgresqlSearch < ActiveRecord::Base
+  require 'nokogiri'
 
   belongs_to :searchable, polymorphic: true
 
@@ -17,9 +18,9 @@ class PostgresqlSearch < ActiveRecord::Base
                             WHERE id = :id", search_data: search_data, id: ps.id)
   end
 
-  # def self.scrub_html_for_search(html)
-  #   HtmlScrubber.scrub(html)
-  # end
+  def self.scrub_html_for_search(html)
+    HtmlScrubber.scrub(html)
+  end
 
   # Execute SQL manually
   def self.exec_sql(*args)
@@ -32,43 +33,43 @@ class PostgresqlSearch < ActiveRecord::Base
     ActiveRecord::Base.exec_sql(*args)
   end
 
-  # class HtmlScrubber < Nokogiri::XML::SAX::Document
-  #   attr_reader :scrubbed
-  #
-  #   def initialize
-  #     @scrubbed = ""
-  #   end
-  #
-  #   def self.scrub(html)
-  #     me = new
-  #     parser = Nokogiri::HTML::SAX::Parser.new(me)
-  #     begin
-  #       copy = "<div>"
-  #       copy << html unless html.nil?
-  #       copy << "</div>"
-  #       parser.parse(html) unless html.nil?
-  #     end
-  #     me.scrubbed
-  #   end
-  #
-  #   def start_element(name, attributes=[])
-  #     attributes = Hash[*attributes.flatten]
-  #     if attributes["alt"]
-  #       scrubbed << " "
-  #       scrubbed << attributes["alt"]
-  #       scrubbed << " "
-  #     end
-  #     if attributes["title"]
-  #       scrubbed << " "
-  #       scrubbed << attributes["title"]
-  #       scrubbed << " "
-  #     end
-  #   end
-  #
-  #   def characters(string)
-  #     scrubbed << " "
-  #     scrubbed << string
-  #     scrubbed << " "
-  #   end
-  # end
+  class HtmlScrubber < Nokogiri::XML::SAX::Document
+    attr_reader :scrubbed
+
+    def initialize
+      @scrubbed = ""
+    end
+
+    def self.scrub(html)
+      me = new
+      parser = Nokogiri::HTML::SAX::Parser.new(me)
+      begin
+        copy = "<div>"
+        copy << html unless html.nil?
+        copy << "</div>"
+        parser.parse(html) unless html.nil?
+      end
+      me.scrubbed
+    end
+
+    def start_element(name, attributes=[])
+      attributes = Hash[*attributes.flatten]
+      if attributes["alt"]
+        scrubbed << " "
+        scrubbed << attributes["alt"]
+        scrubbed << " "
+      end
+      if attributes["title"]
+        scrubbed << " "
+        scrubbed << attributes["title"]
+        scrubbed << " "
+      end
+    end
+
+    def characters(string)
+      scrubbed << " "
+      scrubbed << string
+      scrubbed << " "
+    end
+  end
 end
