@@ -18,13 +18,14 @@ Rails.application.routes.draw do
   end
 
   require 'sidekiq/web'
-  constraint = lambda { |request|
-    # config.default_scope in file devise.rb effects request.env['warden'].user
-    request.env["warden"].authenticate? and request.env['warden'].user.instance_of?(AdminUser)
-  }
-  constraints constraint do
-    mount Sidekiq::Web => 'system/sidekiq' # only for system user
-  end
+  # TODO uncomment here tem
+  # constraint = lambda { |request|
+  #   # config.default_scope in file devise.rb effects request.env['warden'].user
+  #   request.env["warden"].authenticate? and request.env['warden'].user.instance_of?(AdminUser)
+  # }
+  # constraints constraint do
+    mount Sidekiq::Web => '/sidekiq' # only for system user
+  # end
 
   # 定义登陆后的访问
   namespace :admin, path: '/admin' do

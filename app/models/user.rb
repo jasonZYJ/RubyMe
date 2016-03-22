@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   #Callback
   before_create :update_ranking
   before_create :init_name, if: Proc.new { |u| u.name.blank? }
-  after_create :init_avatar
+  # after_create :init_avatar #TODO No need to init avatar!!
   after_create :send_welcome_mail
   after_create :create_default_category
 
@@ -104,7 +104,6 @@ class User < ActiveRecord::Base
 
   def letter_avatar_url(size)
     path = LetterAvatar.generate(self.name, size).sub('public/', '/')
-
     "//#{Settings.site.domain}:#{Settings.site.port}#{path}"
   end
 
@@ -138,7 +137,7 @@ class User < ActiveRecord::Base
   end
 
   def init_avatar
-    QiniuWorker.perform_async('init_user_avatar', user_id: self.id)
+    QiniuWorker.perform_async('init_user_avatar', user: self)
   end
 
   def send_welcome_mail
