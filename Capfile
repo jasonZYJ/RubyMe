@@ -17,6 +17,8 @@ require 'capistrano/deploy'
 #   https://github.com/capistrano/rails
 #
 require 'capistrano/rvm'
+set :rvm_type, :user
+set :rvm_ruby_version, '2.2.1p85'
 # require 'capistrano/rbenv'
 # require 'capistrano/chruby'
 require 'capistrano/bundler'

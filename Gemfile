@@ -1,9 +1,6 @@
 # coding: utf-8
-if ENV['USE_OFFICIAL_GEM_SOURCE']
-  source 'https://rubygems.org'
-else
-  source 'https://ruby.taobao.org'
-end
+
+source 'https://gems.ruby-china.org/'
 
 gem 'rails', '4.1.5'
 
@@ -24,7 +21,7 @@ gem 'kaminari', '~> 0.16.1'
 gem 'activeadmin', '~> 1.0.0.pre', github: 'gregbell/active_admin'
 gem 'jquery-rails', '~> 3.1.1' # Use jquery as the JavaScript library
 gem 'yui-compressor', '~> 0.12.0', require: false #预编译压缩Assets
-gem 'turbolinks', '~>2.3.0' # Turbolinks makes following links in your web application faster.
+gem 'turbolinks', '~> 5.0.0.beta' # Turbolinks makes following links in your web application faster.
 gem 'jbuilder', '~> 2.0' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'sdoc', '~> 0.4.0', group: :doc
 
@@ -73,7 +70,7 @@ end
 
 group :development, :test do
   gem 'byebug', '~> 3.2.0'
-  gem 'yard', '~> 0.8.7' # 项目文档
+  gem 'yard', '~> 0.8.7' # 项目文档,for local,localhost:8808 then we can see it
   gem 'better_errors', '1.1.0'
   gem 'binding_of_caller', '0.7.2'
   gem 'quiet_assets'

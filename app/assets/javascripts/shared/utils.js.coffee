@@ -5,6 +5,7 @@
 #= require shared/backbone
 #= require shared/pnotify.all.min
 #= require shared/highlight
+#= require turbolinks
 
 # PNotify.prototype.options.styling = "jqueryui"
 

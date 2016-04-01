@@ -9,7 +9,7 @@ def ask_secretly(key, default=nil)
 end
 
 set :application, 'RubyMe'
-set :repo_url, "git@github.com:jasonZYJ/RubyMe.git"
+set :repo_url, "git@github.com:J-Y/RubyMe.git"
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
@@ -33,7 +33,7 @@ set :ssh_options, {forward_agent: true}
 set :pty, true
 
 # Default value for :linked_files is []
-set :linked_files, %w{config/database.yml config/settings.yml}
+set :linked_files, %w{config/database.yml config/settings.yml config/sensitive.yml}
 
 # Default value for linked_dirs is []
 # set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
@@ -50,7 +50,7 @@ namespace :deploy do
   task :restart do
     on roles(:app), in: :sequence, wait: 3 do
       # Your restart mechanism here, for example:
-      # execute :touch, release_path.join('tmp/restart.txt')
+      execute :touch, release_path.join('tmp/restart.txt')
     end
   end
 
@@ -65,6 +65,13 @@ namespace :deploy do
 
   before :publishing, :rake_commands
 
+  # TODO
+  # task :restart_sidekiq do
+  #   on roles(:worker) do
+  #     execute :service, "sidekiq restart"
+  #   end
+  # end
+  #
   after :publishing, :restart
 
   after :restart, :clear_cache do
