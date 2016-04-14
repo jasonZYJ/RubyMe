@@ -6,6 +6,7 @@
 @import "shared/_variables";
 @import "shared/blog";
 @import "shared/pnotify.all.min";
+@import "cal-heatmap";
 
 body {
   color: #333333;
@@ -15,6 +16,12 @@ body {
 
 td {
   max-width: 400px;
+}
+
+.user-activity-graph {
+  overflow-x: scroll;
+  text-align: center;
+    svg { margin: 0 auto; }
 }
 
 .site-footer {

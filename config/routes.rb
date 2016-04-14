@@ -70,6 +70,7 @@ Rails.application.routes.draw do
     scope ':uid' do
       get '/', to: 'users#show'
       get '/profile', to: 'users#profile'
+      get '/calendar', to: 'users#calendar'
 
       resources :categories, only: [:show]
 

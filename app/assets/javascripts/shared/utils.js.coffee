@@ -6,6 +6,8 @@
 #= require shared/pnotify.all.min
 #= require shared/highlight
 #= require turbolinks
+#= require shared/d3.min
+#= require shared/cal-heatmap.min
 
 # PNotify.prototype.options.styling = "jqueryui"
 

@@ -1,3 +1,5 @@
+<%= render partial: 'layouts/shared/user_activity', locals: {user: @blogger} %>
+
 <div class="row">
   <label class="col-md-3"> </label>
 
@@ -26,3 +28,4 @@
     <%= f.input :homepage, disabled: true %>
     <%= f.input :description, disabled: true, as: :text, input_html: { style: "height:200px;" }  %>
 <% end %>
+

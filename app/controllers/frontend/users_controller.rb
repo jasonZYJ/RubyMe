@@ -11,6 +11,10 @@ class Frontend::UsersController < BloggerController
 
   end
 
+  def calendar
+    render json: @blogger.calendar_data
+  end
+
   protected
   # override super method
   def load_blogger
