@@ -5,7 +5,7 @@ else
   source 'https://ruby.taobao.org'
 end
 
-gem 'rails', '4.1.5'
+gem 'rails', '~> 4.1.14'
 
 gem 'pg', '0.17.1' # Use postgresql as the database for Active Record
 gem 'social-share-button'
@@ -17,18 +17,18 @@ gem 'font-awesome-rails', '4.1.0'
 gem 'rmmseg-cpp', require: false # high performance Chinese word segmentation utility for Ruby
 
 gem 'sass-rails', '~> 4.0.3' # Use SCSS for stylesheets
-gem 'uglifier', '~> 2.5.3' # Use Uglifier as compressor for JavaScript assets
+gem 'uglifier', '>= 2.7.2' # Use Uglifier as compressor for JavaScript assets
 gem 'coffee-rails', '~> 4.0.0' # Use CoffeeScript for .js.coffee assets and views
 gem 'rails_config', '~> 0.4.2' # 从yml文件加载配置
 gem 'kaminari', '~> 0.16.1'
 gem 'activeadmin', '~> 1.0.0.pre', github: 'gregbell/active_admin'
-gem 'jquery-rails', '~> 3.1.1' # Use jquery as the JavaScript library
+gem 'jquery-rails', '~> 3.1.3' # Use jquery as the JavaScript library
 gem 'yui-compressor', '~> 0.12.0', require: false #预编译压缩Assets
 gem 'turbolinks', '~>2.3.0' # Turbolinks makes following links in your web application faster.
 gem 'jbuilder', '~> 2.0' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem 'devise', '3.3.0' # 用户session管理
+gem 'devise', '>= 3.5.4' # 用户session管理
 gem 'devise-i18n', '0.11.0' # devise国际化支持
 gem 'devise-async', '0.9.0' # 异步处理devise邮件
 
@@ -39,7 +39,7 @@ gem 'browser', '0.6.0' # 浏览器版本检测
 
 gem 'bugsnag', '~> 2.4.1' #实时错误检测
 gem 'whenever', '~> 0.9.2', require: false #定时任务
-gem 'nokogiri', '~> 1.6.3.1', require: false #抓取页面信息
+gem 'nokogiri', '>= 1.6.7.2', require: false #抓取页面信息
 gem 'actionpack-action_caching', '~> 1.1.1'
 
 gem 'rails-i18n', '>= 4.0.2', github: 'svenfuchs/rails-i18n', branch: 'master' # For 4.x 国际化支持
@@ -52,7 +52,7 @@ gem 'qiniu-rs', '~> 3.4.10'
 gem 'carrierwave-qiniu', '~> 0.1.3'
 
 gem 'daemons', '1.1.9' #支持后台进程
-gem 'sidekiq', '3.2.5' #延时任务支持
+gem 'sidekiq', '>= 3.4.0' #延时任务支持
 gem 'sinatra', '1.4.5', require: false # 使用自带的监控页面
 gem 'redis-rails', '~> 4.0.0'
 gem 'redis-namespace', '~> 1.4.1'
@@ -101,3 +101,4 @@ group :development, :test do
   gem 'rspec-expectations', '~> 3.0.0'
   gem 'rails_best_practices', '~> 1.15.4'
 end
+gem 'rest-client', '>= 1.8.0'
