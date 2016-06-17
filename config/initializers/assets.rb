@@ -1,12 +1,12 @@
 Rails.application.config.assets.precompile += Ckeditor.assets
 
 Rails.application.config.assets.precompile += %w(
-  frontend/home.css frontend/blogger.css
-  admin/session.css admin/home.css
+  home.css frontend/blogger.css
+  session.css
 )
 
 Rails.application.config.assets.precompile += %w(
   shared/ie_support.js
-  frontend/home.js frontend/blogger.js
-  admin/session.js admin/home.js shared/highlight.js
+  home.js frontend/blogger.js
+  session.js shared/highlight.js
 )

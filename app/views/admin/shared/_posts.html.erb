@@ -15,7 +15,7 @@
     <% posts.each do |post| %>
         <tr>
           <td class="href_name">
-            <%= link_to post.title, admin_post_path(post), title: post.title %>
+            <%= link_to post.title, post_path(post), title: post.title %>
           </td>
           <td><%= post.published_time %></td>
           <td><%= post.category.try(:name) %></td>
@@ -23,17 +23,17 @@
           <td><%= post.replies.size %></td>
           <td>
           
-            <%= link_to raw('<span class="glyphicon glyphicon-pencil"></span>'), edit_admin_post_path(post) %>
-            <%= link_to raw('<span class="glyphicon glyphicon-trash"></span>'), admin_post_path(post), data: {confirm: "你确定要删除这篇文章吗？"}, method: :delete %>
+            <%= link_to raw('<span class="glyphicon glyphicon-pencil"></span>'), edit_post_path(post) %>
+            <%= link_to raw('<span class="glyphicon glyphicon-trash"></span>'), post_path(post), data: {confirm: "你确定要删除这篇文章吗？"}, method: :delete %>
           </td>
         </tr>
     <% end %>
 
     <tr>
-      <td colspan='4'><%= paginate posts %></td>
+      <td colspan='4'><!%= paginate posts %></td>
       <td colspan='2' class="text_middle">
         <div class="pull-right">
-          <%= link_to('查看所有', admin_posts_path) unless url_for == admin_posts_path %>
+          <%= link_to('查看所有', posts_path) unless url_for == posts_path %>
         </div>
       </td>
     </tr>

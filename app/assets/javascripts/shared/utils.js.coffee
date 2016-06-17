@@ -1,11 +1,11 @@
 #= require jquery
+#= require jquery.turbolinks
 #= require jquery_ujs
 #= require shared/bootstrap
 #= require shared/underscore
 #= require shared/backbone
 #= require shared/pnotify.all.min
 #= require shared/highlight
-#= require turbolinks
 #= require shared/d3.min
 #= require shared/cal-heatmap.min
 

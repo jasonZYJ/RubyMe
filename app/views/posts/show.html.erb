@@ -1,0 +1,92 @@
+<div class="panel_post">
+  <div id="post-show" class="box post_panel">
+    <div class="infos">
+      <div class="pull-right">
+        <a target="_blank" href="<%= profile_user_path(@blogger) %>">
+          <%= image_tag(@blogger.avatar_url(:normal, :thumb), class: 'user_face') %>
+        </a>
+      </div>
+
+      <h2><%= @post.title %></h2>
+
+      <div class="info">
+        <%= link_to @blogger.human_name, profile_user_path(@blogger), target: "_blank" %>
+        ·
+        <%= link_to @post.category.try(:name), user_category_path(@blogger, @post.category) %>
+        ·
+        <abbr class="timeago" title="<%= @post.published_time %>">
+          <%= time_ago_in_words(@post.created_at) %>前
+        </abbr>发布
+        · <%= post_tags_from_str(@post.tags) %>
+      </div>
+    </div>
+    <div class="body">
+      <%= @post.content.html_safe %>
+      <%= social_share_button_tag("#{@post.title} via: @#{Settings.site.name}", :popup => true) %>
+    </div>
+  </div>
+  <div class="box post-replies">
+    <div class="total">
+      一共 <b><%= @replies.try(:count) || 0 %></b> 条回复
+    </div>
+    <% @replies.try(:reverse).try(:each_with_index) do |reply, index| %>
+        <% replier = reply.user %>
+        <div class="post_reply" id="reply<%= reply.id %>">
+          <div class="pull-left">
+            <a target="_blank" href="<%= profile_user_path(replier) %>">
+              <%= image_tag(replier.avatar_url(:normal, :thumb), class: 'user_face') %>
+            </a>
+          </div>
+
+          <div class="infos">
+            <div class="info">
+              <span class="time">
+                #<%= index+1 %>楼
+              </span>
+              <span class="name">
+                <%= link_to replier.human_name, profile_user_path(replier), target: "_blank" %>
+              </span>
+
+              <span class="time">
+                <a class="reply-floor" href="#reply<%= reply.id %>"></a> ·
+                <abbr class="timeago" title="<%= reply.published_time %>">
+                  <%= time_ago_in_words(reply.created_at) %>前
+                </abbr>
+              </span>
+              <% if current_user %>
+               <span class="pull-right fast_reply_at" style="cursor: pointer;">
+                <i data-at="#<%= index+1 %>楼 @<%= replier.uid %> " class="fa fa-reply" title="回复此楼"></i>
+              </span>
+              <% end %>
+            </div>
+
+            <div class="body">
+              <%= reply.content %>
+            </div>
+          </div>
+        </div>
+    <% end %>
+  </div>
+
+  <div class="box panel_new_reply">
+    <% if current_user.blank? %>
+        需要登录之后才能评论。
+        <%= link_to "登录", new_user_session_path %> |
+        <%= link_to "注册", new_user_registration_path %>
+    <% else %>
+        <%= simple_form_for [@post, @reply], html: {class: "form-inline form_new_reply"} do |f| %>
+            <%= f.input_field :content, as: :text, class: "form-control" %>
+
+            <%= f.button :submit, "提交回复", class: "btn btn-primary btn_new_reply" %>
+        <% end %>
+    <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(function () {
+    new PostBoothView({
+      el: $(".panel_post")
+    });
+  });
+</script>

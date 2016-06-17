@@ -20,7 +20,10 @@ class Post < ActiveRecord::Base
   validates :content, presence: true, allow_blank: false
 
   #Constants
-  SOURCES = %W(原创或翻译 转载或分享)
+  SOURCES = %W(原创 翻译 转载 其他)
+
+  #Scope
+  default_scope -> { order('created_at desc') }
 
   #Callback
   before_save :validate_tags, :validate_sensitive?
@@ -35,17 +38,13 @@ class Post < ActiveRecord::Base
     "#{self.title} #{PostgresqlSearch.scrub_html_for_search self.content}"
   end
 
-  #Scope
-  default_scope -> { order('created_at desc') }
-
   def published_time
     self.created_at.strftime('%Y-%m-%d %H:%M')
   end
 
   private
   def validate_tags
-    self.tags.gsub!(/，/, ',')
-    if self.tags.split(',').size > 5
+    if self.tags.split(/，/).size > 5
       errors.add(:tags, '关键词超过5个了')
       false
     end

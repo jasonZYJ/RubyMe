@@ -35,7 +35,7 @@ module RubyMe
     Settings.reload!
 
     config.to_prepare do
-      devise_layout = 'admin/session'
+      devise_layout = 'shared/session'
       Devise::SessionsController.layout devise_layout
       Devise::RegistrationsController.layout devise_layout
       Devise::ConfirmationsController.layout devise_layout

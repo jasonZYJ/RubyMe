@@ -1,17 +1,6 @@
-@import "shared/font-awesome.min";
-@import "social-share-button";
-@import "shared/bootstrap";
-//@import "shared/bootstrap.min";
-@import "font-awesome";
-@import "shared/_variables";
-@import "shared/blog";
-@import "shared/pnotify.all.min";
-@import "cal-heatmap";
-
 body {
   color: #333333;
-  background-color: #fff;
-  // background: url(asset_path('shared/bg.png')) repeat 0 0;
+  background-color: #e9eaed;
 }
 
 td {
@@ -134,7 +123,26 @@ ul, ol {
   margin-bottom: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px #eee;
+  margin-top: 20px;
+}
+
+.padding6 {
+  padding-top: 6px;
+  padding-right: 60px;
+}
+.about-panel {
+  position: relative;
+  margin-bottom: 20px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px #eee;
+  background-color: #fafafa;
+}
+
+.blog-posts, .code-posts, .form-user {
+  background-color: #fafafa;
+  padding: 5px 5px 5px 15px;;
 }
 
 .user_face {
@@ -162,7 +170,7 @@ ul, ol {
   padding: 10px;
   margin: 0 0 20px 0;
   border-radius: 3px;
-  // background-color: #fff;
+  background-color: #fafafa;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   box-shadow: 0 0px 2px rgba(0,0,0,0.07);
@@ -170,8 +178,34 @@ ul, ol {
   -webkit-box-shadow: 0 0px 2px rgba(0,0,0,0.07);
 }
 
+.post-replies {
+  .total {
+    color: #999;
+    // margin: 0 -10px;
+    padding: 0 10px 6px 10px;
+    border-bottom: 1px solid #eaeaea;
+  }
+
+  .post_reply {
+    padding: 8px 10px;
+    background-color: $bgcolor-fb;
+    border-bottom: 1px solid #f0f0f0;
+    .infos {
+      padding-left: 58px;
+
+      .info {
+        font-size: 15px;
+        .time {
+          color: #bbb;
+        }
+      }
+    }
+  }
+}
+
 .new_button {
-  float: right;
+  float: left;
+  margin-top: 5px;
 }
 
 .simple_captcha {

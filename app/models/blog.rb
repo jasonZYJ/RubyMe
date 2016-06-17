@@ -12,7 +12,6 @@ class Blog < ActiveRecord::Base
   belongs_to :user
   has_one :postgresql_search, as: :searchable
 
-
   #Constants
   STATUSES = %W(隐藏 显示)
   CATEGORIES = %W(通知 功能)

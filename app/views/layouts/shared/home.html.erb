@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%= render partial: 'layouts/shared/head' %>
+
+  <%= stylesheet_link_tag 'home', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'home', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<%= render partial: 'layouts/shared/topbar', locals: {blogger: @blogger, messages: @messages} %>
+
+<div class="container">
+  <%= render partial: 'layouts/shared/hero_content' %>
+  <div class="row">
+    <div class=<%= show_menubar?  ? 'col-md-9' : 'col-md-12' %> id="main_content">
+      <%= render partial: 'layouts/shared/flash' %>
+      <%= yield %>
+    </div>
+    <% if show_menubar? %>
+    <div class="col-md-3">
+      <%= render partial: 'layouts/admin/menubar', locals: {categories: @categories} %>
+    </div>
+        <% end %>
+  </div>
+</div>
+
+<%= render partial: 'layouts/shared/footer' %>
+</body>
+</html>

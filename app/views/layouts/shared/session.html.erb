@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%= render partial: 'layouts/shared/head' %>
+
+  <%= stylesheet_link_tag 'home', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'home', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<%= render partial: 'layouts/shared/topbar', locals: {messages: @messages} %>
+
+<div class="container">
+  <%= render partial: 'layouts/shared/flash' %>
+  <div class="session-form">
+    <div class="panel panel-default">
+      <%= yield %>
+    </div>
+  </div>
+</div>
+
+<%= render partial: 'layouts/shared/footer' %>
+</body>
+</html>

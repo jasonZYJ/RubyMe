@@ -1,0 +1,100 @@
+@import "shared/font-awesome.min";
+@import "social-share-button";
+@import "shared/bootstrap";
+@import "shared/_variables";
+@import "shared/blog";
+@import "shared/pnotify.all.min";
+@import "shared/cal-heatmap";
+@import "shared/utils";
+@import "session";
+@import "blogger";
+
+.pagehead {
+
+  a.link_admin_home {
+    margin-left: 15px;
+    text-decoration: none;
+  }
+
+  a.mainpage_link {
+    margin-right: 15px;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+}
+
+.btn_new_post {
+  width: 100px;
+}
+
+.form-group {
+  select {
+    max-width: 400px;
+  }
+
+  input.string {
+    max-width: 400px;
+  }
+
+  textarea.text {
+    max-width: 400px;
+  }
+
+  input[type="number"] {
+    max-width: 200px;
+  }
+
+  input[type="file"] {
+    max-width: 400px;
+  }
+
+}
+
+.post-meta {
+  font-size: 12px;
+  margin-bottom: 5px;
+  color: #999;
+}
+
+.newer_content {
+  .newer_row {
+    margin-bottom: 0px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #ddd;
+
+    .post-user {
+      padding-top: 6px;
+    }
+
+    .post-title {
+      font-size: normal;
+      padding: 3px 0px 5px 0px;
+    }
+
+  }
+}
+
+a.count, a.count:visited {
+  line-height: 12px;
+  font-weight: bold;
+  color: white;
+  background-color: #3498db;
+  display: inline-block;
+  padding: 2px 10px 2px 10px;
+  margin: 18px 12px;
+  text-decoration: none;
+}
+
+.filter{
+  padding-bottom: 10px;
+}
+
+.filter a.popular{
+  color: #EB5424;
+}
+
+.user_login{
+  margin-top: 15px;
+}

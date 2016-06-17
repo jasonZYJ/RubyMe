@@ -1,0 +1,30 @@
+<%= render partial: 'layouts/shared/user_activity', locals: {user: @blogger} %>
+
+<div class="code-posts">
+  <div class="col-md-5"></div>
+  <div class="col-md-7">
+    <% if @blogger != current_user %>
+        <h4><%= link_to @blogger.human_name, url_for %> 的个人资料</h4>
+    <% else %>
+        <h4><%= link_to @blogger.human_name, profile_user_path(current_user) %> 的个人资料</h4>
+    <% end %>
+  </div>
+</div>
+
+<%= simple_form_for @blogger, url: "#", html: {class: "form-horizontal form-user"} do |f| %>
+    <%= f.input :uid, disabled: true %>
+    <%= f.input :name, disabled: true %>
+
+    <% if @blogger.is_email_public %>
+        <%= f.input :email, disabled: true %>
+    <% end %>
+
+    <%= f.input :signature, disabled: true %>
+    <%= f.input :city_name, disabled: true %>
+    <%= f.input :company, disabled: true %>
+
+    <%= f.input :github, disabled: true, input_html: {value: @blogger.github_page} %>
+    <%= f.input :homepage, disabled: true %>
+    <%= f.input :description, disabled: true, as: :text %>
+<% end %>
+

@@ -47,6 +47,8 @@ class User < ActiveRecord::Base
   validates :email, presence: true, allow_blank: false, uniqueness: {case_sensitive: false},
             format: {with: /\A([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})\z/i, message: 'Email格式不正确'}
 
+  after_save :update_index
+
   class << self
     def find_for_database_authentication(warden_conditions)
       conditions = warden_conditions.dup
@@ -58,10 +60,11 @@ class User < ActiveRecord::Base
     end
   end
 
-  after_save :update_index
+
+
   def update_index
-    if true
-      SearchIndexerWorker.perform_async('user', self.id)
+    if true #self.login_changed? || self.name_changed?
+      SearchIndexerWorker.perform_async('user', self.id) #TODO user id here in case this object maybe change after save but before sidekiq
     end
   end
 
@@ -86,11 +89,11 @@ class User < ActiveRecord::Base
   end
 
   def city
-    self.city_name.blank? ? '未知' : self.city_name
+    self.city_name || '未知'
   end
 
   def blogger_title
-    self.signature.blank? ? self.whose_blogger : self.signature
+    self.signature || self.whose_blogger
   end
 
   def avatar_url(size, version=nil)
@@ -100,6 +103,10 @@ class User < ActiveRecord::Base
       width = user_avatar_width_for_size(size)
       self.letter_avatar_url(width * 2)
     end
+  end
+
+  def admin?
+    email == Settings.site.owner_email
   end
 
   def letter_avatar_url(size)

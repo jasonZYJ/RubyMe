@@ -1,4 +1,3 @@
-
 site:
   name: RubyMe
   name_zh: RubyMe
@@ -36,7 +35,7 @@ cdn:
   bucket: jasonblog
   bucket_domain: jasonblog.qiniudn.com
 
-recomended_website:
+recomended_websites:
   Ruby China : "http://ruby-china.org"
   Ruby Weekly : "http://rubyweekly.com"
   Rails 视频教程 : "http://railscasts-china.com/"

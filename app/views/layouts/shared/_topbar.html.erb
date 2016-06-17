@@ -3,59 +3,42 @@
     <nav class="blog-nav">
       <div class="row">
         <div class="col-md-4">
-          <a class="<%= 'active' if action_name == 'index' && params[:controller] == 'frontend/home' %>" href="<%= frontend_root_path %>"><i class="fa fa-diamond"></i>RubyMe</a>
-
-          <% if current_user %>
-              <a class="<%= 'active' if blogger == current_user && params[:controller] == 'frontend/users' %>" href="<%= frontend_path(current_user) %>">我的社区</a>
-          <% else %>
-              <a href="<%= new_user_session_path %>">我的社区</a>
-          <% end %>
-
-          <!--% if blogger && blogger != current_user %>
-              <!--<a class="<!--%= 'active' if params[:controller] == 'frontend/' %>" href="<!--%= frontend_path(blogger) %>"><!--%= blogger.human_name %></a>-->
-          <!--% end %-->
-          <% if current_user %>
-              <a class="<%= 'active' if params[:controller] == 'admin/codes' %>" href="<%= admin_codes_path %>">我的收藏</a>
-          <% else %>
-              <a href="<%= new_user_session_path %>">我的收藏</a>
-          <% end %>
-          <% if current_user %>
-              <a class="<%= 'active' if params[:controller] == 'admin/blogs' %>" href="<%= admin_blogs_path %>">日志</a>
-          <% else %>
-              <a class="<%= 'active' if params[:controller] == 'frontend/blogs' %>" href="<%= frontend_blogs_path %>">日志</a>
-          <% end %>
+          <a class="<%= 'active' if action_name == 'index' && params[:controller] == 'home' %>" href="<%= root_path %>"><i class="fa fa-diamond"></i>RubyMe</a>
+          <a class="<%= 'active' if params[:controller] == 'posts' %>" href="<%= posts_path %>">社区</a>
+          <a class="<%= 'active' if params[:controller] == 'codes' %>" href="<%= codes_path %>">收藏</a>
+          <a class="<%= 'active' if params[:controller] == 'blogs' %>" href="<%= blogs_path %>">日志</a>
         </div>
-        <div class="col-md-4">
-          <form action="/search" class="navbar-search" method="get">
-            <button type="submit" class="BTN">搜 索</button>
+        <div class="col-md-5">
+          <form action="<%= search_path %>" class="navbar-search" method="get">
+            <button type="submit" class="BTN"><i class="fa fa-search"></i> 搜 索</button>
             <input type="text" name="q" class="TXT" value="" placeholder="搜索本站内容">
           </form>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
           <span class="pull-right">
           <% if current_user %>
             <ul class="nav navbar-nav navbar-right">
               <li><%= image_tag(current_user.avatar_url(:normal, :thumb), style: 'width:33px;height:39px;padding-bottom:6px') %></li>
               <li class="dropdown">
-                <a data-toggle="dropdown" class="dropdown-toggle link_admin_home" href="<%= admin_root_path %>"><%= current_user.human_name %>
+                <a data-toggle="dropdown" class="dropdown-toggle link_admin_home" href="<%= profile_user_path(current_user) %>"><%= current_user.human_name %>
                   <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="<%= admin_profile_path %>">我的资料</a></li>
-                  <li><a href="<%= admin_root_path %>">我的主页</a></li>
-                  <li><a href="<%= frontend_path(current_user) %>">我的帖子</a></li>
-                  <li><a href="<%= frontend_codes_path(current_user) %>">我的收藏</a></li>
+                  <li><a href="<%= profile_user_path(current_user) %>">我的资料</a></li>
+                  <li><a href="<%= home_user_path(current_user) %>">我的主页</a></li>
+                  <li><a href="<%= user_path(current_user) %>">我的帖子</a></li>
+                  <li><a href="<%= user_codes_path(current_user) %>">我的收藏</a></li>
                   <li class="divider"></li>
                   <li><a href="<%= destroy_user_session_path %>">退出</a></li>
                 </ul>
               </li>
             </ul>
-            <a class="link_admin_messages <%= 'active' if controller.class.to_s == "Admin::MessagesController" %>" href="<%= admin_messages_path %>">
-              <% badge_class = messages.unreads.count > 0 ? "badge-error" : '' %>
-              <span class="badge <%= badge_class %>"><%= messages.unreads.count %></span></a>
+            <a class="link_admin_messages <%= 'active' if controller.class.to_s == "Admin::MessagesController" %>" href="<%= messages_path %>">
+              <% badge_class = messages.try(:unreads).try(:count).to_i > 0 ? "badge-error" : '' %>
+              <span class="badge <%= badge_class %>"><%= messages.try(:unreads).try(:count).to_i %></span></a>
 
          <% else %>
             <label style="color:lightgrey">当前身份：访客</label> [
-            <a id="link_sign_in" class="<%= 'active_only' if params[:controller] == 'devise/sessions' %>" href="<%= new_user_session_path %>">登录</a>
+            <a id="link_sign_in" class="<%= 'active_only' if params[:controller] == 'users/sessions' %>" href="<%= new_user_session_path %>">登录</a>
             |
             <a id="link_sign_up" class="<%= 'active_only' if params[:controller] == 'users/registrations' %>" href="<%= new_user_registration_path %>">加入RubyMe</a>
             ]

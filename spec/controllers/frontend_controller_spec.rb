@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe FrontendController, :type => :controller do
+RSpec.describe HomeController, :type => :controller do
 
 end

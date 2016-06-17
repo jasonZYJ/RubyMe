@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-md-9">
+    <label>最新文章列表: </label>
+  </div>
+
+  <div class="col-md-3 text-right">
+    <%= link_to '发布新文章', new_post_path %>
+  </div>
+</div>
+
+<div class="row">
+  <%= render partial: 'admin/shared/posts', locals: {posts: @posts} %>
+</div>

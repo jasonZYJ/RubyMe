@@ -1,0 +1,25 @@
+<div class="panel-heading">
+  <div class="heading">
+    <h4><%= @blog.title %></h4>
+
+    创建时间: <%= @blog.published_time %><br/>
+    日志分类: <%= @blog.category.try(:name) %>
+  </div>
+</div>
+
+<div class="panel-body">
+  <%= @blog.content.html_safe %>
+  <%= social_share_button_tag("#{@blog.title} via: @#{Settings.site.name}", :popup => true) %>
+</div>
+
+<div class="panel-footer">
+  <%= link_to "返回收藏列表", admin_blogs_path %>
+
+  <div class="pull-right">
+    <a href="<%= edit_admin_blog_path(@blog) %>" class="btn btn-sm btn-default">
+      <span class="glyphicon glyphicon-edit"></span>编辑
+    </a>
+
+    <%= link_to '删 除', admin_blog_path(@blog), data: {confirm: "你确定要删除该代码吗？"}, method: :delete, class: "btn btn-sm btn-danger" %>
+  </div>
+</div>

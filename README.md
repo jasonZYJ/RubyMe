@@ -1,6 +1,8 @@
 RubyMe: A Ruby&Rails platform for sharing blogs
 =======
 
+[![Code Climate](https://codeclimate.com/github/J-Y/RubyMe/badges/gpa.svg)](https://codeclimate.com/github/J-Y/RubyMe)
+
 RubyMe, a platform for sharing blog. Site url: jasonblog.com
 
 ## Requirements

@@ -28,10 +28,10 @@ def puts_line(info, &block)
   print info
   rsize = ROW_SIZE - info.length
   success = yield block
-  if success == false
-    puts "[Failed]".rjust(rsize).colorize(:red)
-  else
+  if success
     puts "[Done]".rjust(rsize).colorize(:green)
+  else
+    puts "[Failed]".rjust(rsize).colorize(:red)
   end
 end
 
@@ -50,7 +50,7 @@ puts_section "Configure" do
 end
 
 puts_line "Install gems..." do
-  `bundle install`
+  `bundle exec bundle install`
 end
 
 puts_line "Copy settings from sample files...\n" do
@@ -62,7 +62,6 @@ puts_line "Create databases...\n" do
   # `cp config/secrets.yml.sample config/secrets.yml`
   # `cp config/database.yml.sample config/database.yml`
 
-
   `RAILS_ENV=#{rails_env} bundle exec rake db:create`
   `RAILS_ENV=#{rails_env} bundle exec rake db:migrate`
   `RAILS_ENV=#{rails_env} bundle exec rake db:seed`
@@ -70,7 +69,7 @@ puts_line "Create databases...\n" do
 
   if rails_env == "production"
     puts "Now running RAILS_ENV=#{rails_env} rake assets:precompile..."
-    # `RAILS_ENV=#{rails_env} rake assets:precompile`
+    `RAILS_ENV=#{rails_env} rake assets:precompile`
   end
 end
 

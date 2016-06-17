@@ -12,7 +12,7 @@
       subDomain: 'day',
       rowLimit: 7,
       domainGutter: 0,
-      data: '<%= frontend_calendar_path(user, format: 'json') %>',
+      data: '<%= calendar_user_path(user, format: 'json') %>',
       start: new Date(<%= start_date.year %>, <%= start_date.month %>, <%= start_date.day %>),
       legendHorizontalPosition: 'right',
       legendColors: ["#E2FBAE", "#298401"],

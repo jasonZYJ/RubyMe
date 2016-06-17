@@ -1,0 +1,44 @@
+<div class="blog-posts">
+  <% if posts.size > 0 %>
+      <% post_count = post_count_hash posts.map(&:id) %>
+      <% posts.each do |post| %>
+          <div class="newer_row blog-post">
+            <div class="pull-right replies">
+              <%= link_to(post_count[post.id] ? post_count[post.id].count : 0, "#{post_path(post)}", class: "count state-false") %>
+            </div>
+            <div class="post-user pull-left">
+              <a target="_blank" href="<%= profile_user_path(post.user) %>">
+                <%= image_tag(post.user.avatar_url(:normal, :thumb), class: 'user_face') %>
+              </a>
+            </div>
+
+            <div class="href_name post-title">
+              <%= link_to post.title, post_path(post), title: post.title %>
+            </div>
+            <p class="post-meta">
+              <%= link_to post.user.human_name, profile_user_path(post.user), target: "_blank" %>
+              ·
+              <%= link_to post.category.try(:name), user_category_path(post.user, post.category) %> ·
+              <em>
+                <% if post.last_reply_user.nil? %>
+                    <abbr class="timeago" title="<%= post.published_time %>">
+                      <%= time_ago_in_words(post.created_at) %>前
+                    </abbr> 发布
+                <% else %>
+                    最后由 <%= link_to post.last_reply_user.human_name, profile_user_path(post.last_reply_user) %>
+                    于 <%= time_ago_in_words(post.created_at) %>前回复
+                <% end %>
+              </em>
+
+            </p>
+            <!--  display_none class yes or no?-->
+            <div class="post-content display_none">
+              <%= omited_str(strip_tags(post.content), 150) { link_to "浏览全文", post_path(post) } %>
+            </div>
+          </div>
+      <% end %>
+  <% else %>
+      最近没有任何文章。
+  <% end %>
+  <%= paginate posts %>
+</div>

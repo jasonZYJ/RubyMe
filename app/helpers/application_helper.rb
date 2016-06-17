@@ -2,10 +2,10 @@ module ApplicationHelper
 
   def gravatar_url(email)
     email_md5 = Digest::MD5.hexdigest(email.downcase)
-    "http://www.gravatar.com/avatar/#{email_md5}?s=120"  #blocked already
+    "http://www.gravatar.com/avatar/#{email_md5}?s=120" #blocked already
   end
 
-  def site_intro
+  def site_info
     "信息技术分享平台"
   end
 
@@ -38,7 +38,7 @@ module ApplicationHelper
   end
 
   def omited_str(str, length=60)
-    truncate(str, length: length, separator: " ", omission: "...") { yield if block_given?}
+    truncate(str, length: length, separator: " ", omission: "...") { yield if block_given? }
   end
 
   def js_alert(message="非常遗憾，操作失败。")
@@ -71,6 +71,10 @@ module ApplicationHelper
 
   def code_tags_from_str(str)
     self.post_tags_from_str(str)
+  end
+
+  def show_menubar?
+    params[:controller] == 'users' || params[:user_id]
   end
 
 end

@@ -1,0 +1,11 @@
+<div class="code-posts">
+  <% if current_user %>
+      <div class="col-md-3 text-right pull-right padding6">
+        <%= link_to raw('<i class="glyphicon glyphicon-pencil"> </i>添加代码'), new_code_path, class: "btn btn-primary" %>
+      </div>
+  <% end %>
+</div>
+
+<div class="code-posts">
+  <%= render partial: 'codes', locals: {codes: @codes} %>
+</div>

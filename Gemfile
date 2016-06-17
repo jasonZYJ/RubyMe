@@ -22,12 +22,17 @@ gem 'activeadmin', '~> 1.0.0.pre', github: 'gregbell/active_admin'
 gem 'jquery-rails', '~> 3.1.1' # Use jquery as the JavaScript library
 gem 'yui-compressor', '~> 0.12.0', require: false #预编译压缩Assets
 gem 'turbolinks', '~> 5.0.0.beta' # Turbolinks makes following links in your web application faster.
+gem 'jquery-turbolinks'
 gem 'jbuilder', '~> 2.0' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'sdoc', '~> 0.4.0', group: :doc
+
+gem 'climate_control'
 
 gem 'devise', '3.3.0' # 用户session管理
 gem 'devise-i18n', '0.11.0' # devise国际化支持
 gem 'devise-async', '0.9.0' # 异步处理devise邮件
+
+gem 'gritter'
 
 gem 'friendly_id', '5.0.4' # 更友好的id
 gem 'simple_form', '3.1.0.rc2' # 页面表单

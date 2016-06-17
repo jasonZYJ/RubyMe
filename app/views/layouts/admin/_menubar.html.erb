@@ -1,13 +1,12 @@
 <div class="panel-group">
   <div class="panel panel-default">
     <div class="panel-body text-center">
-      <a target="_blank" href="<%= frontend_path(current_user) %>">
-        <%= image_tag(current_user.avatar_url(:large, :content), class: 'bloger_photo') %>
+      <a target="_blank" href="<%= profile_user_path(@user) %>">
+        <%= image_tag(@user.avatar_url(:large, :content), class: 'bloger_photo') %>
       </a>
 
-
       <div class="bloger_name">
-        <label><%= current_user.human_name %></label>
+        <label><%= @user.human_name %></label>
       </div>
     </div>
   </div>
@@ -24,11 +23,11 @@
     <div id="collapse1" class="panel-collapse collapse in">
       <div class="panel-body">
         <ul>
-          <li><%= link_to '发布文章', new_admin_post_path, class: 'link_new_post' %></li>
-          <li><%= link_to '评论管理', admin_replies_path, class: 'link_admin_replies' %></li>
-          <li><%= link_to '分类管理', admin_categories_path, class: 'link_admin_categories' %></li>
-          <li><%= link_to '代码收藏', admin_codes_path, class: 'link_admin_codes' %></li>
-          <li><%= link_to '我的资料', admin_profile_path, class: 'link_admin_profile' %></li>
+          <li><%= link_to '发布文章', new_post_path, class: 'link_new_post' %></li>
+          <li><%= link_to '评论管理', user_replies_path(@user), class: 'link_admin_replies' %></li>
+          <li><%= link_to '分类管理', user_categories_path(@user), class: 'link_admin_categories' %></li>
+          <li><%= link_to '代码收藏', user_codes_path(@user), class: 'link_admin_codes' %></li>
+          <li><%= link_to '我的资料', profile_user_path(@user), class: 'link_admin_profile' %></li>
         </ul>
       </div>
     </div>
@@ -46,14 +45,13 @@
     <div id="collapse2" class="panel-collapse collapse in">
       <div class="panel-body">
         <ul>
-          <li><%= link_to "全部文章 (#{current_user.posts.count})", admin_posts_path %></li>
-          <% category_hash = category_count_hash categories.map(&:id) %>
-          <% categories.each do |category| %>
+          <li><%= link_to "全部文章 (#{@user.posts.count})", posts_path %></li>
+          <% category_hash = category_count_hash @user.categories.map(&:id) %>
+          <% @user.categories.each do |category| %>
               <li>
-                <%= link_to "#{category.name} (#{category_hash[category.id] ? category_hash[category.id].count : 0})", admin_category_path(category) %>
+                <%= link_to "#{category.name} (#{category_hash[category.id].try(:count).to_i })", user_category_path(@user, category) %>
               </li>
           <% end %>
-          <li><%= link_to "回收站 (0)", admin_posts_path %></li>
         </ul>
       </div>
     </div>
@@ -70,7 +68,7 @@
     <div id="collapse2" class="panel-collapse collapse in">
       <div class="panel-body">
         <ul>
-          <% Settings.recomended_website.each do |key, value| %>
+          <% Settings.recomended_websites.each do |key, value| %>
               <li><%= link_to key, value %></li>
           <% end %>
         </ul>

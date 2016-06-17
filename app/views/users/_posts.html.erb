@@ -1,0 +1,42 @@
+<div class="table-responsive">
+  <table class="table table-striped table-hover">
+    <thead>
+    <tr>
+      <th>标题</th>
+      <th>发布时间</th>
+      <th>分类</th>
+      <th>浏览</th>
+      <th>回复</th>
+      <th></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% posts.each do |post| %>
+        <tr>
+          <td class="href_name">
+            <%= link_to post.title, post_path(post), title: post.title %>
+          </td>
+          <td><%= post.published_time %></td>
+          <td><%= post.category.try(:name) %></td>
+          <td><%= post.visits %></td>
+          <td><%= post.replies.size %></td>
+          <td>
+          
+            <%= link_to raw('<span class="glyphicon glyphicon-pencil"></span>'), edit_post_path(post) %>
+            <%= link_to raw('<span class="glyphicon glyphicon-trash"></span>'), post_path(post), data: {confirm: "你确定要删除这篇文章吗？"}, method: :delete %>
+          </td>
+        </tr>
+    <% end %>
+
+    <tr>
+      <td colspan='4'><!--%= paginate posts %--></td>
+      <td colspan='2' class="text_middle">
+        <div class="pull-right">
+          <%= link_to('查看所有', posts_path) unless url_for == posts_path %>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

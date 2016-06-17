@@ -5,7 +5,7 @@
     <div class="panel-body">
       <%= f.error_notification %>
       <%#= devise_error_messages! %>
-      <%= f.input :uid, required: true, input_html: {class: "uid"} %>
+      <%= f.input :uid, required: true, input_html: {class: "uid user_login"} %>
       <%= f.input :email, required: true %>
       <%= f.input :password, required: true %>
       <%= f.input :password_confirmation, required: true %>
@@ -14,14 +14,16 @@
         <label class="col-md-3 control-label">验证码</label>
         <div class="col-md-9">
           <%= rucaptcha_input_tag(class: 'form-control', placeholder: '验证码') %>
-          <%= rucaptcha_image_tag(alt: 'Captcha') %>
+          <a class="rucaptcha-image-box" href="#">
+            <%= rucaptcha_image_tag(alt: 'Captcha') %>
+          </a>
         </div>
       </div>
 
       <div class="form-group form-actions">
         <label class="col-md-3"></label>
         <div class="col-md-9">
-          <%= f.submit "提交注册信息", :class => "btn btn-primary", 'data-disable-with' => "正在提交" %>
+          <%= f.submit "提交注册信息", class: "btn btn-primary", data: { disable_with: "正在提交..."} %>
         </div>
       </div>
     </div>
