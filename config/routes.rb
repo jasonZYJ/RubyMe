@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-  # require 'sidekiq/web'
-  # mount Sidekiq::Web => '/sidekiq'
 
   mount RuCaptcha::Engine => "/rucaptcha"
   # scope "(:locale)", :locale => /en|zh|th|en-AU|en-US|en-UK|zh-TW|es/ do
@@ -19,9 +15,6 @@ Rails.application.routes.draw do
   authenticate :user, lambda { |u| u.admin? } do
     mount Sidekiq::Web => '/sidekiq'
   end
-
-  # Sidekiq::Web.set :session_secret, Rails.application.secrets[:secret_token]
-  # Sidekiq::Web.set :sessions, Rails.application.config.session_options
 
   root 'home#index'
   get '/about_us', to: 'home#about_us'

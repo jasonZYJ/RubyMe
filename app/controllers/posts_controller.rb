@@ -10,19 +10,10 @@ class PostsController < ApplicationController
     @posts = @posts.page(params[:page])
   end
 
-  # def show
-  #   @post = @posts.find(params[:id])
-  # end
-
-
   def new
     @post = Post.new
   end
 
-  # def title  #TODO frontend
-  #   "#{@post.title} | #{@blogger.whose_blogger}"
-  # end
-  #
   def show
     @post = @posts.find(params[:id])
     @reply = Reply.new(post_id: @post.id)
