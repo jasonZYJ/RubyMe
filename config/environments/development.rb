@@ -23,6 +23,8 @@ Rails.application.configure do
   # config.i18n.fallbacks = false
   #config.log_level = :info
 
+  config.assets.digest = true
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  mount StatusPage::Engine, at: '/'
   mount RuCaptcha::Engine => "/rucaptcha"
   # scope "(:locale)", :locale => /en|zh|th|en-AU|en-US|en-UK|zh-TW|es/ do
   mount Ckeditor::Engine => '/ckeditor'

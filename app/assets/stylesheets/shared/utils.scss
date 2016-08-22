@@ -1,3 +1,5 @@
+@import "_variables";
+
 body {
   color: #333333;
   background-color: #e9eaed;
@@ -45,7 +47,10 @@ td {
 }
 
 .href_name {
-  @include href_ellipsis();
+  //@include ellipsis();
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .well {

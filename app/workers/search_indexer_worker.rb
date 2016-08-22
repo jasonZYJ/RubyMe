@@ -4,16 +4,7 @@ class SearchIndexerWorker
   sidekiq_options queue: :search
 
   def perform(type, id)
-    obj = case type
-            when 'post'
-              Post.find_by_id(id)
-            when 'blog'
-              Blog.find_by_id(id)
-            when 'user'
-              User.find_by_id(id)
-            else
-              nil
-          end
-    PostgresqlSearch.index_searchable(obj)
+    obj = (%w(post blog user).inject({}) { |h, x| h[x] = x.classify; h }).fetch(type, nil).try(:safe_constantize).try(:find_by_id, id)
+    PostgresqlSearch.index_searchable(obj) if obj.present?
   end
 end

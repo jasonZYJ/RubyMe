@@ -42,8 +42,8 @@ $greenText: #23863F;
 $greenLabel: #81D573;
 $greenLabelText: #1B8909;
 
-@mixin href_ellipsis() {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
+//@mixin ellipsis() {
+//  overflow: hidden;
+//  white-space: nowrap;
+//  text-overflow: ellipsis;
+//}

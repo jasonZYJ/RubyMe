@@ -15,6 +15,11 @@ class ApplicationController < ActionController::Base
 
   protected
 
+ #TODO will be better if we get resource class like this
+  def resource_class
+     @resource_class ||= controller_path.classify.safe_constantize
+  end
+
   def load_messages
     @messages ||= current_user.messages
   end

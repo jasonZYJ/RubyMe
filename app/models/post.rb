@@ -2,6 +2,7 @@ require 'word_check'
 include WordCheck::Worker
 
 class Post < ActiveRecord::Base
+  include Reflections
 
   #Association
   belongs_to :user, :counter_cache => true
