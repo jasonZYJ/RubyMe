@@ -24,9 +24,10 @@ class Code < ActiveRecord::Base
   end
 
   private
+
   def validate_tags
     if self.tags.split(/，/).size > 3
-      errors.add(:tags, '关键词超过3个了')
+      errors.add(:tags, '关键词超过3个了!')
       false
     end
   end

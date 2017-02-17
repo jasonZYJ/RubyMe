@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
     if browser.ie? && browser.version.to_i < 9
       unless cookies[:is_noticed_browser]
         cookies[:is_noticed_browser] = {value: true, expires: 1.hour.from_now}
-        flash[:alert] = "你使用的浏览器太老了，博客眼的很多Html5特性不支持，赶快升级吧！"
+        flash[:alert] = "你使用的浏览器太老了，RubyMe的很多Html5特性不支持，赶快升级吧！"
       end
     end
   end

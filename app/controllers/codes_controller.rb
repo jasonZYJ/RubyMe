@@ -13,7 +13,7 @@ class CodesController < ApplicationController
   end
 
   def new
-    @code = Code.new
+    @code = resource_class.new
   end
 
   # def index
@@ -26,7 +26,7 @@ class CodesController < ApplicationController
   # end
 
   def create
-    @code = Code.new(code_params)
+    @code = resource_class.new(code_params)
     @code.user = current_user
 
     if @code.save
@@ -64,7 +64,7 @@ class CodesController < ApplicationController
 
   private
   def load_codes
-    @codes ||= (Code.all.order('updated_at desc') || current_user.codes) #TODO
+    @codes ||= (resource_class.all.order('updated_at desc') || current_user.codes) #TODO
   end
 
   def code_params

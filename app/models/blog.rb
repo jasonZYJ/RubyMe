@@ -27,7 +27,7 @@ class Blog < ActiveRecord::Base
   end
 
   def to_search_data
-    "#{self.title} #{PostgresqlSearch.scrub_html_for_search self.content}"
+    %Q(#{self.title} #{PostgresqlSearch.scrub_html_for_search self.content})
   end
 
   def type

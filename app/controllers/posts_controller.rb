@@ -11,13 +11,13 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new
+    @post = resource_class.new
   end
 
   def show
     @post = @posts.find(params[:id])
     @reply = Reply.new(post_id: @post.id)
-    @replies = Reply.includes(:user).where(:replies => {:post_id => params[:id]})#@post.replies
+    @replies = Reply.includes(:user).where(replies: {post_id: params[:id]})#@post.replies
   end
   #
   # protected
@@ -26,13 +26,13 @@ class PostsController < ApplicationController
     if params[:user_id].present?
       @blogger = User.find(params[:user_id])
     else
-      @post = Post.find(params[:id])
+      @post = resource_class.find(params[:id])
       @blogger = @post.user
     end
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = resource_class.new(post_params)
     @post.user = current_user
 
     if @post.save
@@ -70,7 +70,7 @@ class PostsController < ApplicationController
 
   private
   def load_posts
-    @posts ||= (Post.all.order('updated_at desc') || current_user.posts) #TODO refine, suck here
+    @posts ||= (resource_class.all.order('updated_at desc') || current_user.posts) #TODO refine, suck here
   end
 
   def post_params

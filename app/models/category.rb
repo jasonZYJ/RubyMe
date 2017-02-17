@@ -18,6 +18,7 @@ class Category < ActiveRecord::Base
   end
 
   private
+
   def validate_destroyable?
     if self.posts.size > 0
       errors.add(:base, "分类 #{self.name} 下还有文章，请先转移到其它分类！")

@@ -9,6 +9,7 @@ class BloggerController < HomeController
   end
 
   protected
+
   def load_blogger
     @blogger = User.find(params[:uid])
   end

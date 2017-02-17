@@ -3,10 +3,11 @@ include WordCheck::Worker
 
 class Post < ActiveRecord::Base
   include Reflections
+  include Sensitive
 
   #Association
-  belongs_to :user, :counter_cache => true
-  belongs_to :last_reply_user, :class_name => "User", :foreign_key => 'last_reply_user_id'
+  belongs_to :user, counter_cache: true
+  belongs_to :last_reply_user, class_name: "User", foreign_key: :last_reply_user_id
   belongs_to :point
   belongs_to :category
   has_many :replies, dependent: :destroy
@@ -27,7 +28,7 @@ class Post < ActiveRecord::Base
   default_scope -> { order('created_at desc') }
 
   #Callback
-  before_save :validate_tags, :validate_sensitive?
+  before_save :validate_tags
 
   after_save do
     if self.content_changed? || self.title_changed?
@@ -44,18 +45,12 @@ class Post < ActiveRecord::Base
   end
 
   private
+
   def validate_tags
-    if self.tags.split(/，/).size > 5
+    if self.tags.split(/,/).size > 5
       errors.add(:tags, '关键词超过5个了')
       false
     end
   end
 
-  def validate_sensitive?
-    word = WordCheck::Worker.first_sensitive(self.inspect)
-    if word.present?
-      errors.add(:base, "文章内容包含敏感词汇: #{word}")
-      false
-    end
-  end
 end

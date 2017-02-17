@@ -63,8 +63,9 @@ class BlogsController < ApplicationController
   end
 
   private
+
   def load_blogs
-    @blogs ||= (Blog.all.order('updated_at desc') || current_user.blogs) #TODO
+    @blogs ||= (resource_class.all.order('updated_at desc') || current_user.blogs) #TODO
   end
 
   def blog_params

@@ -18,7 +18,6 @@ class User < ActiveRecord::Base
   has_many :categories, dependent: :destroy
   has_one :postgresql_search, as: :searchable
 
-
   #Callback
   before_create :update_ranking
   before_create :init_name, if: Proc.new { |u| u.name.blank? }
@@ -52,7 +51,7 @@ class User < ActiveRecord::Base
   class << self
     def find_for_database_authentication(warden_conditions)
       conditions = warden_conditions.dup
-      if login = conditions.delete(:login)
+      if (login = conditions.delete(:login))
         where(conditions).where(["uid = :value OR email = :value", {value: login}]).first
       else
         where(conditions).first
@@ -60,16 +59,14 @@ class User < ActiveRecord::Base
     end
   end
 
-
-
   def update_index
-    if true #self.login_changed? || self.name_changed?
-      SearchIndexerWorker.perform_async('user', self.id) #TODO user id here in case this object maybe change after save but before sidekiq
+    if self.login_changed? || self.name_changed?
+      SearchIndexerWorker.perform_async('user', self.id)
     end
   end
 
   def to_search_data
-    "#{self.login} #{self.name}"
+    %Q(#{self.login} #{self.name})
   end
 
   def human_name
@@ -77,7 +74,7 @@ class User < ActiveRecord::Base
   end
 
   def whose_blogger
-    "#{self.uid} 的博客"
+    %Q(#{self.uid} 的博客)
   end
 
   def created_time
@@ -85,7 +82,7 @@ class User < ActiveRecord::Base
   end
 
   def github_page
-    "https://github.com/#{self.github}"
+    %Q(https://github.com/#{self.github})
   end
 
   def city
@@ -128,7 +125,7 @@ class User < ActiveRecord::Base
     Digest::MD5.hexdigest(self.email.downcase)
   end
 
-  def gravatar_url #blocked in ZH
+  def gravatar_url #blocked in china
     "http://www.gravatar.com/avatar/#{self.email_md5}"
   end
 
@@ -149,8 +146,8 @@ class User < ActiveRecord::Base
   end
 
   private
+
   def update_ranking
-    # debugger
     current_ranking = User.maximum(:ranking).to_i
     self.ranking = current_ranking + 1
   end

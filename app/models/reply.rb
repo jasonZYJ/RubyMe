@@ -3,10 +3,12 @@ include WordCheck::Worker
 
 class Reply < ActiveRecord::Base
 
+  include Sensitive
+
   acts_as_paranoid
 
   #Association
-  belongs_to :user, :counter_cache => true
+  belongs_to :user, counter_cache: true
   belongs_to :post
   has_one :blogger, through: :post, source: 'user'
   has_many :messages, as: :target, dependent: :destroy
@@ -22,7 +24,6 @@ class Reply < ActiveRecord::Base
   default_scope -> { order('created_at desc') }
 
   #Callback
-  before_save :validate_sensitive
   after_create :message_to_at_users, :update_last_reply_user
 
   def update_last_reply_user
@@ -57,6 +58,7 @@ class Reply < ActiveRecord::Base
   end
 
   private
+
   def message_to_at_users
     at_users = []
     self.content.gsub(/@(\w{3,20})/) {
@@ -72,11 +74,4 @@ class Reply < ActiveRecord::Base
     self.message_to_blogger unless at_users.include?(self.blogger)
   end
 
-  def validate_sensitive
-    word = WordCheck::Worker.first_sensitive(self.inspect)
-    if word.present?
-      errors.add(:base, "回复内容包含敏感词汇: #{word}")
-      false
-    end
-  end
 end

@@ -36,7 +36,7 @@ class CategoriesController < HomeController
   end
 
   def create
-    @category = Category.new(category_params)
+    @category = resource_class.new(category_params)
     @category.user = current_user
 
     respond_to do |format|
