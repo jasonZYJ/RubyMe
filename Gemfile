@@ -62,6 +62,7 @@ gem 'redis-rails'
 gem 'redis-namespace'
 gem 'redis-semaphore'
 gem 'rucaptcha'
+gem 'exception-track'
 
 gem 'letter_avatar'
 

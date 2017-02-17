@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  mount ExceptionTrack::Engine => "/exception-track"  #TODO need admin user permission, refactor
   mount StatusPage::Engine, at: '/'
   mount RuCaptcha::Engine => "/rucaptcha"
   # scope "(:locale)", :locale => /en|zh|th|en-AU|en-US|en-UK|zh-TW|es/ do
