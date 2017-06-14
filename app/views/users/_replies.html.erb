@@ -28,7 +28,7 @@
       <td colspan='2'><!--%= paginate replies, param_name: "page_reply" %--></td>
       <td colspan='2' class="text_middle">
         <div class="pull-right">
-          <%= link_to('查看所有', replies_path) unless url_for == replies_path %>
+          <%= link_to(t(:see_all), replies_path) unless url_for == replies_path %>
         </div>
       </td>
     </tr>

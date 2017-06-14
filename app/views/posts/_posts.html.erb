@@ -13,7 +13,7 @@
             </div>
 
             <div class="href_name post-title">
-              <%= link_to post.title, post_path(post), title: post.title %>
+              <%= link_to post.title, post_path(post), title: post.title , class: 'default_title'%>
             </div>
             <p class="post-meta">
               <%= link_to post.user.human_name, profile_user_path(post.user), target: "_blank" %>
@@ -33,12 +33,12 @@
             </p>
             <!--  display_none class yes or no?-->
             <div class="post-content display_none">
-              <%= omited_str(strip_tags(post.content), 150) { link_to "浏览全文", post_path(post) } %>
+              <%= omited_str(strip_tags(post.content), 150) { link_to t(:see_all), post_path(post) } %>
             </div>
           </div>
       <% end %>
   <% else %>
-      最近没有任何文章。
+      <%= t(:no_recently_updated_posts) %>
   <% end %>
   <%= paginate posts %>
 </div>

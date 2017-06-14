@@ -18,9 +18,7 @@
   <%= link_to "返回收藏列表", codes_path %>
 
   <div class="pull-right">
-    <a href="<%= edit_code_path(@code) %>" class="btn btn-sm btn-default">
-      <span class="glyphicon glyphicon-edit"></span>编辑
-    </a>
+    <%= link_to raw('<span class="glyphicon glyphicon-edit"></span>编辑'), edit_code_path(@code), class: 'btn btn-sm btn-default' %>
 
     <%= link_to '删 除', code_path(@code), data: {confirm: "你确定要删除该代码吗？"}, method: :delete, class: "btn btn-sm btn-danger" %>
   </div>

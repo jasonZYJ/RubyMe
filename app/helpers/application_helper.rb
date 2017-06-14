@@ -2,7 +2,7 @@ module ApplicationHelper
 
   def gravatar_url(email)
     email_md5 = Digest::MD5.hexdigest(email.downcase)
-    "http://www.gravatar.com/avatar/#{email_md5}?s=120" #blocked already
+    "http://www.gravatar.com/avatar/#{email_md5}?s=120" #blocked already, not used
   end
 
   def site_info
@@ -76,5 +76,15 @@ module ApplicationHelper
   def show_menubar?
     params[:controller] == 'users' || params[:user_id]
   end
+
+  def user_dropdown_hash
+    {
+        my_profile: profile_user_path(current_user),
+        my_homepage: home_user_path(current_user),
+        my_topics: user_path(current_user),
+        my_favorite: user_codes_path(current_user)
+    }
+  end
+
 
 end

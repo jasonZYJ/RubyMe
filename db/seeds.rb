@@ -6,6 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 # create default points
+# TODO need to refactor this seed data
 poins = [
     {name: '编程语言', code: 'language', description: 'Java, Ruby, PHP etc.'},
     {name: 'Web前端', code: 'frontend', description: 'Javascript, css, html etc.'},

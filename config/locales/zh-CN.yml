@@ -1,6 +1,122 @@
-zh-CN:
-  hello: "欢迎您"
-  report_issue: "报告问题"
+'zh-CN':
+  hello: 欢迎您
+  topic: 社区
+  favorite: 收藏夹
+  log: 日志
+  simplified_chinese: 简体中文
+  english: English
+  about_us: 关于我们
+  status: 服务状态
+  report_issue: 报告网站问题
+  back_top: 返回顶部
+  search: 搜索
+  search_content: 搜索本站内容
+  my_profile: 我的资料
+  my_homepage: 我的主页
+  my_topics: 我的帖子
+  my_favorite: 我的收藏
+  logout: 退出
+  login: 登录
+  current_identity: 当前身份
+  guest: 游客
+  join: 加入
+  reserved_right: 版权所有
+  browser_old_message: 你使用的浏览器太老了，%{site_name}的很多Html5特性不支持，赶快升级吧!
+  recently_updated_posts: 最近更新的文章
+  recently_starred_posts: 最近收藏的文章
+  no_recently_updated_posts: 最近没有任何文章。
+  no_recently_starred_posts: 最近没有文章被收藏。
+  default: 默认
+  popular: 优质帖子
+  no_reply: 无人问津
+  recent: 最新创建
+  check: 查看
+  see_all: 浏览全文
+  supported_format: 可上传的文件格式
+  cancel: 取 消
+  save: 保 存
+  create: 创 建
+  update: 更 新
+  new: 新 建
+  delete: 删 除
+  edit: 编 辑
+  can_reply_after_log_in: 需要登录之后才能评论。
+
+  activerecord:
+      models:
+        post: Post
+        blog: Blog
+        reply: Reply
+        category: Category
+        code: Code
+        language: Language
+        message: Message
+        point: Point
+        user: User
+      attributes:
+        post:
+
+        blog:
+
+        reply:
+
+        categroy:
+
+        code:
+
+        language:
+
+        message:
+
+        point:
+
+        user:
+
+      message:
+        post:
+          create_successful: 你已经成功发布了文章。
+          update_successful: 你已经成功修改了文章。
+          delete_successful: 你已经成功删除了该文章。
+        blog:
+          create_successful: 你已经成功创建了日志。
+          create_failed: 创建日志失败，请注意以下提示！
+          update_successful: 你已经成功更新了日志。
+          update_failed: 更新日志失败，请注意以下提示！
+          delete_successful: 你已经成功删除了该代码。
+          delete_confirmation: 你确定要删除这篇文章吗？
+        reply:
+          create_successful: 你已经成功提交了回复。
+          delete_successful: 你已经成功删除了该评论。
+          hide_successful: 你已经成功隐藏了该评论。
+          restore_successful: 你已经成功恢复了该评论。
+
+        categroy:
+          update_successful: 你已经成功修改了分类 %{category_name}。
+          update_failed: 修改分类 %{category_name} 失败。
+          posts_alert: 分类 %{category_name} 下还有文章，请先转移到其它分类！
+          codes_alert: 分类 %{category_name} 下还有代码收藏，请先转移到其它分类！
+          delete_successful: 成功删除分类 %{category_name}。
+          delete_confirmation: 你确定要删除这个分类吗？
+
+        code:
+          create_successful: 你已经成功收藏了代码。
+          create_failed: 收藏代码失败，请注意以下提示！
+          update_successful: 你已经成功更新了收藏的代码。
+          update_failed: 修改代码失败，请注意以下提示！
+          delete_successful: 你已经成功删除了该代码。
+
+        language:
+
+        message:
+          delete_successful: 你已经成功删除了该消息。
+
+        point:
+
+        user:
+          update_successful: 成功更新个人资料。
+          update_failed: 未能成功更新个人资料，请查看以下错误。
+
+
   date:
     abbr_day_names:
     - 日

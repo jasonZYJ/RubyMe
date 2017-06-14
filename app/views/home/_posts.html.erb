@@ -1,5 +1,5 @@
 <div class="blog-posts">
-  <h4>最近更新的文章: </h4>
+  <h4> <%= t(:recently_updated_posts) %>: </h4>
   <% if posts.size > 0 %>
       <% post_count = post_count_hash posts.map(&:id) %>
       <% posts.each do |post| %>
@@ -14,10 +14,10 @@
             </div>
 
             <div class="href_name post-title">
-              <%= link_to post.title, post_path(post), title: post.title %>
+              <%= link_to post.title, post_path(post), title: post.title, class: 'default_title' %>
             </div>
             <p class="post-meta">
-              <%= link_to post.user.human_name, profile_user_path(post.user), target: "_blank" %>
+              <%= link_to post.user.human_name, profile_user_path(post.user), target: "_blank", class: '' %>
               ·
               <%= link_to post.category.try(:name), user_category_path(post.user, post.category) %> ·
               <em>
@@ -39,6 +39,7 @@
           </div>
       <% end %>
   <% else %>
-      最近没有任何文章。
+      <%= t(:no_recently_updated_posts) %>
   <% end %>
+  <%= paginate posts %>
 </div>

@@ -1,4 +1,5 @@
-class Category < ActiveRecord::Base
+class Category < ApplicationRecord
+  include Reflections
 
   #Association
   belongs_to :user

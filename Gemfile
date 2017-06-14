@@ -18,7 +18,7 @@ gem 'uglifier' # Use Uglifier as compressor for JavaScript assets
 gem 'coffee-rails' # Use CoffeeScript for .js.coffee assets and views
 gem 'config' # 从yml文件加载配置
 gem 'kaminari'
-gem 'activeadmin', '1.0.0.pre1 '#, github: 'gregbell/active_admin'
+gem 'activeadmin', git: "https://github.com/gregbell/active_admin"
 gem 'jquery-rails' # Use jquery as the JavaScript library
 gem 'yui-compressor', require: false #预编译压缩Assets
 gem 'turbolinks' # Turbolinks makes following links in your web application faster.
@@ -47,6 +47,7 @@ gem 'nokogiri', require: false #抓取页面信息
 gem 'actionpack-action_caching'
 
 gem 'rails-i18n', '~>4.0.2' # For 4.x 国际化支持
+gem 'http_accept_language' #detect the users preferred language, as sent by the "Accept-Language" HTTP header
 
 gem 'ckeditor' #html编辑器
 gem 'non-stupid-digest-assets'
@@ -62,9 +63,12 @@ gem 'redis-rails'
 gem 'redis-namespace'
 gem 'redis-semaphore'
 gem 'rucaptcha'
-gem 'exception-track'
+gem 'exception-track' #TODO only admin can see this exception-track page and besides
 
 gem 'letter_avatar'
+
+# Permission
+gem 'cancancan'
 
 gem 'puma', '2.9.1' #多线程支持      #TODO need to handle higher version non-compatible issue
 

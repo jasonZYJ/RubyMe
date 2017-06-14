@@ -1,8 +1,10 @@
 # encoding: utf-8
 require 'open-uri'
 require 'file_size_validator'
-class User < ActiveRecord::Base
+
+class User < ApplicationRecord
   include LetterAvatar::AvatarHelper
+  include Reflections
 
   extend FriendlyId
   friendly_id :uid, use: :finders
@@ -60,54 +62,54 @@ class User < ActiveRecord::Base
   end
 
   def update_index
-    if self.login_changed? || self.name_changed?
+    if email_changed? || name_changed?
       SearchIndexerWorker.perform_async('user', self.id)
     end
   end
 
   def to_search_data
-    %Q(#{self.login} #{self.name})
+    %Q(#{login} #{name})
   end
 
   def human_name
-    self.uid
+    uid
   end
 
   def whose_blogger
-    %Q(#{self.uid} 的博客)
+    %Q(#{uid} 的博客)
   end
 
   def created_time
-    self.created_at.strftime('%Y-%m-%d %H:%M')
+    created_at.strftime('%Y-%m-%d %H:%M')
   end
 
   def github_page
-    %Q(https://github.com/#{self.github})
+    %Q(https://github.com/#{github})
   end
 
   def city
-    self.city_name || '未知'
+    city_name || '未知'
   end
 
   def blogger_title
-    self.signature || self.whose_blogger
+    signature || whose_blogger
   end
 
   def avatar_url(size, version=nil)
-    if self.avatar? && self.avatar.versions.keys.include?(version.try(:to_sym))
-      self.avatar.send(version).url
+    if avatar? && avatar.versions.keys.include?(version.try(:to_sym))
+      avatar.send(version).url
     else
       width = user_avatar_width_for_size(size)
-      self.letter_avatar_url(width * 2)
+      letter_avatar_url(width * 2)
     end
   end
 
-  def admin?
-    email == Settings.site.owner_email
-  end
+  # def admin?
+  #   email == Settings.site.owner_email
+  # end
 
   def letter_avatar_url(size)
-    path = LetterAvatar.generate(self.name, size).sub('public/', '/')
+    path = LetterAvatar.generate(name, size).sub('public/', '/')
     "//#{Settings.site.domain}:#{Settings.site.port}#{path}"
   end
 
@@ -122,11 +124,11 @@ class User < ActiveRecord::Base
   end
 
   def email_md5
-    Digest::MD5.hexdigest(self.email.downcase)
+    Digest::MD5.hexdigest(email.downcase)
   end
 
   def gravatar_url #blocked in china
-    "http://www.gravatar.com/avatar/#{self.email_md5}"
+    "http://www.gravatar.com/avatar/#{email_md5}"
   end
 
   def calendar_data
@@ -145,6 +147,33 @@ class User < ActiveRecord::Base
     end
   end
 
+  def roles?(role)
+    case role
+      when :admin then admin?
+      when :site_editor then site_editor?
+      when :member then self.normal?
+      else false
+    end
+  end
+
+  # 是否是管理员
+  def admin?
+    Settings.admin_emails.include?(email)
+  end
+
+  # 回帖大于 150 的才有酷站的发布权限
+  def site_editor?
+    self.admin? || replies_count >= 100
+  end
+
+  # 是否能发帖
+  def newbie?
+    # return false if verified?
+    t = Setting.newbie_limit_time.to_i
+    return false if t == 0
+    created_at > t.seconds.ago
+  end
+
   private
 
   def update_ranking
@@ -161,11 +190,11 @@ class User < ActiveRecord::Base
   end
 
   def send_welcome_mail
-    SystemMailWorker.perform_async('welcome_mail', send_to: self.email)
+    SystemMailWorker.perform_async('welcome_mail', send_to: email)
   end
 
   def create_default_category
-    category = self.categories.build(name: '我的文章', description: '默认文章分类')
+    category = categories.build(name: '我的文章', description: '默认文章分类')
     category.save
   end
 end

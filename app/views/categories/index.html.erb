@@ -14,7 +14,7 @@
         <%= f.input_field :name, class: "form-control" %>
         <%= f.input_field :description, class: "form-control" %>
 
-        <%= f.button :submit, "添 加", class: "btn btn-primary btn_create_category" %>
+        <%= f.button :submit, t(:create), class: "btn btn-primary btn_create_category" %>
     <% end %>
   </div>
 </div>
@@ -26,7 +26,7 @@
             <%= f.input_field :name, class: "form-control" %>
             <%= f.input_field :description, class: "form-control" %>
 
-            <%= f.button :submit, "修 改", class: "btn btn-primary btn_update_category" %>
+            <%= f.button :submit, t(:update), class: "btn btn-primary btn_update_category" %>
         <% end %>
       </div>
     </div>
@@ -54,9 +54,9 @@
           <td><%= omited_str(category.description) %></td>
           <td><%= category.created_time %></td>
           <td>
-            <%= link_to "编 辑", edit_admin_category_path(category), class: "btn btn-xs btn-success link_edit_category" %>
+            <%= link_to t(:edit), edit_admin_category_path(category), class: "btn btn-xs btn-success link_edit_category" %>
 
-            <%= link_to "删 除", admin_category_path(category), data: {confirm: "你确定要删除这个分类吗？"}, method: :delete, remote: true, class: "btn btn-xs btn-danger" %>
+            <%= link_to t(:delete), admin_category_path(category), data: {confirm: t('activerecord.message.category.delete_confirmation')}, method: :delete, remote: true, class: "btn btn-xs btn-danger" %>
           </td>
         </tr>
     <% end %>

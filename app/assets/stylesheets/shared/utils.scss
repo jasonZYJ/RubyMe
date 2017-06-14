@@ -24,10 +24,10 @@ td {
   text-align: center;
   position: relative;
   margin-top: 40px;
-  background-color: #f7f7f7;
+  //background-color: #f7f7f7;
   padding-top: 15px;
   padding-bottom: 5px;
-  border-top: 1px solid #eee;
+  //border-top: 1px solid #eee;
 }
 
 .media-body, .media-left {
@@ -111,8 +111,15 @@ td {
 
 a {
   // font-size: 1.1em;
-  color: #0069D6;
+  color: #777;
   text-decoration: none;
+  font-weight: 400;
+}
+
+.default_title {
+  font-size: 16px;
+  font-weight: 400;
+  color: #222;
 }
 
 ul, ol {
@@ -136,6 +143,12 @@ ul, ol {
   padding-top: 6px;
   padding-right: 60px;
 }
+
+.edit_icon {
+  padding-left: 12px;
+  padding-bottom: 6px;
+}
+
 .about-panel {
   position: relative;
   margin-bottom: 20px;
@@ -201,11 +214,15 @@ ul, ol {
       .info {
         font-size: 15px;
         .time {
-          color: #bbb;
+          color: #777;
         }
       }
     }
   }
+}
+
+.text-muted {
+  font-weight: 400;
 }
 
 .new_button {

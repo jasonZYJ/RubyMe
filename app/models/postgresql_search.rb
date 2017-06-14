@@ -1,32 +1,33 @@
-class PostgresqlSearch < ActiveRecord::Base
+class PostgresqlSearch < ApplicationRecord
+
   require 'nokogiri'
 
   belongs_to :searchable, polymorphic: true
 
-  def self.index_searchable(obj)
-    return unless obj.respond_to? :postgresql_search
-    ps = obj.postgresql_search
-    if ps.nil?
-      PostgresqlSearch.create(searchable: obj)
-      ps = obj.reload.postgresql_search
-    end
+  class << self
+    def index_searchable(obj)
+      return unless obj.respond_to? :postgresql_search
+      if (ps = obj.postgresql_search).nil?
+        PostgresqlSearch.create(searchable: obj)
+        ps = obj.reload.postgresql_search
+      end
 
-    stemmer = "simple"
-    search_data = Search.prepare_data obj.to_search_data
-    PostgresqlSearch.exec_sql("UPDATE postgresql_searches SET
+      stemmer = "simple"
+      search_data = Search.prepare_data obj.to_search_data
+      PostgresqlSearch.exec_sql("UPDATE postgresql_searches SET
                             search_data = TO_TSVECTOR('#{stemmer}', :search_data)
                             WHERE id = :id", search_data: search_data, id: ps.id)
-  end
+    end
 
-  def self.scrub_html_for_search(html)
-    HtmlScrubber.scrub(html)
-  end
+    def scrub_html_for_search(html)
+      HtmlScrubber.scrub(html)
+    end
 
-  # Execute SQL manually
-  def self.exec_sql(*args)
-    conn = ActiveRecord::Base.connection
-    sql = ActiveRecord::Base.send(:sanitize_sql_array, args)
-    conn.execute(sql)
+    def exec_sql(*args)
+      conn = ActiveRecord::Base.connection
+      sql = ActiveRecord::Base.send(:sanitize_sql_array, args)
+      conn.execute(sql)
+    end
   end
 
   def exec_sql(*args)

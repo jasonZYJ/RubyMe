@@ -36,7 +36,7 @@ class MessagesController < ApplicationController
     @message = @messages.find(params[:id])
     @message.destroy
 
-    flash[:notice] = '你已经成功删除了该消息。'
+    flash[:notice] = t('activerecord.message.message.delete_successful')
     redirect_to admin_messages_path
   end
 

@@ -30,10 +30,10 @@ class CodesController < ApplicationController
     @code.user = current_user
 
     if @code.save
-      flash[:notice] = '你已经成功收藏了代码。'
+      flash[:notice] = t('activerecord.message.code.create_successful')
       redirect_to admin_code_path(@code)
     else
-      flash[:error] = '收藏代码失败，请注意以下提示！'
+      flash[:error] = t('activerecord.message.code.create_failed')
       render :new
     end
   end
@@ -46,10 +46,10 @@ class CodesController < ApplicationController
     @code = @codes.find(params[:id])
 
     if @code.update_attributes(code_params)
-      flash[:notice] = '你已经成功更新了收藏的代码。'
+      flash[:notice] = t('activerecord.message.code.update_successful')
       redirect_to action: :show
     else
-      flash[:error] = '修改代码失败，请注意以下提示！'
+      flash[:error] = t('activerecord.message.code.update_failed')
       render :edit
     end
   end
@@ -58,7 +58,7 @@ class CodesController < ApplicationController
     @code = @codes.find(params[:id])
     @code.destroy
 
-    flash[:notice] = '你已经成功删除了该代码。'
+    flash[:notice] = t('activerecord.message.code.delete_successful')
     redirect_to admin_codes_path
   end
 

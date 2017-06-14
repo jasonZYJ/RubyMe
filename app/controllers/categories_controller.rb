@@ -1,13 +1,13 @@
 class CategoriesController < HomeController
 
-  before_action :load_user, :load_categories, only: [:index, :show, :edit, :update, :destroy ]
+  before_action :load_user, :load_categories, only: [ :index, :show, :edit, :update, :destroy ]
 
   def index
   end
 
   def show
     @category = @categories.find(params[:id])
-    @posts = (current_user || User.find_by_uid(params[:user_id])).posts.where(category: @category)
+    @posts = (current_user || resource_class.class_for(:user).find_by_uid(params[:user_id])).posts.where(category: @category)
     @posts = @posts.page(params[:page])
   end
 
@@ -27,10 +27,10 @@ class CategoriesController < HomeController
     category_name = @category.name
 
     if @category.update_attributes(category_params)
-      flash[:notice] = "你已经成功修改了分类 #{category_name}。"
+      flash[:notice] = t('activerecord.message.categroy.update_successful', category_name: category_name)
       redirect_to action: :index
     else
-      flash[:error] = "修改分类 #{category_name} 失败。"
+      flash[:error] = t('activerecord.message.categroy.update_failed', category_name: category_name)
       render :index
     end
   end
@@ -52,12 +52,12 @@ class CategoriesController < HomeController
     @category = @categories.find(params[:id])
     category_name = @category.name
     if @category.posts.size > 0
-      js_alert("分类 #{category_name} 下还有文章，请先转移到其它分类！")
+      js_alert(t('activerecord.message.categroy.posts_alert', category_name: category_name))
     elsif @category.codes.size > 0
-      js_alert("分类 #{category_name} 下还有代码收藏，请先转移到其它分类！")
+      js_alert(t('activerecord.message.categroy.codes_alert', category_name: category_name))
     else
       @category.destroy
-      flash[:notice] = "成功删除分类 #{category_name}。"
+      flash[:notice] = t('activerecord.message.categroy.delete_successful', category_name: category_name)
       js_reload
     end
   end
@@ -68,11 +68,15 @@ class CategoriesController < HomeController
   end
 
   def load_categories
-    @categories ||= (current_user || User.find_by_uid(params[:user_id])).categories
+    @categories ||= (current_user || user_class.find_by_uid(params[:user_id])).categories
   end
 
   def load_user
-    @user ||= (current_user || User.find_by_uid(params[:user_id]))
+    @user ||= (current_user || user_class.find_by_uid(params[:user_id]))
+  end
+
+  def user_class
+    resource_class.class_for(:user)
   end
 
 end

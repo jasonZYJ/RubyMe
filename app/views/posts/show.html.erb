@@ -22,7 +22,20 @@
     </div>
     <div class="body">
       <%= @post.content.html_safe %>
-      <%= social_share_button_tag("#{@post.title} via: @#{Settings.site.name}", :popup => true) %>
+      <div>
+        <table>
+          <tr>
+            <td>
+              <%= social_share_button_tag("#{@post.title} via: @#{Settings.site.name}", :popup => true) %>
+            </td>
+            <td>
+              <% if current_user%>
+                  <%= link_to raw('<i class="glyphicon glyphicon-pencil"></i>'), edit_post_path(@post), class: 'pull-right edit_icon' %>
+              <% end %>
+            </td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
   <div class="box post-replies">
@@ -70,7 +83,7 @@
 
   <div class="box panel_new_reply">
     <% if current_user.blank? %>
-        需要登录之后才能评论。
+        <%= t(:can_reply_after_log_in) %>
         <%= link_to "登录", new_user_session_path %> |
         <%= link_to "注册", new_user_registration_path %>
     <% else %>

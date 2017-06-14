@@ -1,4 +1,14 @@
 #!/usr/bin/env ruby
+#TODO track boot process 的文件加载顺序, :line represents : execute code on a new line, so maybe duplicate here
+
+# files = []
+# TracePoint.new(:line) do |tp|
+#   if tp.path =~ /RubyMe/ && !files.include?(tp.path)
+#     puts "#{tp.path}".inspect
+#     files.push(tp.path)
+#   end
+# end.enable
+
 APP_PATH = File.expand_path('../../config/application',  __FILE__)
 require_relative '../config/boot'
 require 'rails/commands'

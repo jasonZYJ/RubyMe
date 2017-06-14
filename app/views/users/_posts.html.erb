@@ -33,7 +33,7 @@
       <td colspan='4'><!--%= paginate posts %--></td>
       <td colspan='2' class="text_middle">
         <div class="pull-right">
-          <%= link_to('查看所有', posts_path) unless url_for == posts_path %>
+          <%= link_to(t(:see_all), posts_path) unless url_for == posts_path %>
         </div>
       </td>
     </tr>

@@ -2,7 +2,6 @@ Rails.application.routes.draw do
 
   mount ExceptionTrack::Engine => "/exception-track"  #TODO need admin user permission, refactor
   mount StatusPage::Engine, at: '/'
-  mount RuCaptcha::Engine => "/rucaptcha"
   # scope "(:locale)", :locale => /en|zh|th|en-AU|en-US|en-UK|zh-TW|es/ do
   mount Ckeditor::Engine => '/ckeditor'
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -21,7 +20,15 @@ Rails.application.routes.draw do
   root 'home#index'
   get '/about_us', to: 'home#about_us'
 
-  resources :posts
+  resources :posts do
+    collection do
+      get :no_reply
+      get :popular
+      get :recent
+      get :excellent
+      get :favorites
+    end
+  end
   resources :posts, only: [:show] do
     resources :replies, only: [:create]
   end

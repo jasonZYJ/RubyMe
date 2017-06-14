@@ -41,7 +41,7 @@
       <td colspan='4'><%= paginate messages %></td>
       <td colspan='2' class="text_middle">
         <div class="pull-right">
-          <%= link_to('查看所有', messages_path) unless url_for == messages_path %>
+          <%= link_to(t(:see_all), messages_path) unless url_for == messages_path %>
         </div>
       </td>
     </tr>

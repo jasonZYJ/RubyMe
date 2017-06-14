@@ -2,13 +2,17 @@
   <div class="container">
     <div class="text-muted">
       <i class="fa fa-diamond"></i>
-      © 2016 RubyMe ·
+      © <%= Date.current.year %> <%=Settings.site.name%> ·
       <%=I18n.t(:hello)%> ·
-      All Rights Reserved ·
-      <%= link_to I18n.t(:report_issue), "mailto:rubyfan@163.com" %> ·
-      <a href="#">返回顶部</a> ·
-      <a href="<%= about_us_path %>">关于我们</a> ·
-      <a href='/status'>服务状态</a>
+      <%= I18n.t(:reserved_right) %> ·
+      <%= link_to raw(%Q(<i class="fa fa-envelope-o"></i>#{I18n.t(:report_issue)})), "mailto:rubyfan@163.com" %> ·
+
+      <%= link_to raw(%Q(<i class="fa fa-arrow-up"></i>#{t(:back_top)})), "#" %> ·
+      <%= link_to t(:simplified_chinese), url_for(locale: 'zh-CN') %> ·
+      <%= link_to t(:english), url_for(locale: 'en') %> ·
+      <%= link_to raw(%Q(<i class="fa fa-users"></i>#{t(:about_us)})), about_us_path %> ·
+      <%= link_to raw(%Q(<i class="fa fa-bar-chart"></i>#{t(:status)})), '/status' %>
     </div>
   </div>
 </div>
+

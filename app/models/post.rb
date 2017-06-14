@@ -1,16 +1,16 @@
 require 'word_check'
 include WordCheck::Worker
 
-class Post < ActiveRecord::Base
+class Post < ApplicationRecord
   include Reflections
   include Sensitive
 
   #Association
   belongs_to :user, counter_cache: true
-  belongs_to :last_reply_user, class_name: "User", foreign_key: :last_reply_user_id
+  belongs_to :last_reply_user, class_name: User, foreign_key: :last_reply_user_id
   belongs_to :point
   belongs_to :category
-  has_many :replies, dependent: :destroy
+  has_many :replies, dependent: :destroy, counter_cache: true
   has_one :postgresql_search, as: :searchable
 
   #Validate
@@ -22,10 +22,13 @@ class Post < ActiveRecord::Base
   validates :content, presence: true, allow_blank: false
 
   #Constants
-  SOURCES = %W(原创 翻译 转载 其他)
+  SOURCES = %W(原创 翻译 转载 其他) #FIXME if we need to save these source to db
 
   #Scope
   default_scope -> { order('created_at desc') }
+  scope :no_reply, -> { where(replies_count: 0) }
+  scope :popular, -> { where('likes_count > 5') }
+  scope :excellent, -> { where('excellent >= 1') }
 
   #Callback
   before_save :validate_tags
@@ -52,5 +55,4 @@ class Post < ActiveRecord::Base
       false
     end
   end
-
 end

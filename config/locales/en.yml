@@ -1,7 +1,120 @@
+'en':
+  hello: Hello world
+  report_issue: Report An Issue
+  topic: Topics
+  favorite: Favorites
+  log: Logs
+  simplified_chinese: Simplified Chinese
+  english: English
+  about_us: About Us
+  status: Status
+  back_top: Back Top
+  search: Search
+  search_content: Search Here
+  my_profile: My Profile
+  my_homepage: My HomePage
+  my_topics: My Topics
+  my_favorite: My Favorites
+  logout: Logout
+  login: Login
+  current_identity: Identity
+  guest: Guest
+  join: Join
+  reserved_right: All Rights Reserved
+  browser_old_message: "Your browser's version is too old，%{site_name}'s html5 speciality does not support your browser'，please update it as soon as possible!"
+  recently_updated_posts: Recently Updated Posts
+  recently_starred_posts: Recently Starred Posts
+  no_recently_updated_posts: There is no post recently。
+  no_recently_starred_posts: There is no post starred recently。
+  default: Default
+  popular: Popular
+  no_reply: No Reply
+  recent: Recent
+  check: Check
+  see_all: See All
+  supported_format: Supported Formats
+  cancel: Cancel
+  save: Save
+  create: Create
+  update: Update
+  new: New
+  delete: Delete
+  edit: Edit
+  can_reply_after_log_in: You can reply it after logging in.
 
-en:
-  hello: "Hello world"
-  report_issue: "Report An Issue"
+  activerecord:
+      models:
+        post: Post
+        blog: Blog
+        reply: Reply
+        category: Category
+        code: Code
+        language: Language
+        message: Message
+        point: Point
+        user: User
+      attributes:
+        post:
+
+        blog:
+
+        reply:
+
+        categroy:
+
+        code:
+
+        language:
+
+        message:
+
+        point:
+
+        user:
+
+      message:
+        post:
+          create_successful: You have already created a post successfully.
+          update_successful: You have already updated a post successfully.
+          delete_successful: You have already deleted a post successfully.
+        blog:
+          create_successful: You have already created a blog successfully.
+          create_failed: Failed to create a blog, please pay attention to the following tips!
+          update_successful: You have already updated a blog successfully.
+          update_failed: Failed to update a blog, please pay attention to the following tips!
+          delete_successful: You have already deleted a blog successfully.
+          delete_confirmation: Are you sure to delete this blog?
+        reply:
+          create_successful: You have already created a reply successfully.
+          delete_successful: You have already deleted a reply successfully.
+          hide_successful: You have already hiden a reply successfully.
+          restore_successful: You have already restored a reply successfully.
+
+        categroy:
+          update_successful: You have already updated category %{category_name}.
+          update_failed: Failed to update category %{category_name}.
+          posts_alert: There exists some posts under category %{category_name}，please transfer them to other category！
+          codes_alert: There exists some codes under category %{category_name}，please transfer them to other category！
+          delete_successful: Deleted category %{category_name} successful.
+          delete_confirmation: Are you sure to delete this category？
+        code:
+          create_successful: You have already created a code successfully.
+          create_failed: Failed to create a code, please pay attention to the following tips!
+          update_successful: You have already updated a code successfully.
+          update_failed: Failed to update a code, please pay attention to the following tips!
+          delete_successful: You have already deleted a code successfully.
+
+        language:
+
+        message:
+          delete_successful: You have already deleted a message successfully.
+
+        point:
+
+        user:
+          update_successful: Your profile has been updated successfully.
+          update_failed: Failed to update you profile，please check the error.
+
   date:
     abbr_day_names:
     - Sun

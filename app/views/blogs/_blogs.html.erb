@@ -19,7 +19,7 @@
           <td>
 
           <%= link_to raw('<span class="glyphicon glyphicon-pencil"></span>'), edit_blog_path(blog) %>
-          <%= link_to raw('<span class="glyphicon glyphicon-trash"></span>'), blog_path(blog), data: {confirm: "你确定要删除这篇文章吗？"}, method: :delete %>
+          <%= link_to raw('<span class="glyphicon glyphicon-trash"></span>'), blog_path(blog), data: {confirm: t('activerecord.message.blog.delete_confirmation')}, method: :delete %>
           </td>
         </tr>
     <% end %>
@@ -28,7 +28,7 @@
       <td colspan='4'><%= paginate blogs %></td>
       <td colspan='2' class="text_middle">
         <div class="pull-right">
-          <%= link_to('查看所有', blogs_path) unless url_for == blogs_path %>
+          <%= link_to(t(:see_all), blogs_path) unless url_for == blogs_path %>
         </div>
       </td>
     </tr>

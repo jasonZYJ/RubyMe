@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
-  before_action :check_browser
+  before_action :check_browser, :set_locale
   before_action :configure_permitted_parameters, if: :devise_controller?
   # before_action :load_messages, if: Proc.new { current_user.present? && !controller_path.start_with?("system") }
 
@@ -15,13 +15,12 @@ class ApplicationController < ActionController::Base
 
   protected
 
- #TODO will be better if we get resource class like this
   def resource_class
      @resource_class ||= controller_path.classify.safe_constantize
   end
 
   def load_messages
-    @messages ||= current_user.messages
+    @messages ||= current_user.messages if current_user
   end
 
   def check_browser
@@ -29,18 +28,35 @@ class ApplicationController < ActionController::Base
     if browser.ie? && browser.version.to_i < 9
       unless cookies[:is_noticed_browser]
         cookies[:is_noticed_browser] = {value: true, expires: 1.hour.from_now}
-        flash[:alert] = "你使用的浏览器太老了，RubyMe的很多Html5特性不支持，赶快升级吧！"
+        flash[:alert] = t('browser_old_message',site_name: Settings.site.name)
       end
     end
   end
 
-  def require_user
+  def set_locale
+    I18n.locale = user_locale
+
+    # after store current locale
+    cookies[:locale] = params[:locale] if params[:locale]
+  rescue I18n::InvalidLocale
+    I18n.locale = I18n.default_locale
+  end
+
+  def require_user #USAGE need to login
     if current_user.blank?
       respond_to do |format|
         format.html { authenticate_user! }
         format.all { head(:unauthorized) }
       end
     end
+  end
+
+  def authenticate_user!(opts = {}) #TODO apply permissions to given action
+    return if current_user
+
+    store_location
+
+    super(opts)
   end
 
   # configure devise permitted parameters
@@ -66,9 +82,18 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  #  # for user devise session
+  # for user devise session
   def after_sign_up_path_for(resource_or_scope)
     session[:redirect_url] || super
+  end
+
+  def user_locale
+    params[:locale] || cookies[:locale] || http_head_locale || I18n.default_locale
+  end
+
+  def http_head_locale
+    # detect the users preferred language, as sent by the "Accept-Language" HTTP header
+    http_accept_language.language_region_compatible_from(I18n.available_locales)
   end
 
 end

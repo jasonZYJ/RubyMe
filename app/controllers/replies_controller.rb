@@ -14,7 +14,7 @@ class RepliesController < ApplicationController
     @reply = @replies.find(params[:id])
     @reply.really_destroy!
 
-    flash[:notice] = '你已经成功删除了该评论。'
+    flash[:notice] = t('activerecord.message.reply.delete_successful')
     js_reload_without_params
   end
 
@@ -22,7 +22,7 @@ class RepliesController < ApplicationController
     @reply = @replies.find(params[:id])
     @reply.destroy
 
-    flash[:notice] = '你已经成功隐藏了该评论。'
+    flash[:notice] = t('activerecord.message.reply.hide_successful')
     js_reload_without_params
   end
 
@@ -30,7 +30,7 @@ class RepliesController < ApplicationController
     @reply = @replies.find(params[:id])
     @reply.restore
 
-    flash[:notice] = '你已经成功恢复了该评论。'
+    flash[:notice] = t('activerecord.message.reply.restore_successful')
     js_reload_without_params
   end
 
@@ -40,14 +40,13 @@ class RepliesController < ApplicationController
     @reply.post = @post
 
     if @reply.save
-      flash[:notice] = '你已经成功提交了回复。'
+      flash[:notice] = t('activerecord.message.reply.create_successful')
       redirect_to "#{post_path(@post)}#reply#{@reply.id}"
     else
       add_error_to_flash
       redirect_to post_path(@post)
     end
   end
-  # protected
   # override super method
 
   protected

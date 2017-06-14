@@ -15,7 +15,7 @@
 
     <div class="form-group">
       <div class="col-md-12">
-        可上传的文件格式: <%= Ckeditor.attachment_file_types + Ckeditor.image_file_types %>
+        <%= t(:supported_format) %>: <%= Ckeditor.attachment_file_types + Ckeditor.image_file_types %>
       </div>
     </div>
 
@@ -23,7 +23,7 @@
       <label class="col-md-5"> </label>
 
       <div class="col-md-7">
-        <%= f.button :submit, "发 布", class: "btn btn-primary btn_new_post" %>
+        <%= f.button :submit, t(:create), class: "btn btn-primary btn_new_post" %>
       </div>
     </div>
 <% end %>

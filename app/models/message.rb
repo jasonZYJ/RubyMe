@@ -1,5 +1,4 @@
-class Message < ActiveRecord::Base
-
+class Message < ApplicationRecord
   #Association
   belongs_to :user
   belongs_to :sender, class: User, foreign_key: :from_user_id
@@ -12,9 +11,10 @@ class Message < ActiveRecord::Base
 
   #scope
   default_scope -> { order('created_at desc') }
+
   scope :unreads, -> { where(is_read: false) }
 
   def created_time
-    self.created_at.strftime('%Y-%m-%d %H:%M')
+    created_at.strftime('%Y-%m-%d %H:%M')
   end
 end

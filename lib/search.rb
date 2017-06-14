@@ -26,7 +26,7 @@ class Search
 
     algo = RMMSeg::Algorithm.new(document)
     data = ""
-    while token = algo.next_token
+    while (token = algo.next_token)
       data << token.text << " "
     end
     data.force_encoding("UTF-8")

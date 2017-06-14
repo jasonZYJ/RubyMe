@@ -11,7 +11,10 @@ baidu:
   tongji_ua: 
 
 bugsnag:
-  api_key: 
+  api_key:
+
+admin_emails:
+    zyj880218@gmail.com
 
 site_mailer:
   admin_user: rubyfan@163.com
@@ -36,7 +39,7 @@ cdn:
   bucket_domain: jasonblog.qiniudn.com
 
 recomended_websites:
-  Ruby China : "http://ruby-china.org"
+  Ruby China : "https://ruby-china.org"
   Ruby Weekly : "http://rubyweekly.com"
   Rails 视频教程 : "http://railscasts-china.com/"
   RubyGems 淘宝镜像 : "https://ruby.taobao.org"

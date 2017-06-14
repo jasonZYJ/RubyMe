@@ -3,11 +3,46 @@ class PostsController < ApplicationController
 
   layout 'shared/home'
 
+  #TODO load_and_authorize_resource, ability
+  # need user when execute the following actions
+  # before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy,
+  #                                           :favorite, :unfavorite, :follow, :unfollow,
+  #                                           :action, :favorites]
+
   before_action :load_posts, only: [:index, :show, :edit, :update, :destroy]
   before_action :load_blogger, only: [:show]
 
   def index
+    @posts = Post.limit(4).page(params[:page]).per(2)
+  end
+
+  %w(no_reply popular).each do |name|
+    define_method(name) do
+      @posts = resource_class.send(name.to_sym).includes(:user)
+      @posts = @posts.page(params[:page])
+
+      render action: 'index'
+    end
+  end
+
+  # GET /posts/favorites
+  def favorites
+    @posts = resource_class.where(id: current_user.favorite_topic_ids)
+    @posts = @posts.recent.page(params[:page])
+    render action: 'index'
+  end
+
+  def recent
+    @posts = resource_class.recent.includes(:user)
     @posts = @posts.page(params[:page])
+    render action: 'index'
+  end
+
+  def excellent
+    @posts = resource_class.excellent.recent.includes(:user)
+    @posts = @posts.page(params[:page])
+
+    render action: 'index'
   end
 
   def new
@@ -16,15 +51,15 @@ class PostsController < ApplicationController
 
   def show
     @post = @posts.find(params[:id])
-    @reply = Reply.new(post_id: @post.id)
-    @replies = Reply.includes(:user).where(replies: {post_id: params[:id]})#@post.replies
+    @reply = resource_class.class_for(:replies).new(post_id: @post.id)
+    @replies = resource_class.class_for(:replies).includes(:user).where(replies: {post_id: params[:id]})#@post.replies
   end
   #
   # protected
   # # override super method
   def load_blogger
     if params[:user_id].present?
-      @blogger = User.find(params[:user_id])
+      @blogger = resource_class.class_for(:user).find(params[:user_id])
     else
       @post = resource_class.find(params[:id])
       @blogger = @post.user
@@ -36,7 +71,7 @@ class PostsController < ApplicationController
     @post.user = current_user
 
     if @post.save
-      flash[:notice] = '你已经成功发布了文章。'
+      flash[:notice] = t('activerecord.message.post.create_successful')
       redirect_to admin_post_path(@post)
     else
       add_error_to_flash
@@ -52,7 +87,7 @@ class PostsController < ApplicationController
     @post = @posts.find(params[:id])
 
     if @post.update_attributes(post_params)
-      flash[:notice] = '你已经成功修改了文章。'
+      flash[:notice] = t('activerecord.message.post.update_successful')
       redirect_to action: :show
     else
       add_error_to_flash
@@ -64,7 +99,7 @@ class PostsController < ApplicationController
     @post = @posts.find(params[:id])
     @post.destroy
 
-    flash[:notice] = '你已经成功删除了该文章。'
+    flash[:notice] = t('activerecord.message.post.delete_successful')
     redirect_to admin_root_path
   end
 

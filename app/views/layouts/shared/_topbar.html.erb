@@ -3,45 +3,42 @@
     <nav class="blog-nav">
       <div class="row">
         <div class="col-md-4">
-          <a class="<%= 'active' if action_name == 'index' && params[:controller] == 'home' %>" href="<%= root_path %>"><i class="fa fa-diamond"></i>RubyMe</a>
-          <a class="<%= 'active' if params[:controller] == 'posts' %>" href="<%= posts_path %>">社区</a>
-          <a class="<%= 'active' if params[:controller] == 'codes' %>" href="<%= codes_path %>">收藏</a>
-          <a class="<%= 'active' if params[:controller] == 'blogs' %>" href="<%= blogs_path %>">日志</a>
+          <%= link_to raw(%Q(<i class="fa fa-diamond"></i>#{Settings.site.name})), root_path, class: params[:controller] == 'home' && action_name == 'index' ? 'active' : '' %>
+          <%= link_to t(:topic), posts_path, class: params[:controller] == 'posts' ? 'active' : '' %>
+          <%= link_to t(:favorite), codes_path, class: params[:controller] == 'codes' ? 'active' : '' %>
+          <%= link_to t(:log), blogs_path, class: params[:controller] == 'blogs' ? 'active' : '' %>
         </div>
+
         <div class="col-md-5">
           <form action="<%= search_path %>" class="navbar-search" method="get">
-            <button type="submit" class="BTN"><i class="fa fa-search"></i> 搜 索</button>
-            <input type="text" name="q" class="TXT" value="" placeholder="搜索本站内容">
+            <button type="submit" class="BTN"><i class="fa fa-search"></i> <%= t(:search) %></button>
+            <input type="text" name="q" class="TXT" value="" placeholder="<%= t(:search_content) %>">
           </form>
         </div>
+
         <div class="col-md-3">
           <span class="pull-right">
           <% if current_user %>
             <ul class="nav navbar-nav navbar-right">
               <li><%= image_tag(current_user.avatar_url(:normal, :thumb), style: 'width:33px;height:39px;padding-bottom:6px') %></li>
               <li class="dropdown">
-                <a data-toggle="dropdown" class="dropdown-toggle link_admin_home" href="<%= profile_user_path(current_user) %>"><%= current_user.human_name %>
-                  <b class="caret"></b></a>
+                <%= link_to raw(%Q(#{current_user.human_name}<b class="caret"></b>)), profile_user_path(current_user), class: "dropdown-toggle link_admin_home", data: { toggle: 'dropdown' } %>
                 <ul class="dropdown-menu">
-                  <li><a href="<%= profile_user_path(current_user) %>">我的资料</a></li>
-                  <li><a href="<%= home_user_path(current_user) %>">我的主页</a></li>
-                  <li><a href="<%= user_path(current_user) %>">我的帖子</a></li>
-                  <li><a href="<%= user_codes_path(current_user) %>">我的收藏</a></li>
+                  <% user_dropdown_hash.each do |k, v| %>
+                    <li><%= link_to t(k), v %></li>
+                  <% end %>
                   <li class="divider"></li>
-                  <li><a href="<%= destroy_user_session_path %>">退出</a></li>
+                  <li><%= link_to t(:logout), destroy_user_session_path %></li>
                 </ul>
               </li>
             </ul>
-            <a class="link_admin_messages <%= 'active' if controller.class.to_s == "Admin::MessagesController" %>" href="<%= messages_path %>">
-              <% badge_class = messages.try(:unreads).try(:count).to_i > 0 ? "badge-error" : '' %>
-              <span class="badge <%= badge_class %>"><%= messages.try(:unreads).try(:count).to_i %></span></a>
-
+                <%= link_to raw(%Q(<span class="badge #{(msg_count = messages.try(:unreads).try(:count).to_i) > 0 ? "badge-error" : ''}">#{msg_count}</span>)), messages_path, class: %Q(link_admin_messages #{'active' if controller.class.to_s == "MessagesController"}) %>
          <% else %>
-            <label style="color:lightgrey">当前身份：访客</label> [
-            <a id="link_sign_in" class="<%= 'active_only' if params[:controller] == 'users/sessions' %>" href="<%= new_user_session_path %>">登录</a>
-            |
-            <a id="link_sign_up" class="<%= 'active_only' if params[:controller] == 'users/registrations' %>" href="<%= new_user_registration_path %>">加入RubyMe</a>
-            ]
+            <label style="color: #777"><%= t(:current_identity) %>：<%= t(:guest) %></label> [
+                <%= link_to t(:login), new_user_session_path, id: "link_sign_in", class: params[:controller] == 'users/sessions' ? 'active_only' : '' %>
+                |
+                <%= link_to %Q(#{t(:join)}#{Settings.site.name}), new_user_registration_path, id: "link_sign_up", class: params[:controller] == 'users/registrations' ? 'active_only' : '' %>
+                ]
          <% end %>
          </span>
         </div>
@@ -49,3 +46,5 @@
     </nav>
   </div>
 </div>
+
+<!--use content_tag to generate i label-->

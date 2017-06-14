@@ -1,4 +1,4 @@
-class Code < ActiveRecord::Base
+class Code < ApplicationRecord
 
   #Association
   belongs_to :user
@@ -19,14 +19,14 @@ class Code < ActiveRecord::Base
   #Callback
   before_save :validate_tags
 
-  def published_time
-    self.created_at.strftime('%Y-%m-%d %H:%M')
+  def published_time #TODO this method duplicates in 4 files, refactor
+    created_at.strftime('%Y-%m-%d %H:%M')
   end
 
   private
 
   def validate_tags
-    if self.tags.split(/，/).size > 3
+    if tags.split(/，/).size > 3
       errors.add(:tags, '关键词超过3个了!')
       false
     end
