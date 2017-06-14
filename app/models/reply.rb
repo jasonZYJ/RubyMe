@@ -1,7 +1,7 @@
 require 'word_check'
 include WordCheck::Worker
 
-class Reply < ActiveRecord::Base
+class Reply < ApplicationRecord
 
   include Sensitive
 
@@ -13,7 +13,6 @@ class Reply < ActiveRecord::Base
   has_one :blogger, through: :post, source: 'user'
   has_many :messages, as: :target, dependent: :destroy
   has_one :postgresql_search, as: :searchable
-
 
   #Validate
   validates :user_id, presence: true
@@ -32,7 +31,7 @@ class Reply < ActiveRecord::Base
   end
 
   def published_time
-    self.created_at.strftime('%Y-%m-%d %H:%M')
+    created_at.strftime('%Y-%m-%d %H:%M')
   end
 
   def message_to_at_user(at_user)
@@ -47,12 +46,12 @@ class Reply < ActiveRecord::Base
   end
 
   def message_to_blogger
-    return if self.user.id == self.blogger.id
-    message = self.messages.build(
+    return if user.id == blogger.id
+    message = messages.build(
         is_read: false,
-        user_id: self.blogger.id,
-        from_user_id: self.user.id,
-        body: "#{self.user.uid} 回复了你: #{self.content}"
+        user_id: blogger.id,
+        from_user_id: user.id,
+        body: "#{user.uid} 回复了你: #{content}"
     )
     message.save
   end
@@ -63,7 +62,7 @@ class Reply < ActiveRecord::Base
     at_users = []
     self.content.gsub(/@(\w{3,20})/) {
       uid = "#{$1.strip.sub('@', '')}"
-      user = User.find_by(uid: uid)
+      user = class_for(:user).find_by(uid: uid)
 
       if user.present? && !at_users.include?(user)
         at_users << user
