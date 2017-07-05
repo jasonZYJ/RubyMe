@@ -3,11 +3,10 @@ class PostsController < ApplicationController
 
   layout 'shared/home'
 
-  #TODO load_and_authorize_resource, ability
-  # need user when execute the following actions
-  # before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy,
-  #                                           :favorite, :unfavorite, :follow, :unfollow,
-  #                                           :action, :favorites]
+  load_and_authorize_resource
+  before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy,
+                                            :favorite, :unfavorite, :follow, :unfollow,
+                                            :action, :favorites]
 
   before_action :load_posts, only: [:index, :show, :edit, :update, :destroy]
   before_action :load_blogger, only: [:show]
