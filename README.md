@@ -1,7 +1,7 @@
 RubyMe: A Ruby on Rails platform for sharing blogs
 =======
 
-[![Code Climate](https://codeclimate.com/github/J-Y/RubyMe/badges/gpa.svg)](https://codeclimate.com/github/J-Y/RubyMe)
+[![Code Climate](https://codeclimate.com/github/jasonZYJ/RubyMe/badges/gpa.svg)](https://codeclimate.com/github/jasonZYJ/RubyMe)
 
 RubyMe, a platform for sharing blog.
 
