@@ -5,17 +5,20 @@ class SystemMailer < ActionMailer::Base
   def welcome_mail(params)
     @send_to = params["send_to"]
 
-    mail(to: @send_to, subject: "#{Settings.site.name} 欢迎你") do |format|
-      format.html { render "mailers/system_mailer/welcome_register", layout: false }
-    end
+    send_mail("#{Settings.site.name} 欢迎你", "mailers/system_mailer/welcome_register")
   end
 
   def sensitive_mail(params)
     @send_to = params["send_to"]
     @content = params["content"]
 
-    mail(to: @send_to, subject: "#{Settings.site.name}敏感词检测结果") do |format|
-      format.html { render "mailers/system_mailer/page_sensitive", layout: false }
+    send_mail("#{Settings.site.name}敏感词检测结果", "mailers/system_mailer/page_sensitive")
+    end
+  end
+
+  def send_mail(subject, render_path)
+    mail(to: @send_to, subject: subject) do |format|
+      format.html { render render_path, layout: false }
     end
   end
 end
