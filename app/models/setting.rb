@@ -2,6 +2,7 @@
 class Setting < RailsSettings::Base
   source Rails.root.join('config/config.yml')
 
+  #TODO has 2 gems about setting, need to refactor
   # List setting value separator chars
   SEPARATOR_REGEXP = /[\s,]/
 
@@ -15,10 +16,10 @@ class Setting < RailsSettings::Base
     wiki_index_html
     wiki_sidebar_html
     site_index_html
-    topic_index_sidebar_html
-    after_topic_html
-    before_topic_html
-    node_ids_hide_in_topics_index
+    post_index_sidebar_html
+    after_post_html
+    before_post_html
+    node_ids_hide_in_posts_index
     reject_newbie_reply_in_the_evening
     newbie_limit_time
     ban_words_on_reply
@@ -43,14 +44,11 @@ class Setting < RailsSettings::Base
       self.admin_emails.split(SEPARATOR_REGEXP).include?(email)
     end
 
-    def has_module?(name)
-      return true if self.modules.blank? || self.modules == 'all'
-      self.modules.split(SEPARATOR_REGEXP).include?(name.to_s)
-    end
-
-    def has_profile_field?(name)
-      return true if self.profile_fields.blank? || self.profile_fields == 'all'
-      self.profile_fields.split(SEPARATOR_REGEXP).include?(name.to_s)
+    %w(module profile_field).each do |field|
+      define_method("has_#{field}?") do |name|
+        return true if self.send(name.pluralize).blank? || self.send(name.pluralize) == 'all'
+        self.send(name.pluralize).split(SEPARATOR_REGEXP).include?(name.to_s)
+      end
     end
 
     def sso_enabled?
