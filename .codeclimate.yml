@@ -6,6 +6,9 @@ engines:
     enabled: true
   csslint:
     enabled: true
+    checks:
+      unique-headings:
+        enabled: false
   coffeelint:
     enabled: true
   duplication:
@@ -31,7 +34,6 @@ ratings:
   - "**.css"
   - "**.coffee"
   - "**.inc"
-  - "**.js"
   - "**.jsx"
   - "**.module"
 exclude_paths:
