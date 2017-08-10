@@ -3,7 +3,9 @@ RubyMe: A Ruby on Rails platform for sharing blogs
 
 [![Code Climate](https://codeclimate.com/github/J-Y/RubyMe/badges/gpa.svg)](https://codeclimate.com/github/J-Y/RubyMe)
 
-RubyMe, a platform for sharing blog. 
+RubyMe, a platform for sharing blog.
+
+![](public/RubyMe.jpg)
 
 ## Requirements
 
@@ -58,6 +60,3 @@ bundle exec rspec -fd
 
 bundle exec rspec -fd ./spec/features # Run only features test
 ```
-
-
-
