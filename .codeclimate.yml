@@ -9,6 +9,8 @@ engines:
     checks:
       unique-headings:
         enabled: false
+      box-sizing:
+        enabled: false
   coffeelint:
     enabled: true
   duplication:
@@ -25,13 +27,11 @@ engines:
     enabled: false
 ratings:
   paths:
-  - Gemfile.lock
   - "**.erb"
   - "**.haml"
   - "**.rb"
   - "**.rhtml"
   - "**.slim"
-  - "**.css"
   - "**.coffee"
   - "**.inc"
   - "**.jsx"
