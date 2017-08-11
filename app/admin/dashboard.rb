@@ -15,23 +15,14 @@ ActiveAdmin.register_page "Dashboard" do
         end
       end
 
-      column do
-        panel "最近的文章" do
-          ul do
-            Post.limit(15).map do |post|
-              omited_title = post.title.truncate(99, separator: ' ', omission: '...')
-              li link_to(omited_title, system_post_path(post))
-            end
-          end
-        end
-      end
-
-      column do
-        panel "最近的代码" do
-          ul do
-            Code.limit(15).map do |code|
-              omited_title = code.title.truncate(99, separator: ' ', omission: '...')
-              li link_to(omited_title, system_code_path(code))
+      {Post: "最近的文章", Code: "最近的代码"}.each_pair do |key, value|
+        column do
+          panel value do
+            ul do
+              key.safe_constantize.limit(15).map do |record|
+                omited_title = record.title.truncate(99, separator: ' ', omission: '...')
+                li link_to(omited_title, send("system_#{record}_path", record))
+              end
             end
           end
         end
