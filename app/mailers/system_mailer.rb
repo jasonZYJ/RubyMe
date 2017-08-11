@@ -13,7 +13,6 @@ class SystemMailer < ActionMailer::Base
     @content = params["content"]
 
     send_mail("#{Settings.site.name}敏感词检测结果", "mailers/system_mailer/page_sensitive")
-    end
   end
 
   def send_mail(subject, render_path)
@@ -22,3 +21,4 @@ class SystemMailer < ActionMailer::Base
     end
   end
 end
+
