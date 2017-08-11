@@ -16,8 +16,6 @@ class BlogsController < ApplicationController
     @blog = Blog.new
   end
 
-  #TODO frontend
-
   # def index
   #   @blogs = Blog.visible.order("created_at desc").page(params[:page]).per(8)
   # end
@@ -30,13 +28,7 @@ class BlogsController < ApplicationController
     @blog = Blog.new(blog_params)
     @blog.user = current_user
 
-    if @blog.save
-      flash[:notice] = t('activerecord.message.blog.create_successful')
-      redirect_to admin_blog_path(@blog)
-    else
-      flash[:error] = t('activerecord.message.blog.create_failed')
-      render :new
-    end
+    handle_save(@blog, 'blog')
   end
 
   def edit
@@ -45,14 +37,8 @@ class BlogsController < ApplicationController
 
   def update
     @blog = @blogs.find(params[:id])
-
-    if @blog.update_attributes(blog_params)
-      flash[:notice] = t('activerecord.message.blog.update_successful')
-      redirect_to action: :show
-    else
-      flash[:error] = t('activerecord.message.blog.update_failed')
-      render :edit
-    end
+    
+    handle_update(@blog, 'blog', blog_params)
   end
 
   def destroy

@@ -96,4 +96,24 @@ class ApplicationController < ActionController::Base
     http_accept_language.language_region_compatible_from(I18n.available_locales)
   end
 
+  def handle_save(record, name)
+    if record.save
+      flash[:notice] = t("activerecord.message.#{name}.create_successful")
+      redirect_to send("admin_#{name}_path", record)
+    else
+      flash[:error] = t("activerecord.message.#{name}.create_failed")
+      render :new
+    end
+  end
+
+  def handle_update(record,name, params_hash)
+    if record.update_attributes(params_hash)
+      flash[:notice] = t("activerecord.message.#{name}.update_successful")
+      redirect_to action: :show
+    else
+      flash[:error] = t("activerecord.message.#{name}.update_failed")
+      render :edit
+    end
+  end
+
 end

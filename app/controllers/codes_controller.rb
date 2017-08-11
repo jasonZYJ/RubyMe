@@ -29,13 +29,8 @@ class CodesController < ApplicationController
     @code = resource_class.new(code_params)
     @code.user = current_user
 
-    if @code.save
-      flash[:notice] = t('activerecord.message.code.create_successful')
-      redirect_to admin_code_path(@code)
-    else
-      flash[:error] = t('activerecord.message.code.create_failed')
-      render :new
-    end
+    handle_save(@code, 'code')
+
   end
 
   def edit
@@ -45,13 +40,7 @@ class CodesController < ApplicationController
   def update
     @code = @codes.find(params[:id])
 
-    if @code.update_attributes(code_params)
-      flash[:notice] = t('activerecord.message.code.update_successful')
-      redirect_to action: :show
-    else
-      flash[:error] = t('activerecord.message.code.update_failed')
-      render :edit
-    end
+    handle_update(@code, 'code', code_params)
   end
 
   def destroy
